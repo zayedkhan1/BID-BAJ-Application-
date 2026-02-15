@@ -86,11 +86,11 @@ const AvailableCars = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
-            <h2 className="text-blue-500 font-bold tracking-[0.2em] uppercase text-sm mb-4">
+            <h2 className="text-[#769A7F] font-bold tracking-[0.2em] uppercase text-sm mb-4">
               Live Auctions
             </h2>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-              Available <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Inventory</span>
+              Available <span className="text-transparent bg-clip-text bg-gradient-to-r bg-gradient-to-r from-[#769A7F] to-[#5a7c63]">Inventory</span>
             </h3>
           </div>
           <button className="text-slate-300 font-semibold border-b border-blue-500/50 pb-1 hover:text-blue-400 hover:border-blue-400 transition-all">
@@ -113,7 +113,7 @@ const AvailableCars = () => {
                 
                 {/* Status Badges */}
                 <div className="absolute top-5 left-5 bg-slate-900/80 backdrop-blur-md px-4 py-2 rounded-2xl text-xs font-bold flex items-center gap-2 shadow-2xl border border-white/10">
-                  <MdTimer className="text-blue-400 text-lg animate-pulse" />
+                  <MdTimer className="text-yellow-500 text-lg animate-pulse" />
                   <span className="text-slate-100 uppercase tracking-wider">{car.timeLeft} LEFT</span>
                 </div>
                 
@@ -121,7 +121,7 @@ const AvailableCars = () => {
                   <IoMdHeartEmpty size={20} />
                 </button>
 
-                <div className="absolute bottom-5 left-5 bg-blue-600/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-xl text-xs font-extrabold tracking-wide uppercase">
+                <div className="absolute bottom-5 left-5 bg-[#769A7F] backdrop-blur-sm text-white px-4 py-1.5 rounded-xl text-xs font-extrabold tracking-wide uppercase">
                   {car.bids} Bids Placed
                 </div>
               </div>
@@ -130,8 +130,8 @@ const AvailableCars = () => {
               <div className="p-8">
                 <div className="flex justify-between items-start mb-6">
                   <div>
-                    <p className="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1.5">{car.year} Model</p>
-                    <h4 className="text-2xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                    <p className="text-[#769A7F] text-xs font-bold uppercase tracking-widest mb-1.5">{car.year} Model</p>
+                    <h4 className="text-2xl font-bold text-white group-hover:text-[#769A7F] transition-colors">
                       {car.name}
                     </h4>
                   </div>
@@ -158,7 +158,7 @@ const AvailableCars = () => {
                 </div>
 
                 {/* Bidding Button */}
-                <button className="w-full bg-blue-600 hover:bg-blue-500 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-blue-900/20 active:scale-[0.98]">
+                <button className="w-full text-white py-4 rounded-2xl bg-gradient-to-r from-[#769A7F] to-[#5a7c63] font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg shadow-blue-900/20 active:scale-[0.98]">
                   <FaGavel className="text-white/80 group-hover:rotate-12 transition-transform" />
                   <span className="tracking-wide uppercase text-sm">Place A Bid</span>
                 </button>

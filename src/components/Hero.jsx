@@ -87,9 +87,9 @@ const Hero = () => {
     <section className="relative min-h-screen mt-15 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-10 left-10 w-72 h-72  bg-[#769A7F]  rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
         <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-50 h-50 bg-red-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-50 h-50 bg-[#769A7F]  rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse delay-1000"></div>
       </div>
 
       {/* Grid pattern overlay */}
@@ -108,7 +108,7 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="text-left"
           >
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 rounded-full mb-6">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#769A7F] to-[#5a7c63] px-4 py-2 rounded-full mb-6">
               <FaGavel className="text-yellow-400" />
               <span className="text-sm font-semibold"> AUCTION IN PROGRESS</span>
             </div>
@@ -136,7 +136,7 @@ const Hero = () => {
                 <div className="text-gray-400 text-sm">Satisfaction Rate</div>
               </div>
               <div className="bg-white/5 backdrop-blur-sm rounded-xl p-4 border border-white/10">
-                <div className="text-2xl font-bold text-purple-400">24/7</div>
+                <div className="text-2xl font-bold text-[#769A7F]">24/7</div>
                 <div className="text-gray-400 text-sm">Live Support</div>
               </div>
             </div>
@@ -150,7 +150,7 @@ const Hero = () => {
                   placeholder="Search for your dream car (e.g., Porsche 911, Tesla Model S)" 
                   className="w-full bg-transparent px-4 py-3 outline-none placeholder-gray-400"
                 />
-                <button className="bg-gradient-to-r from-blue-600 to-purple-600 px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
+                <button className="bg-gradient-to-r from-[#769A7F] to-[#5a7c63]  px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity">
                   Search
                 </button>
               </div>
@@ -190,7 +190,7 @@ const Hero = () => {
                     onClick={() => setCurrentSlide(index)}
                     className={`w-2 h-2 rounded-full transition-all ${
                       index === currentSlide 
-                        ? 'bg-blue-500 w-8' 
+                        ? 'bg-[#769A7F] w-8' 
                         : 'bg-gray-600 hover:bg-gray-500'
                     }`}
                   />
@@ -274,7 +274,7 @@ const Hero = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <button 
                     onClick={handleBidNow}
-                    className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
+                    className=" bg-gradient-to-r from-[#769A7F] to-[#5a7c63] text-white py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
                   >
                     <FaGavel />
                     Place Bid Now
@@ -313,15 +313,16 @@ const Hero = () => {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 2 }}
-              className="absolute -bottom-6 -left-6 bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-xl shadow-2xl hidden lg:block"
+              className="absolute -bottom-6 -left-6 bg-gradient-to-r  from-[#769A7F] to-[#5a7c63] p-4 rounded-xl shadow-2xl hidden lg:block"
             >
               <div className="text-center">
                 <div className=" font-bold">Boost your </div>
                 <div className="text-sm">First Bid !!</div>
               </div>
             </motion.div>
-
-            <motion.div 
+         
+         {/* BID & WIN */}
+            {/* <motion.div 
               animate={{ y: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 3, delay: 0.5 }}
               className="absolute -top-6 -right-6 bg-gradient-to-r from-blue-600 to-cyan-600 p-4 rounded-xl shadow-2xl hidden lg:block"
@@ -330,7 +331,8 @@ const Hero = () => {
                 <div className="font-bold"> BID <br />& </div>
                 <div className="text-sm"> WIN </div>
               </div>
-            </motion.div>
+            </motion.div> */}
+
           </motion.div>
         </div>
       </div>
@@ -341,15 +343,16 @@ const Hero = () => {
         transition={{ repeat: Infinity, duration: 2 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
       >
-        {/* <div className="text-center">
-          <div className="text-gray-400 text-sm mb-2">Scroll to explore</div>
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gray-400 rounded-full mt-2"></div>
-          </div>
-        </div> */}
+   
       </motion.div>
     </section>
   );
 };
 
 export default Hero;
+
+
+
+
+
+

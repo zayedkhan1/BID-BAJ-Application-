@@ -1,85 +1,5 @@
 
-
-// import { useRef, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-
-// const OtpVerify = () => {
-//   const navigate = useNavigate();
-//   const [otp, setOtp] = useState(Array(6).fill(""));
-//   const inputsRef = useRef([]);
-
-//   const handleChange = (value, index) => {
-//     if (isNaN(value)) return;
-
-//     const newOtp = [...otp];
-//     newOtp[index] = value;
-//     setOtp(newOtp);
-
-//     if (value && index < 5) {
-//       inputsRef.current[index + 1].focus();
-//     }
-//   };
-
-//   const handleKeyDown = (e, index) => {
-//     if (e.key === "Backspace" && !otp[index] && index > 0) {
-//       inputsRef.current[index - 1].focus();
-//     }
-//   };
-
-//   const handleVerify = () => {
-//     if (otp.join("").length !== 6) {
-//       alert("Please enter 6 digit OTP");
-//       return;
-//     }
-//     alert("OTP Verified Successfully!");
-//     navigate("/");
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-//       <div
-//         className="bg-white p-6 rounded-xl shadow-xl w-full max-w-sm
-//                    animate-slideUp"
-//       >
-//         <h2 className="text-2xl font-semibold text-center mb-4">
-//           Verify OTP
-//         </h2>
-
-//         <div className="flex justify-between mb-4">
-//           {otp.map((digit, index) => (
-//             <input
-//               key={index}
-//               ref={(el) => (inputsRef.current[index] = el)}
-//               type="text"
-//               maxLength="1"
-//               value={digit}
-//               onChange={(e) => handleChange(e.target.value, index)}
-//               onKeyDown={(e) => handleKeyDown(e, index)}
-//               className="w-11 h-11 text-center text-lg border rounded-lg
-//                          focus:ring-2 focus:ring-green-400 transition"
-//             />
-//           ))}
-//         </div>
-
-//         <button
-//           onClick={handleVerify}
-//           className="w-full bg-green-600 text-white py-2 rounded-lg
-//                      hover:bg-green-700 hover:shadow-lg
-//                      transition-all"
-//         >
-//           Verify
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default OtpVerify;
-
-
-
-
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaShieldAlt } from 'react-icons/fa';
 import { MdOutlineMarkEmailRead } from 'react-icons/md';
@@ -192,10 +112,7 @@ const VerifyOTP = () => {
           </div>
         </div>
 
-        {/* Footer Brand */}
-        {/* <p className="mt-12 text-center text-slate-600 text-xs uppercase tracking-[0.3em]">
-          Secured by <span className="text-slate-400 font-bold italic">AUTOBID</span> Encrypted Shield
-        </p> */}
+   
       </div>
     </div>
   );

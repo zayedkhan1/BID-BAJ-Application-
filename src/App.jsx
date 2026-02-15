@@ -44,6 +44,7 @@ import Login from './pages/Login'
 import OtpVerify from './pages/OtpVerify'
 import Profile from './pages/Profile'
 import AdminPanel from './AdminPanel/AdminPanel'
+import AdminLogin from './pages/AdminLogin'
 
 function App() {
   const location = useLocation();
@@ -62,6 +63,7 @@ function App() {
         <Route path="/otp-verify" element={<OtpVerify />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/adminlogin" element={<AdminLogin />} />
       </Routes>
 
       {/* Show Footer only if NOT admin */}

@@ -24,8 +24,7 @@ const Footer = () => {
               whileInView={{ opacity: 1 }}
               className="flex items-center space-x-3 mb-6"
             >
-              {/* <GiCarKey className="h-10 w-10 text-blue-400" />
-              <span className="text-3xl font-bold">Auto<span className="text-blue-400">Bid</span></span> */}
+          
               <img
               className='h-20 w-20'  
               src={footerLogo} alt="Bid Baj" />
@@ -64,7 +63,7 @@ const Footer = () => {
               <ul className="space-y-2">
                 {links.map((link) => (
                   <li key={link}>
-                    <a href="#" className="text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="#" className="text-gray-400 hover:text-[#769A7F] transition-colors">
                       {link}
                     </a>
                   </li>
@@ -88,7 +87,7 @@ const Footer = () => {
               transition={{ delay: index * 0.1 }}
               className="flex items-center space-x-3"
             >
-              <item.icon className="text-blue-400" />
+              <item.icon className="text-[#769A7F]" />
               <span className="text-gray-400">{item.text}</span>
             </motion.div>
           ))}
@@ -98,7 +97,7 @@ const Footer = () => {
                   key={index}
                   href="#"
                   whileHover={{ scale: 1.1, y: -2 }}
-                  className="h-10 w-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-colors"
+                  className="h-10 w-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-[#769A7F] transition-colors"
                 >
                   <Icon />
                 </motion.a>
@@ -110,7 +109,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="  mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} BID BAJ. All rights reserved. Luxury cars shown are for illustration purposes only.</p>
+          <p>&copy; {new Date().getFullYear()} BID BAJ. All rights reserved.</p>
         
          <div>
           

@@ -1,86 +1,11 @@
-// import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { FaPhoneAlt } from "react-icons/fa";
 
-// const countryCodes = [
-//   { code: "+1", country: "USA" },
-//   { code: "+44", country: "UK" },
-//   { code: "+91", country: "India" },
-//   { code: "+880", country: "Bangladesh" },
-//   { code: "+81", country: "Japan" },
-// ];
-
-// const Login = () => {
-//   const [countryCode, setCountryCode] = useState("+1");
-//   const [phone, setPhone] = useState("");
-//   const navigate = useNavigate();
-
-//   const handleGetCode = () => {
-//     if (!phone) {
-//       alert("Please enter your mobile number");
-//       return;
-//     }
-//     alert(`OTP sent to ${countryCode}${phone}`);
-//     navigate("/otp-verify");
-//   };
-
-//   return (
-//     <div className="min-h-screen flex items-center justify-center bg-gray-100">
-//       <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-sm">
-//         <h2 className="text-2xl font-semibold text-center mb-4">
-//           Login with Mobile
-//         </h2>
-
-//         <div className="flex gap-2 mb-4">
-//           <select
-//             className="border rounded-lg px-2 py-2 w-1/3"
-//             value={countryCode}
-//             onChange={(e) => setCountryCode(e.target.value)}
-//           >
-//             {countryCodes.map((item) => (
-//               <option key={item.code} value={item.code}>
-//                 {item.country} ({item.code})
-//               </option>
-//             ))}
-//           </select>
-
-//           <div className="relative w-2/3">
-//             <FaPhoneAlt className="absolute top-3 left-3 text-gray-400" />
-//             <input
-//               type="tel"
-//               placeholder="Mobile Number"
-//               className="border rounded-lg pl-10 pr-3 py-2 w-full"
-//               value={phone}
-//               onChange={(e) => setPhone(e.target.value)}
-//             />
-//           </div>
-//         </div>
-
-//         <button
-//           onClick={handleGetCode}
-//           className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
-//         >
-//           Get Code
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Login;
-
-
-
-
-
-
-
-import { useState } from "react";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPhoneAlt, FaArrowRight } from "react-icons/fa";
 import { MdVerifiedUser } from "react-icons/md";
 import PrivacyPolicy from "../components/PriacyPolicy";
 import TermsAndConditions from "../components/TermsAndConditions";
+
 
 const countryCodes = [
   { code: "+1", country: "USA", flag: "🇺🇸" },
@@ -95,13 +20,17 @@ const Login = () => {
   const [phone, setPhone] = useState("");
   const navigate = useNavigate();
 
-  const handleGetCode = () => {
+  const handleGetCode = async () => {
+
     if (!phone) {
       alert("Please enter your mobile number");
       return;
     }
     // Simulate API Call
-    navigate("/otp-verify");
+    
+
+     navigate("/otp-verify");
+
   };
 
   return (
@@ -190,9 +119,9 @@ const Login = () => {
 
           <p className="mt-10 text-center text-slate-500 text-sm">
             By continuing, you agree to our 
-         <button><TermsAndConditions></TermsAndConditions></button>   
+         <a><TermsAndConditions></TermsAndConditions></a>   
             and 
-        <button><PrivacyPolicy></PrivacyPolicy></button>   
+        <a><PrivacyPolicy></PrivacyPolicy></a>   
           </p>
         </div>
       </div>

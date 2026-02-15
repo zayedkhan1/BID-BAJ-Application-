@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiUserCircle, BiLogOut, BiTrash } from "react-icons/bi";
+import { FaChevronDown, FaUserCircle } from "react-icons/fa";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
@@ -36,11 +37,15 @@ const ProfileDropdown = () => {
       {/* Profile Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-indigo-500/25"
-      
+        className="flex items-center gap-2 bg-[#769A7F] hover:bg-[#769A7F] px-5 py-2.5 cursor-pointer rounded-full text-sm font-bold transition-all shadow-lg shadow-indigo-500/25"
+
       >
-        <BiUserCircle className="text-lg" />
-        <span>Profile</span>
+        {/* <BiUserCircle className="text-lg" /> */}
+        <FaUserCircle className="w-6 h-6" />
+        <FaChevronDown className="w-4 h-4" />
+        
+        
+        {/* <span>Profile</span> */}
       </button>
 
       {/* Dropdown */}

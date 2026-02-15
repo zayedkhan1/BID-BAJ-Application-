@@ -31,6 +31,7 @@ const Navbar = () => {
     // { name: 'Done', href: '#pricing', icon: <HiOutlineCurrencyDollar /> }, //ata profile er under e hobe
     { name: 'Contact Us', href: '#support', icon: <HiOutlineSupport /> },
     { name: 'Admin Panel', href: '/admin', icon: <HiOutlineSupport /> },
+    { name: 'Admin Login', href: '/adminlogin', icon: <HiOutlineSupport /> },
   ];
 
   return (
