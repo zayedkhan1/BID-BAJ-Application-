@@ -5,14 +5,15 @@ import { FaPhoneAlt, FaArrowRight } from "react-icons/fa";
 import { MdVerifiedUser } from "react-icons/md";
 import PrivacyPolicy from "../components/PriacyPolicy";
 import TermsAndConditions from "../components/TermsAndConditions";
+//import axios from "axios";
 
 
 const countryCodes = [
   { code: "+1", country: "USA", flag: "🇺🇸" },
-  { code: "+44", country: "UK", flag: "🇬🇧" },
-  { code: "+91", country: "India", flag: "🇮🇳" },
-  { code: "+880", country: "BD", flag: "🇧🇩" },
-  { code: "+81", country: "Japan", flag: "🇯🇵" },
+  // { code: "+44", country: "UK", flag: "🇬🇧" },
+  // { code: "+91", country: "India", flag: "🇮🇳" },
+  // { code: "+880", country: "BD", flag: "🇧🇩" },
+  // { code: "+81", country: "Japan", flag: "🇯🇵" },
 ];
 
 const Login = () => {
@@ -26,10 +27,75 @@ const Login = () => {
       alert("Please enter your mobile number");
       return;
     }
+            console.log("Requesting OTP for:",  phone); 
+
     // Simulate API Call
+  //     try {
+  //   const response = await axios.post(
+  //     "http://bidbaj.com/user/api/v1/otp", 
+  //      {
+  //       //countryCode: countryCode,  // e.g., "+1"
+  //       phone: phone               // e.g., "9999999999" // this object is automatically converted to JSON
+  //     },
+  //     {
+  //       headers: {
+  //         "Content-Type": "application/json"  // important for JSON // tells the server you are sending JSON
+  //       }
+  //     }
+  //   );  
+
+ 
+  //   console.log("Login Success:", response.data.msg);
+  //        navigate("/otp-verify");
+
+  // } catch (error) {
+  //  // console.log("Login Failed:", error.response?.data);
+  //    console.log("Full Error:", error);
+  // console.log("Status:", error.response?.status);
+  // console.log("Data:", error.response?.data);
+  // }
+
+
+  //////////////
+  //need to use proxy server in vite.config.js to avoid CORS issue. then we can use relative path like below instead of full URL
+     console.log("Requesting OTP for:",  phone);
+  try {
+      // http://bidbaj.com/user/api/v1/otp -- this is the actual API endpoint
+
+      // /api/user/api/v1/otp  --- this will be proxied to http://bidbaj.com/user/api/v1/otp by vite dev server
+      const response = await fetch("http://bidbaj.com/user/api/v1/otp ", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          phone,
+        }),
+      });
+console.log("Sending body:", JSON.stringify({ phone }));
+    
+     console.log("Raw Response:", response.body); // This will show the raw response body stream
+      const data = await response.json();
+      console.log("API Response:", data);
+
+      if (response.ok) {
+        console.log("Login Success:", data);
+        alert("Login successful!");
+          navigate("/otp-verify");
+
+      } else {
+        console.log("Login Failed:", data);
+        alert(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+         // console.log("Login Failed:", error.response?.data);
+     console.log("Full Error:", error);
+  console.log("Status:", error.response?.status);
+  console.log("Data:", error.response?.data);
+    }
     
 
-     navigate("/otp-verify");
 
   };
 

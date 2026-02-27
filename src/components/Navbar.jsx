@@ -32,6 +32,7 @@ const Navbar = () => {
     { name: 'Contact Us', href: '#support', icon: <HiOutlineSupport /> },
     { name: 'Admin Panel', href: '/admin', icon: <HiOutlineSupport /> },
     { name: 'Admin Login', href: '/adminlogin', icon: <HiOutlineSupport /> },
+    { name: 'Test Page', href: '/test', icon: <HiOutlineSupport /> },
   ];
 
   return (
@@ -70,11 +71,11 @@ const Navbar = () => {
           <Link to='/login' className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
             Login
           </Link>
-          <buttoon >
+        
             {/* <BiUserCircle className="text-lg" />
             <span>profile</span> */}
             <ProfileDropdown></ProfileDropdown>
-          </buttoon>
+         
 
        {/* ------------------- */}
 

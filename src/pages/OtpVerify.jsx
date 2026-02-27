@@ -35,6 +35,7 @@ const VerifyOTP = () => {
       alert("Please enter full 6-digit code");
       return;
     }
+    //add api call here to verify otp with backend. if success then navigate to home page or dashboard
     alert(`Verifying: ${finalOtp}`);
     navigate("/");
   };
