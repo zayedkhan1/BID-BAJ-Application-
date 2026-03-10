@@ -63,13 +63,14 @@ const Login = () => {
       // http://bidbaj.com/user/api/v1/otp -- this is the actual API endpoint
 
       // /api/user/api/v1/otp  --- this will be proxied to http://bidbaj.com/user/api/v1/otp by vite dev server
-      const response = await fetch("http://bidbaj.com/user/api/v1/otp ", {
+      console.log(countryCode, phone);
+      const response = await fetch("/api/user/api/v1/otp", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          phone,
+          phone:countryCode + phone // concatenate country code and phone number,
         }),
       });
 console.log("Sending body:", JSON.stringify({ phone }));
@@ -81,7 +82,7 @@ console.log("Sending body:", JSON.stringify({ phone }));
       if (response.ok) {
         console.log("Login Success:", data);
         alert("Login successful!");
-          navigate("/otp-verify");
+          navigate("/otp-verify",{ state: { phone: countryCode + phone } });//sending phone number to otp verify page using state
 
       } else {
         console.log("Login Failed:", data);

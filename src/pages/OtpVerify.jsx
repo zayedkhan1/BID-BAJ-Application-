@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaShieldAlt } from 'react-icons/fa';
 import { MdOutlineMarkEmailRead } from 'react-icons/md';
 
@@ -8,6 +8,9 @@ const VerifyOTP = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   const [timer, setTimer] = useState(150);
   const navigate = useNavigate();
+  const location = useLocation();
+  const phone = location.state?.phone;
+  
   // const inputRefs = useRef([]);
 
   // Timer logic
@@ -29,15 +32,45 @@ const VerifyOTP = () => {
     }
   };
 
-  const handleVerify = () => {
+  const handleVerify = async() => {
     const finalOtp = otp.join("");
     if (finalOtp.length < 6) {
       alert("Please enter full 6-digit code");
       return;
     }
     //add api call here to verify otp with backend. if success then navigate to home page or dashboard
-    alert(`Verifying: ${finalOtp}`);
-    navigate("/");
+     
+      console.log("Verifying OTP:",phone, finalOtp);
+
+      //actual api: http://bidbaj.com/user/api/v1/login
+
+      //proxy server api: /api/user/api/v1/login
+    
+ 
+      try{
+        const res=await fetch("/api/user/api/v1/login",{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json"
+          },
+          body:JSON.stringify({phone:phone,otp:finalOtp })//my data is saved using name "otp" so i also need to send otp with same name in body, otherwise backend will not recognize it. and also sending phone number to identify which user is trying to login
+        })
+        if(!res.ok){
+          throw new Error("Network response was not ok");
+        }
+        const data=await res.json();
+        console.log("OTP Verification Success:", data);
+        alert("OTP Verified Successfully!");
+         navigate("/");
+
+      }catch(error){
+        console.error("OTP Verification Failed:", error);
+        alert("OTP Verification Failed. Please try again.");
+        return;
+      }
+
+    //alert(`Verifying: ${finalOtp}`);
+   
   };
 
   return (
