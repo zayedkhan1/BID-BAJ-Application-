@@ -19,11 +19,67 @@ const ProfileDropdown = () => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleLogout = () => {
-    // logout logic here
-    console.log("Logged out");
-    navigate("/login");
-  };
+
+  //lgoout api call
+  //   //actual api: http://bidbaj.com/user/api/v1/logout
+
+//   //proxy server api: /api/user/api/v1/logout
+
+//  const handleLogout = async () => {
+//   const token = localStorage.getItem("token");
+
+
+
+//   try {
+//     const response = await fetch("http://bidbaj.com/user/api/v1/logout", {
+//       method: "POST",
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//         "Content-Type": "application/json",
+//       },
+//     });
+
+//     if (response.ok) {
+//       // Remove token locally
+//       localStorage.removeItem("token");
+//       //localStorage.removeItem("user");
+
+//       window.location.href = "/login";
+//     } else {
+//       console.error("Logout failed");
+//     }
+//   } catch (error) {
+//     console.error("Logout error:", error);
+//   }
+// };
+
+const handleLogout = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch("/api/user/api/v1/logout", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      console.error("Logout failed", response.status);
+      const errData = await response.json();
+      console.error(errData);
+      return;
+    }else{
+          // Success
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+
+    }
+
+  } catch (error) {
+    console.error("Logout error:", error);
+  }
+};
 
   const handleDeleteAccount = () => {
     if (confirm("Are you sure you want to delete your account?")) {

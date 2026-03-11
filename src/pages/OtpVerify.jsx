@@ -59,6 +59,7 @@ const VerifyOTP = () => {
           throw new Error("Network response was not ok");
         }
         const data=await res.json();
+            localStorage.setItem("token", data.access);
         console.log("OTP Verification Success:", data);
         alert("OTP Verified Successfully!");
          navigate("/");

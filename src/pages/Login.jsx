@@ -77,6 +77,9 @@ console.log("Sending body:", JSON.stringify({ phone }));
     
      console.log("Raw Response:", response.body); // This will show the raw response body stream
       const data = await response.json();
+
+  
+
       console.log("API Response:", data);
 
       if (response.ok) {
