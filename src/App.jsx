@@ -47,6 +47,7 @@ import AdminPanel from './AdminPanel/AdminPanel'
 import AdminLogin from './pages/AdminLogin'
 import Test from './pages/Test'
 import Registration from './pages/Registration'
+import AddVehicle from './pages/AddVehicle'
 
 function App() {
   const location = useLocation();
@@ -64,8 +65,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
+        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/profile" element={<Profile />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/addvehicle" element={<AddVehicle />} />
+        
+
         <Route path="/test" element={<Test />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
       </Routes>

@@ -136,7 +136,7 @@ console.log("Sending body:", JSON.stringify({ phone }));
               <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
                 <MdVerifiedUser className="text-white text-2xl" />
               </div>
-              <span className="text-white font-bold text-2xl tracking-tighter italic">BID<span className="text-blue-500"> BAJ</span></span>
+              <span className="text-white font-bold text-2xl tracking-tighter italic">BID<span className="text-blue-500">BAJ</span></span>
             </div>
             <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
             <p className="text-slate-400">Secure access via mobile verification</p>

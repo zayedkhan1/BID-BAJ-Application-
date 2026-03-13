@@ -59,11 +59,28 @@ const VerifyOTP = () => {
           throw new Error("Network response was not ok");
         }
         const data=await res.json();
+
             localStorage.setItem("token", data.access);
+           // localStorage.setItem("userID", JSON.stringify(data.user?.id));
+
+
+
         console.log("OTP Verification Success:", data);
         alert("OTP Verified Successfully!");
-         navigate("/");
 
+         // 🔹 check if user is old or new
+    if (data.old === true) {
+      navigate("/",{
+          state: { phone }
+         }); // go to home page
+    } else {
+      navigate("/registration", {
+        state: { phone },
+      });
+    }
+
+
+       
       }catch(error){
         console.error("OTP Verification Failed:", error);
         alert("OTP Verification Failed. Please try again.");
