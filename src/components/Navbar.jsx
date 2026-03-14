@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useUser } from "../context/UserContext";
 
 // React Icons
 import { 
@@ -19,7 +18,7 @@ import { Link } from 'react-router-dom';
 import ProfileDropdown from './ProfileDropdown';
 
 const Navbar = () => {
-    const { user } = useUser();
+   
 
   const [isOpen, setIsOpen] = useState(false);
 

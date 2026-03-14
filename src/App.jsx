@@ -48,6 +48,7 @@ import AdminLogin from './pages/AdminLogin'
 import Test from './pages/Test'
 import Registration from './pages/Registration'
 import AddVehicle from './pages/AddVehicle'
+import AppraisalsList from './pages/AppraisalsList'
 
 function App() {
   const location = useLocation();
@@ -68,6 +69,8 @@ function App() {
         {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/addvehicle" element={<AddVehicle />} />
+        <Route path="/appraisals" element={<AppraisalsList />} />
+    
         
 
         <Route path="/test" element={<Test />} />

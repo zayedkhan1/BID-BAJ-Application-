@@ -7,10 +7,10 @@ const AddVehicle = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   const [vehicle, setVehicle] = useState({
-    appraised_to_user_id: [],
+    appraised_to_user_ids: [],
     vin_no: "",
-    milage: "",
-    milage_unit: "KM",
+    milage: 0,
+    milage_unit: "KM", 
     basic_info: {
       tires_rating: '',
       windshield_crack: false,
@@ -24,13 +24,18 @@ const AddVehicle = () => {
   useEffect(() => {
     setVehicle((prev) => ({
       ...prev,
-      appraised_to_user_id: selectedUsers
+      appraised_to_user_ids: selectedUsers
     }));
   }, [selectedUsers]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setVehicle({ ...vehicle, [name]: value });
+     setVehicle({ ...vehicle, [name]: value });
+
+    setVehicle((prev) => ({
+      ...prev,
+      [name]: name === "milage" ? parseFloat(value) : value
+    }));
   };
 
   const handleBasicInfo = (e) => {
