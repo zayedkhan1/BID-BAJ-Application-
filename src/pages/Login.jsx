@@ -5,15 +5,11 @@ import { FaPhoneAlt, FaArrowRight } from "react-icons/fa";
 import { MdVerifiedUser } from "react-icons/md";
 import PrivacyPolicy from "../components/PriacyPolicy";
 import TermsAndConditions from "../components/TermsAndConditions";
-//import axios from "axios";
-
+import loginLogo from "../../public/assets/logo/navbar_logo.jpg"
 
 const countryCodes = [
   { code: "+1", country: "USA", flag: "🇺🇸" },
-  // { code: "+44", country: "UK", flag: "🇬🇧" },
-  // { code: "+91", country: "India", flag: "🇮🇳" },
-  // { code: "+880", country: "BD", flag: "🇧🇩" },
-  // { code: "+81", country: "Japan", flag: "🇯🇵" },
+ 
 ];
 
 const Login = () => {
@@ -133,10 +129,11 @@ console.log("Sending body:", JSON.stringify({ phone }));
         <div className="w-full max-w-md z-10">
           <div className="mb-12">
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-[#769A7F] rounded-lg flex items-center justify-center">
                 <MdVerifiedUser className="text-white text-2xl" />
+                <img src={loginLogo} alt="" />
               </div>
-              <span className="text-white font-bold text-2xl tracking-tighter italic">BID<span className="text-blue-500">BAJ</span></span>
+              <span className="text-white font-bold text-2xl tracking-tighter italic">BID<span className="text-[#769A7F]">BAJ</span></span>
             </div>
             <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
             <p className="text-slate-400">Secure access via mobile verification</p>
@@ -147,28 +144,28 @@ console.log("Sending body:", JSON.stringify({ phone }));
               {/* Country Code Select */}
               <div className="relative w-1/3 group">
                 <select
-                  className="w-full h-14 bg-slate-900 border border-slate-800 text-white rounded-2xl px-4 appearance-none focus:outline-none focus:border-blue-500 transition-all cursor-pointer"
+                  className="w-full h-14 bg-slate-900 border border-slate-800 text-white rounded-2xl px-4 appearance-none focus:outline-none focus:border-[#769A7F] transition-all cursor-pointer"
                   value={countryCode}
                   onChange={(e) => setCountryCode(e.target.value)}
                 >
                   {countryCodes.map((item) => (
-                    <option key={item.code} value={item.code} className="bg-slate-900">
+                    <option key={item.code} value={item.code} className="bg-[#769A7F] text-white">
                       {item.flag} {item.code}
                     </option>
                   ))}
                 </select>
-                <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500 text-xs text-center">▼</div>
+                <div className="absolute right-4 top-1/2 -translate-y-1/2  pointer-events-none text-slate-500 text-xs text-center">▼</div>
               </div>
 
               {/* Phone Input */}
               <div className="relative w-2/3 group">
-                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none transition-colors group-focus-within:text-blue-500 text-slate-500">
+                <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none transition-colors group-focus-within:text-[#769A7F] text-slate-500">
                   <FaPhoneAlt size={14} />
                 </div>
                 <input
                   type="tel"
                   placeholder="Mobile Number"
-                  className="w-full h-14 bg-slate-900 border border-slate-800 text-white rounded-2xl pl-12 pr-4 focus:outline-none focus:border-blue-500 transition-all placeholder:text-slate-600"
+                  className="w-full h-14 bg-slate-900 border border-slate-800 text-white rounded-2xl pl-12 pr-4 focus:outline-none focus:border-[#769A7F] transition-all placeholder:text-slate-600"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                 />
@@ -177,7 +174,7 @@ console.log("Sending body:", JSON.stringify({ phone }));
 
             <button
               onClick={handleGetCode}
-              className="group relative w-full h-14 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-500 transition-all shadow-lg shadow-blue-900/20 active:scale-[0.98] overflow-hidden"
+              className="group relative w-full h-14 bg-[#769A7F] text-white font-bold rounded-2xl hover:bg-[#769A7F] transition-all shadow-lg shadow-blue-900/20 active:scale-[0.98] overflow-hidden"
             >
               <div className="relative z-10 flex items-center justify-center gap-2">
                 <span>Send Verification Code</span>

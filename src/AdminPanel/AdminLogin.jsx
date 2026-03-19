@@ -1,8 +1,7 @@
 import React, {  useState } from 'react';
 import { FaUser, FaLock, FaEye, FaEyeSlash, FaShieldAlt } from 'react-icons/fa';
-
-import adminLoginLogo from '../assets/images/navbar-logo.jpg';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import adminLoginLogo from '../../public/assets/logo/navbar_logo.jpg'
+import { Link,  useNavigate } from 'react-router-dom';
 
 const AdminLogin = () => {
   const [phone, setPhone] = useState('');
@@ -57,7 +56,7 @@ const AdminLogin = () => {
               <Link to='/'>
               <img  className='w-10 h-10'src={adminLoginLogo} alt="BID-BAJ Logo" />
               </Link>
-              <h1 className="text-2xl font-bold text-white">BID BAJ Admin</h1>
+              <h1 className="text-2xl font-bold text-white">BIDBAJ Admin</h1>
             </div>
             <p className="text-[#E8F5E9]">Secure Administration Portal</p>
           </div>

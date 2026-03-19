@@ -1,10 +1,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaApple, FaGooglePlay } from 'react-icons/fa';
-import { GiCarKey } from 'react-icons/gi';
-import footerLogo from '../assets/images/navbar-logo.jpg'
-
+import { FaFacebook, FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaApple, FaGooglePlay } from 'react-icons/fa';
+import footerLogo from '../../public/assets/logo/navbar_logo.jpg'
 const Footer = () => {
   const footerLinks = {
     'Buying': ['Browse Auctions', 'Live Bidding', 'Buyer Protection', 'Financing'],
@@ -109,7 +107,7 @@ const Footer = () => {
 
         {/* Bottom Bar */}
         <div className="  mt-8 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>&copy; {new Date().getFullYear()} BID BAJ. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} BIDBAJ. All rights reserved.</p>
         
          <div>
           

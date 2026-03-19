@@ -4,8 +4,6 @@ import {
   FaUsers, 
   FaHandshake, 
   FaChartBar, 
-  FaCog, 
-  FaBell, 
   FaSearch, 
   FaChevronDown, 
   FaChevronRight,
@@ -13,21 +11,17 @@ import {
   FaSignOutAlt,
   FaBars,
   FaTimes,
-  FaHome,
-  FaCalendar,
   FaShoppingBag,
-  FaFileContract,
   FaUserPlus,
   FaUserCog,
-  FaPercent,
-  FaUser
+ 
 } from 'react-icons/fa';
 import { 
   BsGraphUp,
   BsWallet2
 } from 'react-icons/bs';
 import { IoIosSettings } from "react-icons/io";
-import adminLogo from '../assets/images/navbar-logo.jpg'
+import adminLogo from '../../public/assets/logo/navbar_logo.jpg'
 import { Link } from 'react-router-dom';
 
 
@@ -66,15 +60,20 @@ const AdminPanel = () => {
         
         {/* Logo Section */}
         
-        <Link 
-        to='/'
+        <div
+        
+
+      
         className="flex items-center justify-between p-5 border-b border-gray-700">
           {!isSidebarCollapsed ? (
             <div className="flex items-center space-x-3">
+            <Link to='/'>
               <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-500 rounded-lg flex items-center justify-center">
                 {/* <span className="font-bold text-xl">BB</span> */}
                 <img  src={adminLogo} alt="" />
               </div>
+              </Link>
+
               <div>
                 <h1 className=" font-bold ">
                   BIDBAJ
@@ -88,15 +87,16 @@ const AdminPanel = () => {
               <img  src={adminLogo} alt="" />
             </div>
           )}
-          
-          {/* Close button for mobile */}
+           {/* Close button for mobile */}
           <button 
             onClick={toggleMobileMenu}
             className="lg:hidden p-2 rounded-lg hover:bg-gray-700"
           >
             <FaTimes className="w-5 h-5" />
           </button>
-        </Link>
+         
+        </div>
+        
 
         {/* Navigation */}
         <nav className="p-4 space-y-2 overflow-y-auto h-[calc(100vh-8rem)]">

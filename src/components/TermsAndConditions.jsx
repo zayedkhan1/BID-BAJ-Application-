@@ -8,7 +8,7 @@ const TermsAndConditions = () => {
       {/* Button */}
       <button
         onClick={() => setShowTerms(true)}
-        className="text-blue-500 hover:underline mx-1"
+        className="text-[#769A7F] hover:underline mx-1"
       >
         Terms of Service
       </button>

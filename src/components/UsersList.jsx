@@ -1,8 +1,7 @@
 
-
-
-  import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
+// import dummyProfile from "../../public/assets/image/dummy_profile.jpg"
 
   
   const UsersList = ({ setSelectedUsers }) => {
@@ -11,6 +10,8 @@ import Loading from "./Loading";
   const [loading, setLoading] = useState(true);
   const [selectedUsersState, setSelectedUsersState] = useState([]); // local state
 
+
+  
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
@@ -66,71 +67,8 @@ import Loading from "./Loading";
 
   );
   return (
-//     <div className="p-6 max-w-4xl mx-auto">
-        
-//       <h1 className="text-white text-xl mb-4 text-center">
-//         Total Users: {filteredUsers.length}
-//       </h1>
-
-//       {/* SEARCH */}
-//       <input
-//         type="text"
-//         placeholder="Search user..."
-//         className="px-4 py-2 mb-6 rounded text-white border-white border focus:outline-none w-full max-w-md mx-auto block placeholder-gray-400"
-//         value={search}
-//         onChange={(e) => setSearch(e.target.value)}
-//       />
 
 
-//       {/* ALL USERS */}
-//       <div className="flex gap-6 overflow-x-auto pb-6">
-//         {filteredUsers.map((user) => {
-// const isSelected = selectedUsersState.includes(user.id);
-//           return (
-//             <div
-//               key={user.id}
-//               onClick={() => handleSelect(user.id)}
-//               className={`min-w-[200px] cursor-pointer p-4 rounded-lg border text-white
-//               ${
-//                 isSelected
-//                   ? "bg-[#769A7F]"
-//                   : "bg-[#1f2937]"
-//               }`}
-//             >
-//               <img
-//                 className="w-16 h-16 rounded-full mb-2"
-//                 src={`http://bidbaj.com${user?.profile_picture}`}
-//                 alt=""
-//               />
-//               <p>{user.name}</p>
-//             </div>
-//           );
-//         })}
-//       </div>
-
-//       {/* ⭐ SELECTED USERS SECTION */}
-//       <h2 className="text-white text-lg mb-3">
-//         Selected Users ({selectedUserCards.length})
-//       </h2>
-
-//       <div className="flex gap-6 flex-wrap">
-//         {selectedUserCards.map((user) => (
-//           <div
-//             key={user.id}
-//             className="w-[200px] bg-[#769A7F] p-4 rounded-lg text-white"
-//           >
-//             <img
-//               className="w-16 h-16 rounded-full mb-2"
-//               src={`http://bidbaj.com${user?.profile_picture}`}
-//               alt=""
-//             />
-//             <p>{user.name}</p>
-//             <p className="text-sm">ID: {user.id}</p>
-//           </div>
-//         ))}
-//       </div>
-
-//     </div>
 
 
 <div className="p-8 max-w-6xl mx-auto space-y-8">
@@ -193,7 +131,9 @@ import Loading from "./Loading";
               <div className="relative mb-4">
                 <img
                   className="w-20 h-20 rounded-full object-cover ring-4 ring-white/20"
-                  src={`http://bidbaj.com${user?.profile_picture}`}
+                  // src={`http://bidbaj.com${user?.profile_picture} `}
+                  //  src={user?.profile_picture? `http://bidbaj.com${user.profile_picture}`: {dummyProfile}}
+                   src={user?.profile_picture? `http://bidbaj.com${user.profile_picture}`: "../../public/assets/image/dummy_profile.jpg"}
                   alt={user.name}
                 />
                 {isSelected && (

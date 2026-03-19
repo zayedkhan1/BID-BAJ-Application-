@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
       {/* Privacy Policy Link */}
       <button
         onClick={() => setShowPrivacy(true)}
-        className="text-blue-500 hover:underline mx-1"
+        className="text-[#769A7F] hover:underline mx-1"
       >
         Privacy Policy
       </button>

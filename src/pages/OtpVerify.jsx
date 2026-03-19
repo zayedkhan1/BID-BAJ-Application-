@@ -113,7 +113,7 @@ const VerifyOTP = () => {
           {/* Header */}
           <div className="text-center mb-10">
             <div className="w-20 h-20 bg-blue-600/10 border border-blue-500/20 rounded-3xl flex items-center justify-center mx-auto mb-6">
-              <FaShieldAlt className="text-blue-500 text-3xl" />
+              <FaShieldAlt className="text-[#769A7F] text-3xl" />
             </div>
             <h2 className="text-3xl font-bold text-white mb-3 tracking-tight">Verify Identity</h2>
             <p className="text-slate-400">
@@ -129,7 +129,7 @@ const VerifyOTP = () => {
                 key={index}
                 type="text"
                 maxLength="1"
-                className="w-10 h-12 md:w-16 md:h-20 bg-slate-800/50 border border-slate-700 text-white text-center text-2xl font-bold rounded-2xl focus:outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-500/10 transition-all"
+                className="w-10 h-12 md:w-16 md:h-20 bg-slate-800/50 border border-slate-700 text-white text-center text-2xl font-bold rounded-2xl focus:outline-none focus:border-[#769A7F] focus:ring-4 focus:ring-[#769A7F]/10 transition-all"
                 value={data}
                 onChange={(e) => handleChange(e.target, index)}
                 onFocus={(e) => e.target.select()}
@@ -140,7 +140,7 @@ const VerifyOTP = () => {
           {/* Action Button */}
           <button
             onClick={handleVerify}
-            className="w-full h-16 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl transition-all shadow-lg shadow-blue-900/30 active:scale-[0.98] mb-8"
+            className="w-full h-16 bg-[#769A7F] hover:bg-[#5a7d62] text-white font-bold rounded-2xl transition-all shadow-lg shadow-green-900/30 active:scale-[0.98] mb-8"
           >
             Authorize Access
           </button>
@@ -149,13 +149,13 @@ const VerifyOTP = () => {
           <div className="text-center">
             <p className="text-slate-500 text-sm mb-2">Didn't receive the code?</p>
             {timer > 0 ? (
-              <div className="flex items-center justify-center gap-2 text-blue-400 font-medium">
+              <div className="flex items-center justify-center gap-2 text-[#769A7F] font-medium">
                 <MdOutlineMarkEmailRead />
                 <span>Resend available in {timer}s</span>
               </div>
             ) : (
               <button 
-                className="text-white hover:text-blue-400 font-bold transition-colors underline underline-offset-4"
+                className="text-white hover:text-[#769A7F] font-bold transition-colors underline underline-offset-4"
                 onClick={() => setTimer(59)}
               >
                 Resend New Code

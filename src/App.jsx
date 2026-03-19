@@ -1,38 +1,4 @@
 
-// import { Route, Routes } from 'react-router-dom'
-// import './App.css'
-// import Home from './pages/Home'
-// import Navbar from './components/Navbar'
-// import Footer from './components/Footer'
-// import Login from './pages/Login'
-// import OtpVerify from './pages/OtpVerify'
-// import Profile from './pages/Profile'
-// import AdminPanel from './AdminPanel/AdminPanel'
-
-// function App() {
-
-//   return (
-//     <>
-//     <Navbar></Navbar>
-
-//     <Routes>
-//       <Route path="/" element={<Home></Home>} />
-//       <Route path="/login" element={<Login></Login>} />
-//       <Route path="/otp-verify" element={<OtpVerify></OtpVerify>} />
-//       <Route path='/profile' element={<Profile></Profile>}/>
-//       <Route path='/admin' element={<AdminPanel></AdminPanel>}/>
-
-     
-//     </Routes>
-
-//       <Footer></Footer>
-//     </>
-//   )
-// }
-
-// export default App;
-
-
 
 
 import { Route, Routes, useLocation } from 'react-router-dom'
@@ -44,11 +10,14 @@ import Login from './pages/Login'
 import OtpVerify from './pages/OtpVerify'
 import Profile from './pages/Profile'
 import AdminPanel from './AdminPanel/AdminPanel'
-import AdminLogin from './pages/AdminLogin'
+import AdminLogin from './AdminPanel/AdminLogin'
+
 import Test from './pages/Test'
 import Registration from './pages/Registration'
 import AddVehicle from './pages/AddVehicle'
-import AppraisalsList from './pages/AppraisalsList'
+import Deals from './pages/Deals'
+import Messages from './pages/Messages'
+import AppraisalsUserInfo from './pages/AppraisalsUserInfo'
 
 function App() {
   const location = useLocation();
@@ -69,12 +38,17 @@ function App() {
         {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/addvehicle" element={<AddVehicle />} />
-        <Route path="/appraisals" element={<AppraisalsList />} />
-    
+        <Route path="/deals" element={<Deals />} />
+        <Route path="/messages/:userId" element={<Messages/>} />
+        <Route path="/appraisals/:appraisal_id" element={<AppraisalsUserInfo/>} />
+            
         
+           {/*Admin Routes */}
+         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/adminlogin" element={<AdminLogin />} />
 
         <Route path="/test" element={<Test />} />
-        <Route path="/adminlogin" element={<AdminLogin />} />
+
       </Routes>
 
       {/* Show Footer only if NOT admin */}

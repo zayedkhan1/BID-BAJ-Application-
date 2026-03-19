@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaUser, FaPhone, FaEnvelope, FaBuilding, FaMapMarkerAlt, FaShieldAlt } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import adminLoginLogo from '../assets/images/navbar-logo.jpg'; // Adjust path as needed
+import registrationLogo from '../../public/assets/logo/navbar_logo.jpg' // Adjust path as needed
 
 const RegistrationPage = () => {
   const [formData, setFormData] = useState({
@@ -112,7 +112,7 @@ try{
           <div className="bg-[#769A7F] p-6 text-center">
             <div className="flex items-center justify-center gap-3 mb-2">
               <Link to="/">
-                <img className="w-10 h-10" src={adminLoginLogo} alt="BID-BAJ Logo" />
+                <img className="w-10 h-10" src={registrationLogo} alt="BID-BAJ Logo" />
               </Link>
               <h1 className="text-2xl font-bold text-white">BIDBAJ Dealership</h1>
             </div>

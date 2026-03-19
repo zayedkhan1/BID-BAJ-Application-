@@ -9,11 +9,9 @@ import {
   HiOutlineHome, 
   HiOutlineLightningBolt, 
   HiOutlineCube, 
-  HiOutlineCurrencyDollar, 
   HiOutlineSupport 
 } from 'react-icons/hi';
-import { BiUserCircle } from 'react-icons/bi';
-import navlogo from '../assets/images/navbar-logo.jpg'
+import navLogo from '../../public/assets/logo/navbar_logo.jpg'
 import { Link } from 'react-router-dom';
 import ProfileDropdown from './ProfileDropdown';
 
@@ -25,7 +23,7 @@ const Navbar = () => {
   // Define links with their respective icons
   const navLinks = [
     { name: 'Home', href: '/', icon: <HiOutlineHome /> },
-    { name: 'Deals', href: '#deals', icon: <HiOutlineLightningBolt /> },
+    { name: 'Deals', href: '/deals', icon: <HiOutlineLightningBolt /> },
     { name: 'Public Deals', href: '#howitworks', icon: <HiOutlineCube /> },
     // { name: 'Done', href: '#pricing', icon: <HiOutlineCurrencyDollar /> }, //ata profile er under e hobe
     { name: 'Contact Us', href: '#support', icon: <HiOutlineSupport /> },
@@ -45,23 +43,23 @@ const Navbar = () => {
             <div className="h-4 w-4 bg-white rounded-full"></div>
           </div> */}
           {/* <span className="text-xl font-bold tracking-tighter text-white">VELOCITY.</span> */}
-          <img className="h-18 w-25 " src={navlogo} alt="BID BAJ" />
+          <img className="h-18 w-25 " src={navLogo} alt="BID BAJ" />
         </div>
        </Link>
 
         {/* Desktop Links with Icons */}
         <div className="hidden lg:flex space-x-1 items-center">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.name}
-              href={link.href}
+              to={link.href}
               className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 group"
             >
               <span className="text-lg group-hover:text-indigo-400 transition-colors">
                 {link.icon}
               </span>
               {link.name}
-            </a>
+            </Link>
           ))}
         </div>
 
