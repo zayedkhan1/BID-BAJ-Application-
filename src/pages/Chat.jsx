@@ -253,8 +253,21 @@ const Chat = () => {
     fetchDetails();
   }, [appraisal_id]);
 
+
   console.log("appraisal user data",appraisalsUserData)
 
+    const currentUserId = appraisalsUserData?.bid_details?.bidder_id;
+    console.log("current user id",  currentUserId)
+
+const formatTime = (timestamp) => {
+  if (!timestamp) return "";
+
+  const date = new Date(timestamp);
+  return date.toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+};
   // ================= WEBSOCKET =================
   useEffect(() => {
     if (!chatId) return;
@@ -274,6 +287,8 @@ const Chat = () => {
       closeSocket();
     };
   }, [chatId]);
+    console.log("messages data",messages)
+
 
   // ================= SEND MESSAGE =================
 
@@ -290,13 +305,13 @@ const Chat = () => {
       chat_id:  Number(chatId)  ,
       file: null,
     };
-
+  
     console.log("📤 Sending:", payload);
 
     sendSocketMessage(payload);
 
     // instant UI update
-    setMessages((prev) => [...prev, payload]);
+    // setMessages((prev) => [...prev, payload]);
 
     setMessageInput("");
   };
@@ -363,20 +378,61 @@ const Chat = () => {
         <div className="bg-gray-700 col-span-8 flex flex-col h-[80vh]">
           
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-2">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`p-2 rounded max-w-xs ${
-                  msg.from_id === appraisalsUserData?.user?.id
-                    ? "bg-green-400 ml-auto text-right"
-                    : "bg-white"
-                }`}
-              >
-                {msg.message}
-              </div>
-            ))}
-          </div>
+    
+
+              {/* <div className="flex-1 overflow-y-auto p-4 space-y-2">
+                {messages.map((msg, index) => {
+                  const isMyMessage = msg.from_id === currentUserId;
+
+                  return (
+                    <div
+                      key={index}
+                      className={`p-3 rounded-lg max-w-xs text-white ${
+                        isMyMessage ? "bg-green-500 ml-auto" : "bg-green-500 mr-auto"
+                      }`}
+                    >
+                      {msg.message}
+                    </div>
+                  );
+                })}
+              </div> */}
+{/* updated message ui with naem and date */}
+<div className="flex-1 overflow-y-auto p-4 space-y-3">
+  {messages.map((msg, index) => {
+    const isMyMessage = Number(msg.from_id) === Number(currentUserId);
+ 
+
+    return (
+      <div
+        key={index}
+        className={`max-w-xs ${
+          isMyMessage ? "ml-auto text-right" : "mr-auto text-left"
+        }`}
+      >
+        {/* Name */}
+        <p className="text-xs text-gray-300 mb-1">
+          {isMyMessage ? msg.from_username || "You" : msg.from_username || "user"}
+        </p>
+
+        {/* Message Box */}
+        <div
+          className={`px-4 py-2 rounded-2xl text-white ${
+            isMyMessage ? "bg-green-500" : "bg-green-400"
+          }`}
+        >
+          <p>{msg.message}</p>
+
+          {/* Time */}
+          <p className="text-[10px] text-gray-200 mt-1">
+            {formatTime(msg.created_at)}
+          </p>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+
 
           {/* Input */}
           <div className="p-3 border-t flex gap-2">
