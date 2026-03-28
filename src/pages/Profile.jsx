@@ -452,6 +452,7 @@ import {
   FaCamera,
   FaCheckCircle,
 } from "react-icons/fa";
+import Loading from "../components/Loading";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -556,11 +557,7 @@ const Profile = () => {
 
   // 🔹 Loading UI
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#020617]">
-        <div className="w-12 h-12 border-4 border-[#769A7F] rounded-full animate-spin"></div>
-      </div>
-    );
+     return <Loading/>
   }
 
   return (
@@ -680,7 +677,7 @@ const Profile = () => {
               ? "Updating..."
               : isEditing
               ? "SAVE CHANGES"
-              : "EDIT PROFILE"}
+              : "UPDATE PROFILE"}
           </button>
         </div>
       </div>

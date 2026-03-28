@@ -24,12 +24,12 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '/', icon: <HiOutlineHome /> },
     { name: 'Deals', href: '/deals', icon: <HiOutlineLightningBolt /> },
-    { name: 'Public Deals', href: '#howitworks', icon: <HiOutlineCube /> },
+    { name: 'Deals Done', href: '/deals_done', icon: <HiOutlineCube /> },
     // { name: 'Done', href: '#pricing', icon: <HiOutlineCurrencyDollar /> }, //ata profile er under e hobe
-    { name: 'Contact Us', href: '#support', icon: <HiOutlineSupport /> },
-    { name: 'Admin Panel', href: '/admin', icon: <HiOutlineSupport /> },
-    { name: 'Admin Login', href: '/adminlogin', icon: <HiOutlineSupport /> },
-    { name: 'Test Page', href: '/test', icon: <HiOutlineSupport /> },
+    { name: 'Contact Us', href: '/contact', icon: <HiOutlineSupport /> },
+    // { name: 'Admin Panel', href: '/admin', icon: <HiOutlineSupport /> },
+    // { name: 'Admin Login', href: '/adminlogin', icon: <HiOutlineSupport /> },
+    // { name: 'Test Page', href: '/test', icon: <HiOutlineSupport /> },
   ];
 
   return (
@@ -39,10 +39,7 @@ const Navbar = () => {
         {/* Brand Logo */}
        <Link to="/">
         <div className="flex items-center gap-2 group cursor-pointer">
-          {/* <div className="h-9 w-9 bg-indigo-600 rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-300 shadow-lg shadow-indigo-500/20">
-            <div className="h-4 w-4 bg-white rounded-full"></div>
-          </div> */}
-          {/* <span className="text-xl font-bold tracking-tighter text-white">VELOCITY.</span> */}
+     
           <img className="h-18 w-25 " src={navLogo} alt="BID BAJ" />
         </div>
        </Link>
@@ -55,7 +52,7 @@ const Navbar = () => {
               to={link.href}
               className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-200 group"
             >
-              <span className="text-lg group-hover:text-indigo-400 transition-colors">
+              <span className="text-lg group-hover:text-[#769A7F] transition-colors">
                 {link.icon}
               </span>
               {link.name}
@@ -74,31 +71,7 @@ const Navbar = () => {
             <ProfileDropdown></ProfileDropdown>
          
 
-       {/* ------------------- */}
-
-      {/* <Link
-        to="/profile"
-      >
-        {user.profileImage ? (
-          <img
-            src={user.profileImage}
-            alt="profile"
-            className="w-12 h-12 rounded-full object-cover border-2 border-white"
-          />
-        ) : (
-          <BiUserCircle className="text-2xl w-10 h-10 text-white bg-blue-800 rounded-full" />
-          
-        )}
-
-        <span className="text-white text-sm font-semibold">
-          {user.name || "Get Started"}
-        </span>
-      </Link> */}
-
-
-
-       {/* ------------------- */}
-
+   
 
         </div>
 
@@ -131,7 +104,7 @@ const Navbar = () => {
               ))}
               <div className="pt-6 grid grid-cols-2 gap-4">
                 <button className="py-3 text-gray-400 font-bold border border-white/10 rounded-xl">Login</button>
-                <button className="py-3 bg-indigo-600 text-white font-bold rounded-xl shadow-lg">Sign Up</button>
+                <button className="py-3 bg-[#769A7F] text-white font-bold rounded-xl shadow-lg">Sign Up</button>
               </div>
             </div>
           </motion.div>

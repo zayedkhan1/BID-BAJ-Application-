@@ -18,6 +18,8 @@ import AddVehicle from './pages/AddVehicle'
 import Deals from './pages/Deals'
 import Messages from './pages/Messages'
 import AppraisalsUserInfo from './pages/AppraisalsUserInfo'
+import ContactUs from './pages/ContactUs'
+import Chat from './pages/Chat'
 
 function App() {
   const location = useLocation();
@@ -39,8 +41,10 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/addvehicle" element={<AddVehicle />} />
         <Route path="/deals" element={<Deals />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/messages/:userId" element={<Messages/>} />
         <Route path="/appraisals/:appraisal_id" element={<AppraisalsUserInfo/>} />
+        <Route path="/chat/:chatId" element={<Chat/>} />
             
         
            {/*Admin Routes */}

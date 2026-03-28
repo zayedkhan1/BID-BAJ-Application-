@@ -13,6 +13,8 @@ const Messages = () => {
       const [showModal, setShowModal] = useState(false);
       const [selectedUserId, setSelectedUserId] = useState(null);
       const navigate = useNavigate();
+
+      console.log("user id for next page",userId)
     
 
     const { userName, profile_picture, TotalChat } = location.state || {};
@@ -66,8 +68,24 @@ const Messages = () => {
   setSelectedUserId(null);
   };
 
-    console.log("Fetched Messages:", messages);
 
+  console.log("apprisal id from message.jsx",messages[0]?.id)
+
+   const goToChat=(chatId,appraisal_id)=>{
+    navigate(`/chat/${chatId}`,
+      {
+        state:{
+             appraisal_id:appraisal_id,
+      
+        }
+      }
+    )
+   }
+
+    console.log("Fetched Messages:", messages);
+   
+    console.log("sending appraisal id:", messages[0]?.id);
+    
     if (loading) return <Loading />;
 
     return (
@@ -86,7 +104,7 @@ const Messages = () => {
                         src={`http://bidbaj.com${profile_picture}`}
                         className="w-24 h-24 rounded-full mx-auto mb-2 ring-2 ring-[#769A7F]/90 p-0.5 "
                     />
-
+                
                  </div>
                   <div className="absolute -bottom-1 -right-1 bg-[#769A7F] rounded-full p-1.5 mb-4">
                         <FaEye className="text-gray-900 text-xs" />
@@ -99,7 +117,7 @@ const Messages = () => {
                 // className="bg-gray-800 rounded-xl p-6 flex items-center gap-4 mb-8"
                 >
 
-                    {/* <img
+                    {/* <img 
                         src={`http://bidbaj.com${profile_picture}`}
                         className="w-16 h-16 rounded-full object-cover"
                     /> */}
@@ -118,8 +136,14 @@ const Messages = () => {
                 ) : (
 
                     messages.map((item) => (
+ //i want if i click in this div it will take id and take me into chat.jsx page
+                     
+                        <div 
+                        onClick={()=>{goToChat(item?.message?.chat, item?.id)}}
 
-                        <div className="max-w-3xl mx-auto bg-gray-800 border border-gray-700 p-6 rounded-xl mb-4 flex justify-between ">
+                        
+                        
+                        className="max-w-3xl mx-auto bg-gray-800 border border-gray-700 p-6 rounded-xl mb-4 flex justify-between ">
                             <div
                                 key={item.id}
 
@@ -182,14 +206,16 @@ const Messages = () => {
                                     </button> */}
 
 <button
-  onClick={() =>
+  onClick={(e) =>{
+     e.stopPropagation();
+
     navigate(`/appraisals/${item.id}`, {
       state: {
         userName,
         profile_picture,
       },
     })
-  }
+  }}
   className="w-8 h-8 flex items-center justify-center font-extrabold bg-gray-600 text-white rounded-full hover:bg-[#769A7F]"
 >
   i

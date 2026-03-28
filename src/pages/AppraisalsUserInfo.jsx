@@ -310,6 +310,8 @@ const AppraisalsUserInfo = () => {
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [showDetails, setShowDetails] = useState(true);
 
+  console.log("appraisla id",appraisal_id)
+
   const fetchDetails = async () => {
     try {
       const response = await fetch(
