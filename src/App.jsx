@@ -1,6 +1,4 @@
 
-
-
 import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home'
@@ -21,14 +19,24 @@ import AppraisalsUserInfo from './pages/AppraisalsUserInfo'
 import ContactUs from './pages/ContactUs'
 import Chat from './pages/Chat'
 
+
+
+import { Toaster } from "react-hot-toast";
+
+
 function App() {
   const location = useLocation();
+
+  
 
   // check if admin page
   const isAdminPage = location.pathname.startsWith('/admin');
 
   return (
     <>
+        {/* react toast */}
+    <Toaster position="top-right" />
+
       {/* Show Navbar only if NOT admin */}
       {!isAdminPage && <Navbar />}
 
@@ -37,7 +45,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
-        {/* <Route path="/profile" element={<Profile />} /> */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/addvehicle" element={<AddVehicle />} />
         <Route path="/deals" element={<Deals />} />
@@ -51,6 +58,7 @@ function App() {
          <Route path="/admin" element={<AdminPanel />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
 
+        {/* Test Route */}
         <Route path="/test" element={<Test />} />
 
       </Routes>

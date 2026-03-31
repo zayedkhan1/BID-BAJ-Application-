@@ -51,7 +51,8 @@ const ProfileModal = ({ userId, onClose }) => {
 
 
 <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50">
-  <div className="relative w-[450px] transform transition-all duration-300 ease-out hover:scale-[1.02]">
+  {/* <div className="relative w-[450px] transform transition-all duration-300 ease-out hover:scale-[1.02]"> */}
+  <div className="relative w-[450px] min-h-[420px] transform transition-all duration-300 ease-out hover:scale-[1.02]">
     {/* Outer glow effect */}
     <div className="absolute -inset-0.5  rounded-3xl blur-xl opacity-75 group-hover:opacity-100 transition duration-300" />
     
@@ -71,7 +72,12 @@ const ProfileModal = ({ userId, onClose }) => {
       </button>
 
       {loading ? (
-        <Loading />
+        <div className="flex items-center justify-center h-[450px]">
+    <div
+      className="w-12 h-12 border-4 border-t-transparent rounded-full animate-spin"
+      style={{ borderColor: "#769A7F", borderTopColor: "transparent" }}
+    ></div>
+  </div>
       ) : (
         <div className="text-center">
           {/* Profile Image with premium ring and glow */}

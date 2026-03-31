@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaShieldAlt } from 'react-icons/fa';
 import { MdOutlineMarkEmailRead } from 'react-icons/md';
+import toast from 'react-hot-toast';
 
 const VerifyOTP = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -35,7 +36,14 @@ const VerifyOTP = () => {
   const handleVerify = async() => {
     const finalOtp = otp.join("");
     if (finalOtp.length < 6) {
-      alert("Please enter full 6-digit code");
+      // alert("Please enter full 6-digit code");
+       toast(" Please enter full 6-digit code !", {
+        icon: "⚠️",
+        style: {
+          background: "#f59e0b",
+          color: "#000",
+        },
+      }); 
       return;
     }
     //add api call here to verify otp with backend. if success then navigate to home page or dashboard
@@ -56,7 +64,9 @@ const VerifyOTP = () => {
           body:JSON.stringify({phone:phone,otp:finalOtp })//my data is saved using name "otp" so i also need to send otp with same name in body, otherwise backend will not recognize it. and also sending phone number to identify which user is trying to login
         })
         if(!res.ok){
-          throw new Error("Network response was not ok");
+          console.log("Network response was not ok");
+                    toast.error("OTP verification Denide");
+
         }
         const data=await res.json();
 
@@ -66,7 +76,8 @@ const VerifyOTP = () => {
 
 
         console.log("OTP Verification Success:", data);
-        alert("OTP Verified Successfully!");
+        // alert("OTP Verified Successfully!");
+        toast.success("OTP verification successfull !")
 
          // 🔹 check if user is old or new
     if (data.old === true) {
@@ -84,6 +95,7 @@ const VerifyOTP = () => {
       }catch(error){
         console.error("OTP Verification Failed:", error);
         alert("OTP Verification Failed. Please try again.");
+
         return;
       }
 

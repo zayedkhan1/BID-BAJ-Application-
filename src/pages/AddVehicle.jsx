@@ -2,9 +2,12 @@
 import { useEffect, useState } from "react";
 import { FaCar, FaPalette, FaTachometerAlt } from "react-icons/fa";
 import UsersList from "../components/UsersList";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const AddVehicle = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const navigate=useNavigate();
 
   const [vehicle, setVehicle] = useState({
     appraised_to_user_ids: [],
@@ -53,9 +56,16 @@ const AddVehicle = () => {
     e.preventDefault();
     console.log("Vehicle Data:", vehicle);
 
-    if(vehicle.vin_no.length < 17){
-      alert("VIN number must be at least 17 characters long.");
-      return;
+    if(vehicle.vin_no.length !== 17){
+      // alert("VIN number must be at least 17 characters long.");
+      toast(" VIN number must be 17 characters long!", {
+        icon: "⚠️",
+        style: {
+          background: "#f59e0b",
+          color: "#000",
+        },
+      });  
+    return;
     }
 
 
@@ -72,9 +82,14 @@ const AddVehicle = () => {
       console.log("Response from API:", data);
       if (!res.ok) {
         console.log("Failed to add vehicle: " + data.message);
+         toast.error("Appraisal is not added")
+
       } else {
-        alert("Vehicle added successfully!");
+
+        // alert("Vehicle added successfully!");
+        toast.success("Appraisal created successfully !")
         console.log("Vehicle added successfully:", data);
+        navigate('/deals');
       }
     } catch (error) {
       console.log("Error adding vehicle:", error);
@@ -235,7 +250,7 @@ const AddVehicle = () => {
               type="submit"
               className="w-full bg-[#8abf9e] text-gray-900 font-semibold py-3 rounded-lg hover:bg-[#7aa88c] transition-colors duration-200 shadow-lg"
             >
-              Add Vehicle
+              Create Appraisal
             </button>
           </form>
         </div>

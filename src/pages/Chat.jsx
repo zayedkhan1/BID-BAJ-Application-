@@ -488,6 +488,18 @@
 
 //////////////////  message showin previous message also///////////////
 
+
+
+
+
+
+
+
+
+
+
+
+
 import { useEffect, useState, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
@@ -499,6 +511,7 @@ import {
   sendSocketMessage,
   closeSocket,
 } from "../services/websocket";
+import { formatChatTime } from "../utility/utility";
 
 const Chat = () => {
   const { chatId } = useParams();
@@ -577,15 +590,6 @@ const Chat = () => {
 
   const currentUserId = appraisalsUserData?.bid_details?.bidder_id;
 
-  // ================= FORMAT TIME =================
-  const formatTime = (timestamp) => {
-    if (!timestamp) return "";
-    const date = new Date(timestamp);
-    return date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
 
   // ================= WEBSOCKET =================
   useEffect(() => {
@@ -731,7 +735,7 @@ const Chat = () => {
 
                     {/* Time */}
                     <p className="text-[10px] text-gray-200 mt-1">
-                      {formatTime(msg.timestamp || msg.created_at)}
+                      {formatChatTime(msg.timestamp || msg.created_at)}
                     </p>
                   </div>
                 </div>
@@ -780,4 +784,23 @@ export default Chat;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
 

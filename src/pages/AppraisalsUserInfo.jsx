@@ -300,6 +300,7 @@ import {
  
 } from "react-icons/fa";
 import { GiCarWheel } from "react-icons/gi";
+import { formatApprisalUserInfoDate } from "../utility/utility";
 
 const AppraisalsUserInfo = () => {
   const { appraisal_id } = useParams();
@@ -476,11 +477,7 @@ const AppraisalsUserInfo = () => {
               <span className="text-gray-300 font-medium">Created</span>
             </div>
             <span className="bg-gray-800 px-4 py-1 rounded-full text-sm border border-gray-600">
-              {new Date(appraisalsUserData?.appraisal_details?.created_at).toLocaleDateString("en-GB", {
-                day: "2-digit",
-                month: "short",
-                year: "numeric",
-              })}
+             {formatApprisalUserInfoDate(appraisalsUserData?.appraisal_details?.created_at)}
             </span>
           </motion.div>
 

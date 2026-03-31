@@ -6,6 +6,7 @@ import { MdVerifiedUser } from "react-icons/md";
 import PrivacyPolicy from "../components/PriacyPolicy";
 import TermsAndConditions from "../components/TermsAndConditions";
 import loginLogo from "../../public/assets/logo/navbar_logo.jpg"
+import toast from "react-hot-toast";
 
 const countryCodes = [
   { code: "+1", country: "USA", flag: "🇺🇸" },
@@ -20,7 +21,14 @@ const Login = () => {
   const handleGetCode = async () => {
 
     if (!phone) {
-      alert("Please enter your mobile number");
+      // alert("Please enter your mobile number");
+      toast(" Please Enter your mobile number !", {
+        icon: "⚠️",
+        style: {
+          background: "#f59e0b",
+          color: "#000",
+        },
+      }); 
       return;
     }
             console.log("Requesting OTP for:",  phone); 
@@ -80,12 +88,15 @@ console.log("Sending body:", JSON.stringify({ phone }));
 
       if (response.ok) {
         console.log("Login Success:", data);
-        alert("Login successful!");
+        // alert("Login successful!");
+        toast.success("verificatio code sent successfully !")
           navigate("/otp-verify",{ state: { phone: countryCode + phone } });//sending phone number to otp verify page using state
 
       } else {
         console.log("Login Failed:", data);
-        alert(data.message || "Login failed");
+        // alert(data.message || "Login failed");
+         toast.error("Verification code sent Failed !")
+
       }
     } catch (error) {
       console.error("Error:", error);

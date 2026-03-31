@@ -5,6 +5,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
 import { FaCheck, FaCheckDouble, FaEye } from "react-icons/fa";
 import ProfileModal from "../components/ProfileModal";
+import { formatMessageDate, formatMessageTime } from "../utility/utility";
 
 const Messages = () => {
 
@@ -170,24 +171,11 @@ const Messages = () => {
                            <div>
 
                              <div className="mb-6">
-                                <p >
-                                <span>
-                                    {new Date(item?.message?.timestamp).toLocaleTimeString("en-US", {
-                                        hour: "numeric",
-                                        minute: "2-digit",
-                                        hour12: true,
-                                    })}
-                                </span>
-                            </p>
-                            <p>
-                                <span>
-                                    {new Date(item?.message?.timestamp).toLocaleDateString("en-US", {
-                                        month: "2-digit",
-                                        day: "2-digit",
-                                        year: "numeric",
-                                    })}
-                                </span>
-                            </p>
+                                
+                                <p >{formatMessageTime(item?.message?.timestamp)}</p>
+
+                                <p> {formatMessageDate(item?.message?.timestamp)}</p>
+
                             </div>
 
                             <div className="flex items-center gap-3 ">

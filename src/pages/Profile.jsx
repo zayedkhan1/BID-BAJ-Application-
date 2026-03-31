@@ -453,6 +453,9 @@ import {
   FaCheckCircle,
 } from "react-icons/fa";
 import Loading from "../components/Loading";
+import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -543,10 +546,13 @@ const Profile = () => {
         setProfile(data.user);
         setIsEditing(false);
         setSelectedImage(null);
-        alert("✅ Profile updated successfully");
+        // alert("✅ Profile updated successfully");
+        toast.success("Profile updated successfully");
+        
       } else {
         console.error(data);
-        alert("❌ Update failed");
+        // alert("❌ Update failed");
+        toast.error("update failed");
       }
     } catch (error) {
       console.error("Update error:", error);
@@ -686,3 +692,12 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
