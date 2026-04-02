@@ -839,6 +839,9 @@ const Chat = () => {
   const [showBidModal, setShowBidModal] = useState(true);
     const [showOfferModal, setShowOfferModal] = useState(false);
     const [offer, setOffer] = useState("");
+  
+  // =================== CONFIRM MODAL STATER ===========
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 
   // ✅ NEW STATES
@@ -1021,17 +1024,61 @@ const Chat = () => {
 // ==================Send offer==============
 
   
-  const handleSendOffer = () => {
-    if (!offer) return;
+  // const handleSendOffer = () => {
+  //   if (!offer) return;
 
-    console.log("Offer Sent:", offer);
+  //   console.log("Offer Sent:", offer);
 
-    // 👉 এখানে API call দিতে পারো
-    // sendOfferAPI(offer)
+  //   // 👉 এখানে API call দিতে পারো
+  //   // sendOfferAPI(offer)
 
-    setOffer("");
+  //   setOffer("");
+  //   setShowOfferModal(false);
+  // };
+  const handleConfirmBid = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(
+      `/api/vehicle/api/v1/appraisal/bid/${appraisal_id}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          amount: Number(offer),   // ✅ amount
+          currency: "USD",         // ✅ currency added
+        }),
+      }
+    );
+
+    const data = await res.json();
+    console.log("Bid response:", data);
+
+    // ✅ Close modals
+    setShowConfirmModal(false);
     setShowOfferModal(false);
-  };
+
+    // ✅ Add message to chat
+    const bidMessage = {
+      id: Date.now(),
+       message: `💰 BID PLACED: $${offer}`,
+      from_id: currentUserId,
+      timestamp: new Date().toISOString(),
+      from_username: "You",
+    };
+
+    setMessages((prev) => [...prev, bidMessage]);
+
+    // ✅ Reset input
+    setOffer("");
+
+  } catch (error) {
+    console.error("❌ Bid error:", error);
+  }
+};
 
 
 
@@ -1179,20 +1226,69 @@ const Chat = () => {
         <div className=" mt-2 w-72 rounded-2xl  ">
             <h2 className="text-xl text-gray-200 font-semibold mb-3">Enter Your Offer</h2>
             <div className="flex items-center gap-4">
+{/* 
   <input
     type="number"
-    placeholder="Enter amount"
+    placeholder="$0.00"
     value={offer}
     onChange={(e) => setOffer(e.target.value)}
     className="flex-1 border rounded-lg px-3 py-2 bg-white outline-none"
+  /> */}
+  <div className="relative w-full">
+  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-7   00 pointer-events-none">
+    $
+  </span>
+
+  <input
+    type="number"
+    placeholder="0.00"
+    value={offer}
+    onChange={(e) => setOffer(e.target.value)}
+    className="w-full border rounded-lg pl-8 pr-3 py-2 outline-none bg-white"
   />
+</div>
 
   <button
-    onClick={handleSend}
+     onClick={() => {
+    if (!offer) return;
+    setShowConfirmModal(true); // open confirm modal
+  }}
     className="px-4 py-2 bg-orange-500 text-white rounded-lg whitespace-nowrap cursor-pointer"
+  
   >
     Send
   </button>
+{/* COnfirm Modal */}
+  {showConfirmModal && (
+  <div className="fixed top-10 left-1/2 transform -translate-x-1/2 bg-white p-6 rounded-xl shadow-lg z-50 w-80">
+    <h2 className="text-lg font-semibold mb-4 text-center">
+      Confirm Your Bid
+    </h2>
+
+    <p className="text-center mb-4">
+      You are bidding: <span className="font-bold">${offer}</span>
+    </p>
+
+    <div className="flex justify-between gap-3">
+      <button
+        onClick={() => setShowConfirmModal(false)}
+        className="w-full bg-gray-400 text-white py-2 rounded"
+      >
+        Cancel
+      </button>
+
+      <button
+        onClick={handleConfirmBid}
+        className="w-full bg-green-600 text-white py-2 rounded"
+      >
+        Confirm
+      </button>
+    </div>
+  </div>
+)}
+
+
+
 </div>
         
 
@@ -1324,6 +1420,12 @@ const Chat = () => {
               <input
                 value={messageInput}
                 onChange={(e) => setMessageInput(e.target.value)}
+                 onKeyDown={(e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSend(); // 🔥 send message or file
+    }
+  }}
                 className="flex-1 p-2"
                 placeholder="Type message..."
               />
