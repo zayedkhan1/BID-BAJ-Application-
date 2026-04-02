@@ -812,7 +812,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
-import { FaTachometerAlt } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp, FaTachometerAlt } from "react-icons/fa";
 import ProfileModal from "../components/ProfileModal";
 
 import {
@@ -835,11 +835,20 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [messageInput, setMessageInput] = useState("");
 
+  //=================== BID MODAL STATES =========
+  const [showBidModal, setShowBidModal] = useState(true);
+    const [showOfferModal, setShowOfferModal] = useState(false);
+    const [offer, setOffer] = useState("");
+
+
   // ✅ NEW STATES
   const [selectedFiles, setSelectedFiles] = useState([]);
   const fileInputRef = useRef(null);
 
   const messagesEndRef = useRef(null);
+
+
+
 
   // ================= FETCH APPRAISAL =================
   const fetchDetails = async () => {
@@ -861,6 +870,7 @@ const Chat = () => {
       setLoading(false);
     }
   };
+  console.log("appraisal user data", appraisalsUserData);
 
   // ================= FETCH MESSAGES =================
   const fetchMessages = async () => {
@@ -1008,6 +1018,25 @@ const Chat = () => {
     }
   };
 
+// ==================Send offer==============
+
+  
+  const handleSendOffer = () => {
+    if (!offer) return;
+
+    console.log("Offer Sent:", offer);
+
+    // 👉 এখানে API call দিতে পারো
+    // sendOfferAPI(offer)
+
+    setOffer("");
+    setShowOfferModal(false);
+  };
+
+
+
+
+
   // ================= MODAL =================
   const openProfileModal = (userId) => {
     setSelectedUserId(userId);
@@ -1026,30 +1055,169 @@ const Chat = () => {
       <div className="grid grid-cols-12">
 
         {/* LEFT SIDE */}
-        <div className="bg-gray-800 col-span-4">
-          <div className="flex items-center gap-2 p-4 border rounded">
-            <img
-              onClick={() =>
-                openProfileModal(
-                  appraisalsUserData?.appraisal_details?.appraised_by?.id
-                )
-              }
-              src={
-                appraisalsUserData?.appraisal_details?.appraised_by
-                  ?.profile_picture
-                  ? `http://bidbaj.com${appraisalsUserData?.appraisal_details?.appraised_by?.profile_picture}`
-                  : "../../public/assets/image/dummy_profile.jpg"
-              }
-              className="w-20 h-20 rounded-full cursor-pointer"
-            />
+      <div className="bg-gray-800 col-span-4">
+           <div className="flex items-center gap-2 p-4 border rounded">
+             <img
+               onClick={() =>
+                 openProfileModal(
+                   appraisalsUserData?.appraisal_details?.appraised_by?.id
+                 )
+               }
+               src={
+                 appraisalsUserData?.appraisal_details?.appraised_by
+                   ?.profile_picture
+                   ? `http://bidbaj.com${appraisalsUserData?.appraisal_details?.appraised_by?.profile_picture}`
+                   : "../../public/assets/image/dummy_profile.jpg"
+               }
+               alt="Profile"
+               className="w-20 h-20 rounded-full cursor-pointer"
+             
+              />
 
-            <div>
-              <h2 className="text-xl text-white">
-                {appraisalsUserData?.appraisal_details?.appraised_by?.name}
-              </h2>
+{/* I want if i click on this div it will open me a modal uder the div where i will show my bid history and bid with Accept and Reject button */}
+              {/* <div>
+               <h2 className="text-xl font-bold text-white">
+                 {appraisalsUserData?.appraisal_details?.appraised_by?.name}
+               </h2>
+               <div className="flex items-center gap-2 text-gray-400">
+                 <FaTachometerAlt />
+                 <span>
+                   {appraisalsUserData?.appraisal_details?.milage}
+                 </span>
+               </div>
+               <span className="text-gray-400 text-sm">
+                 {appraisalsUserData?.appraisal_details?.vin_no?.slice(-6)}
+               </span>
+             </div> */}
+
+  {/* new div mor modal */}
+  <div
+    onClick={() => setShowBidModal(!showBidModal)}
+    className="cursor-pointer"
+  >
+
+
+             <div
+  className="cursor-pointer flex justify-between items-center"
+>
+  {/* Left content */}
+  <div>
+    <h2 className="text-xl font-bold text-white">
+      {appraisalsUserData?.appraisal_details?.appraised_by?.name}
+    </h2>
+
+    <div className="flex items-center gap-2 text-gray-400">
+      <FaTachometerAlt />
+      <span>
+        {appraisalsUserData?.appraisal_details?.milage}
+      </span>
+    </div>
+
+    <span className="text-gray-400 text-sm">
+      {appraisalsUserData?.appraisal_details?.vin_no?.slice(-6)}
+    </span>
+  </div>
+
+  
+
+</div>
+{/* Right icon */}
+  <div className="ml-20">
+     <FaChevronDown
+    className={`text-gray-400 transition-transform duration-300 ${
+      showBidModal ? "rotate-180" : ""
+    }`}
+  />
+  </div>
+ 
+  </div>
+
+
+
+           </div>
+        {showBidModal && (
+  <div className=" p-4 bg-gray-800 rounded-lg shadow-lg">
+    
+    {/* Bid History */}
+    <h3 className="text-white font-semibold mb-2">Bid History</h3>
+
+    <div className="space-y-2 text-gray-300">
+
+    <div className="flex justify-between">
+  <div className="max-h-20 overflow-y-auto w-full">
+    {appraisalsUserData?.bid_details?.bids.map((bidData, index) => (
+      <div key={index} className="border-b py-2 text-gray-300">
+        {bidData.text}
+      </div>
+    ))}
+
+
+  </div>
+
+</div>
+      <p className="text-2xl"><span className="text-blue-500 font-bold">{appraisalsUserData?.bid_details?.bid_name} : </span>${appraisalsUserData?.bid_details?.running_bid} </p>
+
+     
+    </div>
+
+    {/* Action Buttons */}
+    <div className="flex gap-3 mt-4">
+      <button className="bg-green-600 px-4 py-1 rounded text-white">
+        Accept
+      </button>
+      <button 
+        onClick={() => setShowOfferModal(true)}
+
+      className="bg-red-600 px-4 py-1 rounded text-white cursor-pointer">
+        Counter
+      </button>
+    </div>
+
+      {/* Modal */}
+      
+      {showOfferModal && (
+        <div className=" mt-2 w-72 rounded-2xl  ">
+            <h2 className="text-xl text-gray-200 font-semibold mb-3">Enter Your Offer</h2>
+            <div className="flex items-center gap-4">
+  <input
+    type="number"
+    placeholder="Enter amount"
+    value={offer}
+    onChange={(e) => setOffer(e.target.value)}
+    className="flex-1 border rounded-lg px-3 py-2 bg-white outline-none"
+  />
+
+  <button
+    onClick={handleSend}
+    className="px-4 py-2 bg-orange-500 text-white rounded-lg whitespace-nowrap cursor-pointer"
+  >
+    Send
+  </button>
+</div>
+        
+
+              <p
+                onClick={() => setShowOfferModal(false)}
+                className="mt-4 text-gray-200 ml-20  cursor-pointer"
+              >
+                 <FaChevronUp/>
+              </p>
+
+             
             </div>
-          </div>
-        </div>
+         
+      
+      )}
+
+  </div>
+)}
+
+
+
+
+         </div>
+
+
 
         {/* CHAT */}
         <div className="bg-gray-700 col-span-8 flex flex-col h-[80vh]">

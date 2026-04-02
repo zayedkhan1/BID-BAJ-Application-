@@ -1,13 +1,24 @@
 
 // ============== Chat.jsx Time function ===========
 export const formatChatTime = (timestamp) => {
-    if (!timestamp) return "";
-    const date = new Date(timestamp);
-    return date.toLocaleTimeString([], {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
+  if (!timestamp) return "";
+
+  const date = new Date(timestamp);
+
+  const datePart = date.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+
+  const timePart = date.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  return `${datePart}, ${timePart}`;
+};
 
 
 
