@@ -30,7 +30,8 @@ function App() {
   
 
   // check if admin page
-  const isAdminPage = location.pathname.startsWith('/admin');
+  const isAdminPage = location.pathname.startsWith('/admin') || location.pathname.startsWith('/chat');
+;
 
   return (
     <>
