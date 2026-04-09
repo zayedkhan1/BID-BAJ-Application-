@@ -7,8 +7,8 @@ import { FaCheck, FaCheckDouble, FaEye } from "react-icons/fa";
 import ProfileModal from "../components/ProfileModal";
 import { formatMessageDate, formatMessageTime } from "../utility/utility";
 
-const Messages = () => {
-
+const DoneDeal = () => {
+ 
     const { userId } = useParams();
     const location = useLocation();
       const [showModal, setShowModal] = useState(false);
@@ -26,7 +26,7 @@ const Messages = () => {
     const fetchMessages = async () => {
         try {
             const response = await fetch(
-                `/api/vehicle/api/v1/appraisals/${userId}`,
+                `/api/vehicle/api/v1/appraisals/archived/${userId}`,
                 {
                     method: "GET",
 
@@ -245,4 +245,4 @@ const Messages = () => {
     );
 };
 
-export default Messages;
+export default DoneDeal;

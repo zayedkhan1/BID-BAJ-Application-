@@ -74,8 +74,8 @@ import Loading from "./Loading";
 <div className="p-8 max-w-6xl mx-auto space-y-8">
   {/* Header with glass effect */}
   <div className="backdrop-blur-md bg-white/10 p-6 rounded-2xl shadow-xl border border-white/20">
-    <h1 className="text-white text-3xl font-light tracking-wide text-center">
-      User Directory
+    <h1 className="text-white text-3xl font-extrabold tracking-wide text-center">
+      USERS
       <span className="block text-sm font-medium text-white/60 mt-1">
         Total Users: {filteredUsers.length}
       </span>

@@ -22,6 +22,7 @@ import Chat from './pages/Chat'
 
 
 import { Toaster } from "react-hot-toast";
+import DoneDeals from './pages/DoneDeals'
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/addvehicle" element={<AddVehicle />} />
         <Route path="/deals" element={<Deals />} />
+        <Route path="/done-deals" element={<DoneDeals />} />
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/messages/:userId" element={<Messages/>} />
         <Route path="/appraisals/:appraisal_id" element={<AppraisalsUserInfo/>} />

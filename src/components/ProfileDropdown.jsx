@@ -1,12 +1,12 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { BiUserCircle, BiLogOut, BiTrash } from "react-icons/bi";
 import { FaChevronDown, FaUserCircle } from "react-icons/fa";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -81,12 +81,12 @@ const handleLogout = async () => {
   }
 };
 
-  const handleDeleteAccount = () => {
-    if (confirm("Are you sure you want to delete your account?")) {
-      console.log("Account deleted");
-      navigate("/");
-    }
-  };
+  // const handleDeleteAccount = () => {
+  //   if (confirm("Are you sure you want to delete your account?")) {
+  //     console.log("Account deleted");
+  //     navigate("/");
+  //   }
+  // };
 
   return (
     <div className="relative" ref={dropdownRef}>
@@ -124,14 +124,15 @@ backdrop-blur-md  rounded-xl shadow-xl border overflow-hidden z-50">
             <BiLogOut />
             Logout
           </button>
-
-          <button
+              {/* DELETE BUTTON */}
+          {/* <button
             onClick={handleDeleteAccount}
             className="w-full  flex items-center font-bold gap-2 px-4 py-3 hover:bg-gray-600 text-sm text-red-600 text-left"
           >
             <BiTrash />
             Delete Account
-          </button>
+          </button> */}
+
         </div>
       )}
     </div>

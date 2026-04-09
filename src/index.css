@@ -1,1 +1,53 @@
 @import "tailwindcss";
+
+
+
+/* Premium thin modern scrollbar */
+::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+/* Track with subtle glow effect */
+::-webkit-scrollbar-track {
+  background: rgba(118, 154, 127, 0.1);
+  border-radius: 10px;
+  margin: 4px 0;
+}
+
+/* Thumb with premium gradient and shadow */
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #769A7F, #5A7B63, #4a6b53);
+  border-radius: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover effect with glow and scale */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #8bbd97, #769A7F, #5A7B63);
+  transform: scale(1.02);
+  box-shadow: 0 0 8px rgba(118, 154, 127, 0.5);
+}
+
+/* Active/dragging effect */
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, #5A7B63, #4a6b53, #3f5a46);
+  transform: scale(0.98);
+}
+
+/* Optional: Add subtle corner styling for dual scrollbars */
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Smooth scrolling with custom easing */
+html {
+  scroll-behavior: smooth;
+}
+
+/* For Firefox (cross-browser support) */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #769A7F rgba(118, 154, 127, 0.1);
+}

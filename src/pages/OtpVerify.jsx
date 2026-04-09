@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaShieldAlt } from 'react-icons/fa';
 import { MdOutlineMarkEmailRead } from 'react-icons/md';
@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 
 const VerifyOTP = () => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const [timer, setTimer] = useState(150);
+  //const [timer, setTimer] = useState(150);
   const navigate = useNavigate();
   const location = useLocation();
   const phone = location.state?.phone;
@@ -15,12 +15,12 @@ const VerifyOTP = () => {
   // const inputRefs = useRef([]);
 
   // Timer logic
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTimer((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setTimer((prev) => (prev > 0 ? prev - 1 : 0));
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
@@ -130,7 +130,7 @@ const VerifyOTP = () => {
             <h2 className="text-3xl font-bold text-white mb-3 tracking-tight">Verify Identity</h2>
             <p className="text-slate-400">
               We've sent a 6-digit code to <br />
-              <span className="text-white font-medium">+1 (•••) •••-9999</span>
+              <span className="text-white font-medium">+1 (•••) •••-{phone.slice(-4)}</span>
             </p>
           </div>
 
@@ -158,7 +158,7 @@ const VerifyOTP = () => {
           </button>
 
           {/* Resend Logic */}
-          <div className="text-center">
+          {/* <div className="text-center">
             <p className="text-slate-500 text-sm mb-2">Didn't receive the code?</p>
             {timer > 0 ? (
               <div className="flex items-center justify-center gap-2 text-[#769A7F] font-medium">
@@ -173,7 +173,10 @@ const VerifyOTP = () => {
                 Resend New Code
               </button>
             )}
-          </div>
+          </div> */}
+
+
+
         </div>
 
    

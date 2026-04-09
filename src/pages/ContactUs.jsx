@@ -24,7 +24,7 @@ const ContactUs = () => {
     message: ''
   });
   
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  //const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {

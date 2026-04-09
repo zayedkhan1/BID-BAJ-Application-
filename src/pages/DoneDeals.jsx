@@ -7,7 +7,7 @@ import ProfileModal from "../components/ProfileModal";
 import { FaPlus, FaEye, FaIdBadge } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
-const Deals = () => {
+const DoneDeals = () => {
 
   const [appraisals, setAppraisals] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,7 +19,7 @@ const Deals = () => {
   const fetchAppraisals = async () => {
     try {
       const response = await fetch(
-        "/api/vehicle/api/v1/appraisals",
+        "/api/vehicle/api/v1/appraisals/archived",
         {
           method: "GET",
           headers: {
@@ -87,21 +87,21 @@ const Deals = () => {
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
 
           <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[#769A7F] to-teal-300 bg-clip-text text-transparent">
-            Deals
+            Done Deals
           </h1>
 
-          <Link to="/addvehicle">
+          {/* <Link to="/addvehicle">
             <button className="mt-4 md:mt-0 flex items-center gap-2 bg-[#769A7F] hover:bg-[#5e7c66] text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition hover:scale-105">
               <FaPlus /> Start New Deal
             </button>
-          </Link>
+          </Link> */}
 
         </div>
 
         {appraisals.length === 0 ? (
 
           <div className="text-center py-20">
-            <p className="text-gray-400 text-xl">No Deals found.</p>
+            <p className="text-gray-400 text-xl">No Done Deals Completed.</p>
           </div>
 
         ) : (
@@ -187,7 +187,7 @@ const Deals = () => {
                      // onClick={() => openProfileModal(item.user_id)}
                       className="ml-5 text-sm text-[#769A7F] hover:text-white font-medium"
                     >
-                      Start deal →
+                      Done deals →
                     </button>
                   </div>
 
@@ -218,4 +218,4 @@ const Deals = () => {
   );
 };
 
-export default Deals;
+export default DoneDeals;
