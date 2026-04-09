@@ -94,7 +94,9 @@ const Navbar = () => {
 )}
         
      
-            <ProfileDropdown></ProfileDropdown>
+          {
+            user && <ProfileDropdown />
+          }
          
 
    

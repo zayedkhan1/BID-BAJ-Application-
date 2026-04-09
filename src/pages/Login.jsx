@@ -7,6 +7,7 @@ import PrivacyPolicy from "../components/PriacyPolicy";
 import TermsAndConditions from "../components/TermsAndConditions";
 import loginLogo from "../../public/assets/logo/navbar_logo.jpg"
 import toast from "react-hot-toast";
+import Loading from "../components/Loading";
 
 const countryCodes = [
   { code: "+1", country: "USA", flag: "🇺🇸" },
@@ -16,6 +17,7 @@ const countryCodes = [
 const Login = () => {
   const [countryCode, setCountryCode] = useState("+1");
   const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleGetCode = async () => {
@@ -64,6 +66,7 @@ const Login = () => {
   //need to use proxy server in vite.config.js to avoid CORS issue. then we can use relative path like below instead of full URL
      console.log("Requesting OTP for:",  phone);
   try {
+    setLoading(true); 
       // http://bidbaj.com/user/api/v1/otp -- this is the actual API endpoint
 
       // /api/user/api/v1/otp  --- this will be proxied to http://bidbaj.com/user/api/v1/otp by vite dev server
@@ -104,9 +107,13 @@ console.log("Sending body:", JSON.stringify({ phone }));
      console.log("Full Error:", error);
   console.log("Status:", error.response?.status);
   console.log("Data:", error.response?.data);
-    }
+    } finally {
+    setLoading(false); // 🔥 stop loading (IMPORTANT)
+  }
     
-
+if(loading){
+  return <Loading></Loading>;
+}
 
   };
 

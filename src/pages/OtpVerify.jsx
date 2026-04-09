@@ -5,11 +5,13 @@ import { FaArrowLeft, FaShieldAlt } from 'react-icons/fa';
 import { MdOutlineMarkEmailRead } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext';
+import Loading from '../components/Loading';
 
 const VerifyOTP = () => {
          const { login} = useAuth();
   
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
+  const [loading,setLoading]=useState(false);
   //const [timer, setTimer] = useState(150);
   const navigate = useNavigate();
   const location = useLocation();
@@ -62,6 +64,7 @@ const VerifyOTP = () => {
     
  
       try{
+        setLoading(true);
         const res=await fetch("/api/user/api/v1/login",{
           method:"POST",
           headers:{
@@ -106,11 +109,17 @@ const VerifyOTP = () => {
         alert("OTP Verification Failed. Please try again.");
 
         return;
+      }finally{
+        setLoading(false);
       }
 
     //alert(`Verifying: ${finalOtp}`);
    
   };
+
+  if(loading){
+    return <Loading></Loading>;
+  }
 
   return (
     <div className="min-h-screen mt-15 flex items-center justify-center bg-slate-950 font-sans relative overflow-hidden">

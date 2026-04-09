@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link, Navigate} from "react-router-dom";
+import { Link, Navigate, useNavigate} from "react-router-dom";
 import { BiUserCircle, BiLogOut, BiTrash } from "react-icons/bi";
 import { FaChevronDown, FaUserCircle } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext";
@@ -7,6 +7,8 @@ import toast from "react-hot-toast";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const navigate = useNavigate();
   const dropdownRef = useRef(null);
   //const navigate = useNavigate();
          const { logout } = useAuth();
@@ -86,10 +88,22 @@ const handleLogout = async () => {
   //   console.error("Logout error:", error);
   // }
 
-logout();              // 🔥 clears user + token
-toast.success("Logged out successfully!")
+// logout();              // 🔥 clears user + token
+// Navigate("/login");
+// toast.success("Logged out successfully!")
 
-Navigate("/login");
+setShowLogoutModal(true);
+};
+
+const confirmLogout = () => {
+  logout(); // clear auth
+  toast.success("Logged out successfully!");
+ navigate("/login");
+};
+
+const cancelLogout = () => {
+  setShowLogoutModal(false);
+
 
 };
 
@@ -101,7 +115,9 @@ Navigate("/login");
   // };
 
   return (
+    <> 
     <div className="relative" ref={dropdownRef}>
+    
       {/* Profile Button */}
       <button
         onClick={() => setOpen(!open)}
@@ -115,6 +131,7 @@ Navigate("/login");
         
         {/* <span>Profile</span> */}
       </button>
+      
 
       {/* Dropdown */}
       {open && (
@@ -136,6 +153,7 @@ backdrop-blur-md  rounded-xl shadow-xl border overflow-hidden z-50">
             <BiLogOut />
             Logout
           </button>
+       
               {/* DELETE BUTTON */}
           {/* <button
             onClick={handleDeleteAccount}
@@ -147,7 +165,39 @@ backdrop-blur-md  rounded-xl shadow-xl border overflow-hidden z-50">
 
         </div>
       )}
+      
+
+
     </div>
+
+    {showLogoutModal && (
+  <div className="fixed mt-20 inset-0  flex items-center justify-center z-50 p-4">
+    <div className="bg-gray-800 rounded-xl p-6 w-80 text-center shadow-lg">
+      <h2 className="text-lg font-bold mb-4 text-white">
+        Do you want to log out?
+      </h2>
+
+      <div className="flex justify-center gap-4">
+        <button
+          onClick={confirmLogout}
+          className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+        >
+          Yes
+        </button>
+
+        <button
+          onClick={cancelLogout}
+          className="px-4 py-2 bg-gray-300 rounded-lg hover:bg-gray-400"
+        >
+          No
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+    
+
+    </>
   );
 };
 
