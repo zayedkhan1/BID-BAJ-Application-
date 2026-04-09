@@ -1,12 +1,16 @@
 import { useState, useRef, useEffect } from "react";
-import { Link} from "react-router-dom";
+import { Link, Navigate} from "react-router-dom";
 import { BiUserCircle, BiLogOut, BiTrash } from "react-icons/bi";
 import { FaChevronDown, FaUserCircle } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext";
+import toast from "react-hot-toast";
 
 const ProfileDropdown = () => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef(null);
   //const navigate = useNavigate();
+         const { logout } = useAuth();
+  
 
   // Close dropdown on outside click
   useEffect(() => {
@@ -54,31 +58,39 @@ const ProfileDropdown = () => {
 // };
 
 const handleLogout = async () => {
-  const token = localStorage.getItem("token");
-  try {
-    const response = await fetch("/api/user/api/v1/logout", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
 
-    if (!response.ok) {
-      console.error("Logout failed", response.status);
-      const errData = await response.json();
-      console.error(errData);
-      return;
-    }else{
-          // Success
-    localStorage.removeItem("token");
-    window.location.href = "/login";
 
-    }
+  // const token = localStorage.getItem("token");
+  // try {
+  //   const response = await fetch("/api/user/api/v1/logout", {
+  //     method: "POST",
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   });
 
-  } catch (error) {
-    console.error("Logout error:", error);
-  }
+  //   if (!response.ok) {
+  //     console.error("Logout failed", response.status);
+  //     const errData = await response.json();
+  //     console.error(errData);
+  //     return;
+  //   }else{
+  //         // Success
+  //   localStorage.removeItem("token");
+  //   window.location.href = "/login";
+
+  //   }
+
+  // } catch (error) {
+  //   console.error("Logout error:", error);
+  // }
+
+logout();              // 🔥 clears user + token
+toast.success("Logged out successfully!")
+
+Navigate("/login");
+
 };
 
   // const handleDeleteAccount = () => {
@@ -93,7 +105,7 @@ const handleLogout = async () => {
       {/* Profile Button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-2 bg-[#769A7F] hover:bg-[#769A7F] px-5 py-2.5 cursor-pointer rounded-full text-sm font-bold transition-all shadow-lg shadow-indigo-500/25"
+        className="flex items-center gap-2 bg-[#769A7F] hover:bg-[#769A7F] px-5 py-2.5 cursor-pointer rounded-full text-sm font-bold transition-all "
 
       >
         {/* <BiUserCircle className="text-lg" /> */}

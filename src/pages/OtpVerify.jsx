@@ -4,13 +4,19 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { FaArrowLeft, FaShieldAlt } from 'react-icons/fa';
 import { MdOutlineMarkEmailRead } from 'react-icons/md';
 import toast from 'react-hot-toast';
+import { useAuth } from '../context/AuthContext';
 
 const VerifyOTP = () => {
+         const { login} = useAuth();
+  
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
   //const [timer, setTimer] = useState(150);
   const navigate = useNavigate();
   const location = useLocation();
   const phone = location.state?.phone;
+
+
+    // 👇 where user came from
   
   // const inputRefs = useRef([]);
 
@@ -69,7 +75,8 @@ const VerifyOTP = () => {
 
         }
         const data=await res.json();
-
+        
+            login(data.access); // save token in context
             localStorage.setItem("token", data.access);
            // localStorage.setItem("userID", JSON.stringify(data.user?.id));
 
@@ -84,6 +91,8 @@ const VerifyOTP = () => {
       navigate("/",{
           state: { phone }
          }); // go to home page
+   
+
     } else {
       navigate("/registration", {
         state: { phone },

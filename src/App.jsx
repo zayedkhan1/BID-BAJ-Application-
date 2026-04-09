@@ -23,10 +23,13 @@ import Chat from './pages/Chat'
 
 import { Toaster } from "react-hot-toast";
 import DoneDeals from './pages/DoneDeals'
+import ProtectedRoute from './components/ProtectedRoute'
 
 
 function App() {
   const location = useLocation();
+
+  
 
   
 
@@ -49,8 +52,25 @@ function App() {
         <Route path="/otp-verify" element={<OtpVerify />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/addvehicle" element={<AddVehicle />} />
-        <Route path="/deals" element={<Deals />} />
-        <Route path="/done-deals" element={<DoneDeals />} />
+        
+        
+        <Route path="/deals" element={
+          <ProtectedRoute>
+          <Deals />
+          </ProtectedRoute>
+
+          } />
+
+        <Route path="/done-deals" element={
+          
+          <ProtectedRoute>
+          <DoneDeals />
+          </ProtectedRoute>
+          
+          } />
+
+
+
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/messages/:userId" element={<Messages/>} />
         <Route path="/appraisals/:appraisal_id" element={<AppraisalsUserInfo/>} />

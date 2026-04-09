@@ -14,23 +14,33 @@ import {
 import navLogo from '../../public/assets/logo/navbar_logo.jpg'
 import { Link } from 'react-router-dom';
 import ProfileDropdown from './ProfileDropdown';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
-   
+       const { user } = useAuth();
+
 
   const [isOpen, setIsOpen] = useState(false);
+
 
   // Define links with their respective icons
   const navLinks = [
     { name: 'Home', href: '/', icon: <HiOutlineHome /> },
     { name: 'Deals', href: '/deals', icon: <HiOutlineLightningBolt /> },
+
     { name: ' Done Deals', href: '/done-deals', icon: <HiOutlineCube /> },
-    // { name: 'Done', href: '#pricing', icon: <HiOutlineCurrencyDollar /> }, //ata profile er under e hobe
+  
     { name: 'Contact Us', href: '/contact', icon: <HiOutlineSupport /> },
     // { name: 'Admin Panel', href: '/admin', icon: <HiOutlineSupport /> },
     // { name: 'Admin Login', href: '/adminlogin', icon: <HiOutlineSupport /> },
     // { name: 'Test Page', href: '/test', icon: <HiOutlineSupport /> },
   ];
+  const filteredNavLinks = navLinks.filter((link) => {
+  if (link.href === "/done-deals") {
+    return !!user; // only show if logged in
+  }
+  return true;
+});
 
   return (
     <nav className="fixed top-0 w-full z-50  bg-gray-900/90 backdrop-blur-xl border-b border-white/5">
@@ -46,7 +56,7 @@ const Navbar = () => {
 
         {/* Desktop Links with Icons */}
         <div className="hidden lg:flex space-x-1 items-center">
-          {navLinks.map((link) => (
+          {filteredNavLinks.map((link) => (
             <Link
               key={link.name}
               to={link.href}
@@ -62,12 +72,28 @@ const Navbar = () => {
 
         {/* Right Action Buttons */}
         <div className="hidden md:flex items-center gap-4">
-          <Link to='/login' className="text-sm font-medium text-gray-400 hover:text-white transition-colors">
+
+          {/* <Link to='/login'   className="px-5 py-2 rounded-full text-sm font-semibold text-white 
+  bg-white/10 backdrop-blur-md border border-white/20 
+  hover:[#769A7F]  hover:shadow-md hover:shadow-[#769A7F] /10 
+  transition-all duration-300"
+>
             Login
-          </Link>
+          </Link> */}
+
+          {!user && (
+  <Link
+    to="/login"
+    className="px-5 py-2 rounded-full text-sm font-semibold text-white 
+    bg-white/10 backdrop-blur-md border border-white/20 
+    hover:bg-[#769A7F] hover:shadow-md hover:shadow-[#769A7F]/10 
+    transition-all duration-300"
+  >
+    Login
+  </Link>
+)}
         
-            {/* <BiUserCircle className="text-lg" />
-            <span>profile</span> */}
+     
             <ProfileDropdown></ProfileDropdown>
          
 
@@ -96,15 +122,14 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-4 text-lg font-medium text-gray-400 hover:text-indigo-400 transition-colors"
+                  className="flex items-center gap-4 text-lg font-medium text-gray-400 hover:text-[#769A7F] transition-colors"
                 >
-                  <span className="text-2xl text-indigo-500">{link.icon}</span>
+                  <span className="text-2xl text-[#769A7F]">{link.icon}</span>
                   {link.name}
                 </a>
               ))}
               <div className="pt-6 grid grid-cols-2 gap-4">
                 <button className="py-3 text-gray-400 font-bold border border-white/10 rounded-xl">Login</button>
-                <button className="py-3 bg-[#769A7F] text-white font-bold rounded-xl shadow-lg">Sign Up</button>
               </div>
             </div>
           </motion.div>
