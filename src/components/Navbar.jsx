@@ -24,7 +24,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', href: '/', icon: <HiOutlineHome /> },
     { name: 'Deals', href: '/deals', icon: <HiOutlineLightningBolt /> },
-    { name: 'Deals Done', href: '/deals_done', icon: <HiOutlineCube /> },
+    { name: ' Done Deals', href: '/deals_done', icon: <HiOutlineCube /> },
     // { name: 'Done', href: '#pricing', icon: <HiOutlineCurrencyDollar /> }, //ata profile er under e hobe
     { name: 'Contact Us', href: '/contact', icon: <HiOutlineSupport /> },
     // { name: 'Admin Panel', href: '/admin', icon: <HiOutlineSupport /> },
