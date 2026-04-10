@@ -13,7 +13,7 @@ const HowItWorks = () => {
     },
     {
       id: "02",
-      title: "Find Your Dream Car",
+      title: "ADD Deals",
       description: "Browse through our curated selection of vintage classics, luxury sedans, and high-performance supercars.",
       icon: <FaCarSide size={32} className="text-[#769A7F]" />,
     },
@@ -25,7 +25,7 @@ const HowItWorks = () => {
     },
     {
       id: "04",
-      title: "Secure Checkout",
+      title: "Accept Bid",
       description: "Our secure escrow service ensures that funds are only released once the vehicle is delivered as described.",
       icon: <MdSecurity size={36} className="text-[#769A7F]" />,
     },
@@ -89,8 +89,8 @@ const HowItWorks = () => {
               <FaCarSide size={20} className="mr-2" />
               Let's Go
             </span>
-            <span className="absolute flex items-center justify-center w-full h-full text-[#769A7F] transition-all duration-300 transform group-hover:translate-x-full ease">Start Bidding</span>
-            <span className="relative invisible">Start Bidding</span>
+            <span className="absolute flex items-center justify-center w-full h-full text-[#769A7F] transition-all duration-300 transform group-hover:translate-x-full ease">Start Deal</span>
+                <span className="relative invisible">Start Deal</span>
           </button>
           <p className="text-slate-500 mt-6 text-sm italic">No credit card required for initial browsing</p>
         </div>

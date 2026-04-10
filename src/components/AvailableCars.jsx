@@ -90,7 +90,7 @@ const AvailableCars = () => {
               Live Auctions
             </h2>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-              Available <span className="text-transparent bg-clip-text bg-gradient-to-r bg-gradient-to-r from-[#769A7F] to-[#5a7c63]">Inventory</span>
+              SOLD ON<span className="text-transparent bg-clip-text bg-gradient-to-r bg-gradient-to-r from-[#769A7F] to-[#5a7c63]"> BIDBAJ</span>
             </h3>
           </div>
           <button className="text-slate-300 font-semibold border-b border-blue-500/50 pb-1 hover:text-blue-400 hover:border-blue-400 transition-all">
