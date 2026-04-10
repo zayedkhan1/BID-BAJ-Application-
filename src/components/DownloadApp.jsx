@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaApple, FaGooglePlay, FaCheckCircle } from 'react-icons/fa';
 import { MdOutlineQrCodeScanner, MdPhonelinkRing } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const AppDownload = ({data}) => {
   const features = [
@@ -48,21 +49,27 @@ const AppDownload = ({data}) => {
 
               {/* Download Buttons */}
               <div className="flex flex-wrap gap-4 items-center">
-                <button className="flex items-center gap-3 bg-white text-slate-950 px-6 py-3 rounded-2xl font-bold hover:bg-slate-200 transition-all transform active:scale-95 shadow-xl">
+                <Link to={`https://apps.apple.com/us/app/bidbaj/id6738529760`}
+                 className="flex items-center gap-3 bg-white text-slate-950 px-6 py-3 rounded-2xl font-bold hover:bg-slate-200 transition-all transform active:scale-95 shadow-xl"
+                  target="_blank"
+                 >
                   <FaApple size={24} />
                   <div className="flex flex-col items-start leading-none">
                     <span className="text-[10px] uppercase font-bold text-slate-500">Download on</span>
-                    <span className="text-lg">App Store</span>
+                    <span className="text-lg">App Store</span> 
                   </div>
-                </button>
-
-                <button className="flex items-center gap-3 bg-slate-800 text-white px-6 py-3 rounded-2xl font-bold border border-slate-700 hover:bg-slate-700 transition-all transform active:scale-95">
+                </Link>
+ 
+                <Link to={`https://apps.apple.com/us/app/bidbaj/id6738529760`}
+                 className="flex items-center gap-3 bg-slate-800  text-white px-6 py-3 rounded-2xl font-bold border border-slate-700 hover:bg-slate-700 transition-all transform active:scale-95"
+                  target="_blank"
+                 >
                   <FaGooglePlay size={20} className="text-blue-400" />
                   <div className="flex flex-col items-start leading-none">
                     <span className="text-[10px] uppercase font-bold text-slate-500">Get it on</span>
                     <span className="text-lg">Google Play</span>
                   </div>
-                </button>
+                </Link>
               </div>
             </div>
 

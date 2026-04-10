@@ -3,7 +3,7 @@ import React from 'react';
 import { FaUserPlus, FaGavel, FaCarSide } from 'react-icons/fa6';
 import { MdSecurity } from 'react-icons/md';
 
-const HowItWorks = () => {
+const HowItWorks = ({data}) => {
   const steps = [
     {
       id: "01",
@@ -13,7 +13,7 @@ const HowItWorks = () => {
     },
     {
       id: "02",
-      title: "ADD Deals",
+      title: "Add Deals",
       description: "Browse through our curated selection of vintage classics, luxury sedans, and high-performance supercars.",
       icon: <FaCarSide size={32} className="text-[#769A7F]" />,
     },
@@ -37,10 +37,10 @@ const HowItWorks = () => {
         {/* Header Section */}
         <div className="text-center mb-20">
           <h2 className="text-[#769A7F] font-bold tracking-[0.2em] uppercase text-sm mb-4">
-            The Process
+            BIDBAJ
           </h2>
           <h3 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            How to Win Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#769A7F] to-[#5a7c63]">Next Ride</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#769A7F] to-[#5a7c63]">{data?.tab_line_secondary}</span>
           </h3>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
             We've streamlined the luxury car auction process to be as smooth as the vehicles we sell. 

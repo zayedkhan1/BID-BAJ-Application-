@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebook, FaInstagram, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt, FaApple, FaGooglePlay } from 'react-icons/fa';
 import footerLogo from '../../public/assets/logo/navbar_logo.jpg'
+import { Link } from 'react-router-dom';
 const Footer = () => {
   const footerLinks = {
     'Buying': ['Browse Auctions', 'Live Bidding', 'Buyer Protection', 'Financing'],
@@ -31,21 +32,27 @@ const Footer = () => {
               The premier platform for luxury and classic car auctions. Bid on exclusive vehicles from around the world.
             </p>
              <div className="flex flex-wrap gap-4 items-center">
-               <button className="flex items-center gap-3 bg-white text-slate-950 px-6 py-3 rounded-2xl font-bold hover:bg-slate-200 transition-all transform active:scale-95 shadow-xl">
+               <Link to={`https://apps.apple.com/us/app/bidbaj/id6738529760`}
+                 className="flex items-center gap-3 bg-white text-slate-950 px-6 py-3 rounded-2xl font-bold hover:bg-slate-200 transition-all transform active:scale-95 shadow-xl"
+                 target="_blank"
+               >
                                 <FaApple size={24} />
                                 <div className="flex flex-col items-start leading-none">
                                   <span className="text-[10px] uppercase font-bold text-slate-500">Download on</span>
                                   <span className="text-lg">App Store</span>
                                 </div>
-                              </button>
+                              </Link>
               
-               <button className="flex items-center gap-3 bg-slate-800 text-white px-6 py-3 rounded-2xl font-bold border border-slate-700 hover:bg-slate-700 transition-all transform active:scale-95">
+               <Link to={`https://apps.apple.com/us/app/bidbaj/id6738529760`} 
+               className="flex items-center gap-3 bg-slate-800 text-white px-6 py-3 rounded-2xl font-bold border border-slate-700 hover:bg-slate-700 transition-all transform active:scale-95"
+               target='_blank'
+               >
                                 <FaGooglePlay size={20} className="text-blue-400" />
                                 <div className="flex flex-col items-start leading-none">
                                   <span className="text-[10px] uppercase font-bold text-slate-500">Get it on</span>
                                   <span className="text-lg">Google Play</span>
                                 </div>
-                              </button>
+                              </Link>
             </div>
           </div>
 
@@ -72,11 +79,11 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="mt-12 pt-8 border-t border-gray-800 grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div className="mt-12 pt-8 border-t  border-gray-800 grid grid-cols-1 md:grid-cols-3 justify-items-center  gap-4">
           {[
-            { icon: FaEnvelope, text: 'support@autobid.com' },
-            { icon: FaPhone, text: '+1 (555) 123-4567' },
-            { icon: FaMapMarkerAlt, text: '123 Auction Ave, Motor City, MC 12345' }
+            { icon: FaEnvelope, text: 'JD@bidbaj.com' },
+            { icon: FaPhone, text: '+1 (323) 559-0352' },
+            // { icon: FaMapMarkerAlt, text: '123 Auction Ave, Motor City, MC 12345' }
           ].map((item, index) => (
             <motion.div
               key={index}

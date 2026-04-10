@@ -110,14 +110,14 @@ const Hero = () => {
           >
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#769A7F] to-[#5a7c63] px-4 py-2 rounded-full mb-6">
               <FaGavel className="text-yellow-400" />
-              <span className="text-sm font-semibold"> AUCTION IN PROGRESS</span>
+              <span className="text-sm font-semibold"> BIDBAJ</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Bid & Win Your
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+             GLOBAL VEHICLE EXCHANGE 
+              {/* <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
                 Dream Car
-              </span>
+              </span> */}
             </h1>
 
             <p className="text-gray-300 text-lg md:text-xl mb-8 max-w-lg">

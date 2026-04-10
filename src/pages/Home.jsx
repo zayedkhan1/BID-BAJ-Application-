@@ -33,7 +33,7 @@ const Home = () => {
     return (
         <div>
             <Hero></Hero>
-            <HowInWorks></HowInWorks>
+            <HowInWorks data={data}></HowInWorks>
             <AvailableCars data={data}></AvailableCars>
             <DownloadApp data={data} ></DownloadApp>
         </div>

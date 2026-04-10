@@ -130,8 +130,8 @@ if(loading){
         
         <div className="relative z-10 self-center px-20">
           <h1 className="text-6xl font-black text-white leading-tight mb-6">
-            The Keys to Your <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Next Legend.</span>
+            
+            <span className="text-transparent bg-clip-text text-white">GLOBAL VEHICLE EXCHANGE</span>
           </h1>
           <p className="text-slate-300 text-xl max-w-md leading-relaxed">
             Join the world's most exclusive digital car auction house. Exclusive classics and modern masterpieces.
