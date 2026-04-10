@@ -2,7 +2,7 @@ import React from 'react';
 import { FaApple, FaGooglePlay, FaCheckCircle } from 'react-icons/fa';
 import { MdOutlineQrCodeScanner, MdPhonelinkRing } from 'react-icons/md';
 
-const AppDownload = () => {
+const AppDownload = ({data}) => {
   const features = [
     "Real-time outbid notifications",
     "Exclusive early-access listings",
@@ -29,12 +29,12 @@ const AppDownload = () => {
               </div>
 
               <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
-                Take the Auction House <br /> 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#769A7F] to-[#5a7c63]">Wherever You Go.</span>
+                {/* Take the Auction House <br />  */}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#769A7F] to-[#5a7c63]">{data?.tag_line}</span>
               </h2>
 
               <p className="text-slate-400 text-lg mb-8 max-w-lg leading-relaxed">
-                Download the <span className="text-white font-bold italic">Bid Baj</span> app to get instant alerts, watch live auctions, and place bids from the palm of your hand.
+                Download the <span className="text-white font-bold italic">BIDBAJ</span> app to get instant alerts, watch live auctions, and place bids from the palm of your hand.
               </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">

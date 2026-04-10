@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   FiMail, 
   FiMapPin, 
@@ -15,66 +15,121 @@ import {
   FaLinkedinIn, 
   FaInstagram 
 } from 'react-icons/fa';
+import Loading from '../components/Loading';
 
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
+
+  // const [formData, setFormData] = useState({
+  //   name: '',
+  //   email: '',
+  //   subject: '',
+  //   message: ''
+  // });
   
   //const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+    const [contact, setContact] = useState(null);
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
+  const [loading, setLoading] = useState(true);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+  // const handleChange = (e) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value
+  //   });
+  // };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsLoading(true);
     
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
+  //   // Simulate API call
+  //   setTimeout(() => {
+  //     setIsLoading(false);
+  //     setIsSubmitted(true);
+  //     setFormData({ name: '', email: '', subject: '', message: '' });
       
-      // Reset success message after 5 seconds
-      setTimeout(() => setIsSubmitted(false), 5000);
-    }, 1500);
-  };
+  //     // Reset success message after 5 seconds
+  //     setTimeout(() => setIsSubmitted(false), 5000);
+  //   }, 1500);
+  // };
+
+
+
+  useEffect(() => {
+    const getContact = async () => {
+      try {
+        const res = await fetch("/api/api/contact");
+        const data = await res.json();
+
+        setContact(data); // depends on your API structure
+      } catch (error) {
+        console.error("Error fetching contact:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getContact();
+  }, []);
+  
+console.log(contact);
+
+  // const contactInfo = [
+  //   {
+  //     icon: <FiPhone className="w-6 h-6" />,
+  //     title: "Phone",
+  //     details: contact?.phone,
+  //     action: "Call us now"
+  //   },
+  //   {
+  //     icon: <FiMail className="w-6 h-6" />,
+  //     title: "Email",
+  //     details: contact?.email,
+  //     action: "Email us"
+  //   },
+  //   {
+  //     icon: <FiMapPin className="w-6 h-6" />,
+  //     title: "Office",
+  //     details: contact?.office,
+  //     action: "Get directions"
+  //   },
+  //   {
+  //     icon: <FiClock className="w-6 h-6" />,
+  //     title: "Working Hours",
+  //     details: contact?.working_hours,
+  //     action: "24/7 Support"
+  //   }
+  // ];
 
   const contactInfo = [
-    {
-      icon: <FiPhone className="w-6 h-6" />,
-      title: "Phone",
-      details: ["+1 (555) 123-4567", "+1 (555) 987-6543"],
-      action: "Call us now"
-    },
-    {
-      icon: <FiMail className="w-6 h-6" />,
-      title: "Email",
-      details: ["support@bidbaj.com", "info@bidbaj.com"],
-      action: "Email us"
-    },
-    {
-      icon: <FiMapPin className="w-6 h-6" />,
-      title: "Office",
-      details: ["123 Business Avenue", "New York, NY 10001"],
-      action: "Get directions"
-    },
-    {
-      icon: <FiClock className="w-6 h-6" />,
-      title: "Working Hours",
-      details: ["Mon-Fri: 9:00 AM - 6:00 PM", "Sat: 10:00 AM - 4:00 PM"],
-      action: "24/7 Support"
-    }
-  ];
+  {
+    icon: <FiPhone className="w-6 h-6" />,
+    title: "Phone",
+    details: contact?.phone ? [contact.phone] : [],
+    action: "Call us now"
+  },
+  {
+    icon: <FiMail className="w-6 h-6" />,
+    title: "Email",
+    details: contact?.email ? [contact.email] : [],
+    action: "Email us"
+  },
+  {
+    icon: <FiMapPin className="w-6 h-6" />,
+    title: "Office",
+    details: contact?.office ? [contact.office] : [],
+    action: "Get directions"
+  },
+  {
+    icon: <FiClock className="w-6 h-6" />,
+    title: "Working Hours",
+    details: contact?.working_hours ? [contact.working_hours] : [],
+    action: "24 hrs Support"
+  }
+];
+
+    if (loading) return <Loading />;
+
 
   return (
     <div className=" min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -207,7 +262,7 @@ const ContactUs = () => {
 
           {/* why choose us div */}
           
-            <div className="bg-gray-800/30 backdrop-blur-sm rounded-3xl p-8 border border-gray-700">
+            {/* <div className="bg-gray-800/30 backdrop-blur-sm rounded-3xl p-8 border border-gray-700">
               <h3 className="text-2xl font-bold mb-4">Why Choose BidBaj?</h3>
               <ul className="space-y-4">
                 {[
@@ -222,7 +277,7 @@ const ContactUs = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
 
           {/* Map/Additional Info */}
           <div className="space-y-8">
@@ -251,6 +306,7 @@ const ContactUs = () => {
             </div>
 
           </div>
+
         </div>
       </div>
     </div>
