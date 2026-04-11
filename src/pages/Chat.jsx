@@ -2938,6 +2938,7 @@ const [previewImage, setPreviewImage] = useState(null);
     if (result?.bid_details?.bid_accept_status === true) {
       setBidAccepted(true);
 
+
       setAcceptedBidInfo({
         amount: result?.bid_details?.running_bid,
         time: new Date().toLocaleTimeString(), // or backend দিলে better
@@ -3231,10 +3232,10 @@ const [previewImage, setPreviewImage] = useState(null);
   const bids = appraisalsUserData?.bid_details?.bids || [];
   const lastBid = bids[bids.length - 1];
   const currentBidUserId = appraisalsUserData?.bid_details?.seller_id;
-  const isLastBidMine = lastBid && Number(lastBid.bidder) === Number(currentBidUserId);
+  const isLastBidMine = lastBid && Number(lastBid?.bidder) === Number(currentBidUserId);
 
   console.log("current bidder id", currentBidUserId);
-  console.log(" last bidder id", lastBid.bidder);
+  console.log(" last bidder id", lastBid?.bidder);
 
 
   //MODAL HANDLERS
@@ -3361,9 +3362,6 @@ const [previewImage, setPreviewImage] = useState(null);
 )}
 
                 {!bidAccepted && (
-
-
-
                 
                 <div className="mt-4 pt-3 border-t border-gray-700">
                   {/* BIDDER  BID AND NAME */}
@@ -3390,9 +3388,9 @@ const [previewImage, setPreviewImage] = useState(null);
                 <div className="flex gap-3 mt-5">
                   <button
                     onClick={() => setShowConfirmAcceptModal(true)}
-                    disabled={isLastBidMine}
+                    disabled={isLastBidMine || bids.length === 0}
                     className={`flex-1 py-2 rounded-full font-semibold transition-all ${
-                      isLastBidMine
+                      isLastBidMine || bids.length === 0
                         ? "bg-gray-600 text-gray-400 cursor-not-allowed"
                         : "bg-green-600 hover:bg-green-700 text-white shadow-md"
                     }`}
@@ -3506,7 +3504,7 @@ const [previewImage, setPreviewImage] = useState(null);
                 <h2 className="text-white font-semibold">
                   {appraisalsUserData?.appraisal_details?.appraised_by?.name}
                 </h2>
-                <p className="text-gray-100">[...{appraisalsUserData?.appraisal_details?.vin_no?.slice(-6)}]</p>
+                <p className="text-gray-100">[{appraisalsUserData?.appraisal_details?.vin_no?.slice(-6)}]</p>
               </div>
             </div>
             <div className="flex gap-5 text-gray-300">

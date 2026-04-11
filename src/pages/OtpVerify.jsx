@@ -11,7 +11,7 @@ const VerifyOTP = () => {
   const { login } = useAuth();
 
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const [loading, setLoading] = useState(false);
+   const [loading, setLoading] = useState(false);
   //const [timer, setTimer] = useState(150);
   const navigate = useNavigate();
   const location = useLocation();
@@ -54,7 +54,7 @@ const VerifyOTP = () => {
 
     console.log("sending otp", JSON.stringify({ phone: phone, otp: finalOtp }))
     try {
-      setLoading(true);
+       setLoading(true);
       const res = await fetch("/api/user/api/v1/login", {
         method: "POST",
         headers: {
@@ -83,6 +83,7 @@ const VerifyOTP = () => {
 
         login(data.access); // save token in context
         localStorage.setItem("token", data.access);//save token in local storage
+        localStorage.setItem("profileId", data.user.id); // save profile id in local storage
 
 
 
@@ -107,11 +108,11 @@ const VerifyOTP = () => {
 
     } catch (error) {
       console.error("OTP Verification Failed:", error);
-      alert("OTP Verification Failed. Please try again.");
+      toast.error("OTP Verification Failed. Please try again.!");
 
        return;
     } finally {
-      setLoading(false);
+       setLoading(false);
     }
 
     //alert(`Verifying: ${finalOtp}`);

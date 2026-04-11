@@ -30,6 +30,8 @@ const ProfileModal = ({ userId, onClose }) => {
       console.log("PROFILE RESPONSE:", result.user);
 
       setProfile(result.user);
+      console.log("Profile ID:", result.user?.id);
+    
 
     } catch (error) {
       console.error("Profile error:", error);
@@ -45,6 +47,7 @@ const ProfileModal = ({ userId, onClose }) => {
   }, [userId]);
 
   console.log("Profile state:", profile);
+  console.log("profile id",profile?.id);
 
   return (
     

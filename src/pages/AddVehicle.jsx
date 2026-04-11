@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddVehicle = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
+  
   const navigate=useNavigate();
 
   const [vehicle, setVehicle] = useState({
@@ -54,7 +55,15 @@ const AddVehicle = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Vehicle Data:", vehicle);
+
+    //instead of vehicle, we will send finalVehicle which will have all the data including selected users. because selected users are not directly part of vehicle object, they are stored in separate state and we need to merge them before sending to api.
+      const finalVehicle = {
+    ...vehicle,
+    appraised_to_user_ids:
+      selectedUsers.length > 0 ? selectedUsers : [18]
+    };
+
+    console.log("final Vehicle Data:", finalVehicle);
 
     if(vehicle.vin_no.length !== 17){
       // alert("VIN number must be at least 17 characters long.");
@@ -76,7 +85,8 @@ const AddVehicle = () => {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${localStorage.getItem("token")}`
         },
-        body: JSON.stringify(vehicle)
+        //at the place of vehicle we set final vehicle which has all the data merged together
+        body: JSON.stringify(finalVehicle)
       });
       const data = await res.json();
       console.log("Response from API:", data);
@@ -95,14 +105,18 @@ const AddVehicle = () => {
       console.log("Error adding vehicle:", error);
     }
   };
+  console.log("Selected Users for Appraisal:", vehicle );
    
+
+  // api for getting role
+  
 
 
   return (
 
     <div className="mt-20 bg-gradient-to-br from-gray-900 to-gray-800">
       <div>
-        <UsersList setSelectedUsers={setSelectedUsers} />
+        <UsersList setSelectedUsers={setSelectedUsers}   />
       </div>
 
       <div className=" min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 flex justify-center items-center p-4 sm:p-6 lg:p-5"> 

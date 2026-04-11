@@ -24,6 +24,7 @@ import Chat from './pages/Chat'
 import { Toaster } from "react-hot-toast";
 import DoneDeals from './pages/DoneDeals'
 import ProtectedRoute from './components/ProtectedRoute'
+import SearchDeals from './pages/SearchDeals'
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/search/:vin" element={<SearchDeals />} />
 
         <Route path="/addvehicle" element={
           

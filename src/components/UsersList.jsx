@@ -9,8 +9,10 @@ import Loading from "./Loading";
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
   const [selectedUsersState, setSelectedUsersState] = useState([]); // local state
+  // const [role, setRole] = useState("");
 
-
+const profileId=localStorage.getItem("profileId");
+console.log("Profile ID in UsersList:", profileId);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -51,6 +53,7 @@ import Loading from "./Loading";
   const handleSelect = (id) => {
     let updatedUsers;
 
+
     if (selectedUsersState.includes(id)) {
       updatedUsers = selectedUsersState.filter((uid) => uid !== id);
     } else {
@@ -66,12 +69,28 @@ import Loading from "./Loading";
     selectedUsersState.includes(u.id)
 
   );
+
+// const UserRole=users.map(u=>u.role)
+// console.log("User Roles:", role);
+// setRole(UserRole)
+  // uer role check
+
+  // console.log("All Users:", users.map(u => ({ role:u.role}))); // Debug log to check all users
+  console.log("Selected User IDs:", users); // Debug log to check selected user IDs
+  const matchId=users.find(u=>u.id===Number( profileId));
+  console.log("Matched User for Profile ID:", matchId);
+  
+  const matchedUserRole=matchId?.role;
+  console.log("Matched User Role:", matchedUserRole);
+  // setRole(matchId?.role)
+ 
   return (
 
+ 
+<>
 
-
-
-<div className="p-8 max-w-6xl mx-auto space-y-8">
+{
+  matchedUserRole ==="BIDDER" && <div className="p-8 max-w-6xl mx-auto space-y-8">
   {/* Header with glass effect */}
   <div className="backdrop-blur-md bg-white/10 p-6 rounded-2xl shadow-xl border border-white/20">
     <h1 className="text-white text-3xl font-extrabold tracking-wide text-center">
@@ -181,6 +200,19 @@ import Loading from "./Loading";
     </div>
   </div>
 </div>
+}
+
+ 
+
+</>
+
+
+
+
+
+
+
+
   );
 };
 

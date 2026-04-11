@@ -9,12 +9,16 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Deals = () => {
 
+
   const [appraisals, setAppraisals] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+  const [vin, setVin] = useState("");
+
+   
 
   const fetchAppraisals = async () => {
     try {
@@ -44,11 +48,53 @@ const Deals = () => {
     }
   };
 
+
   console.log("Fetched Appraisals:", appraisals); // Debug log to check fetched data
 
   useEffect(() => {
     fetchAppraisals();
   }, []);
+
+
+  const searchByVin = async (vinValue) => {
+  try {
+    const response = await fetch(
+      `/api/vehicle/api/v1/appraisals/search/${vinValue}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+
+    const result = await response.json();
+
+    setAppraisals(result.appraisals || []);
+
+  } catch (error) {
+    console.error("Search error:", error); 
+  }
+};
+
+
+  const handleSearchChange = (e) => {
+  const value = e.target.value;
+  setVin(value);
+
+  if (value.trim() === "") {
+    // 👉 If empty → show all deals again
+    fetchAppraisals();
+  }
+};
+console.log("Current VIN Search Value:", vin); // Debug log to check VIN input value
+const handleSearch = () => {
+  if (!vin.trim()) return;
+
+   searchByVin(vin);
+
+navigate(`/search/${vin}`);
+};
 
   const openProfileModal = (userId) => {
     setSelectedUserId(userId);
@@ -84,6 +130,26 @@ const Deals = () => {
     <div className="mt-16 min-h-screen bg-gray-900 text-gray-100 pt-20 p-6">
 
       <div className="max-w-7xl mx-auto">
+
+      <div className="flex max-w-xl gap-3 mb-8 mx-auto">
+  <input
+    type="text"
+    placeholder="Search by VIN..."
+    value={vin}
+    onChange={handleSearchChange}
+    onKeyDown={(e) => {
+      if (e.key === "Enter") handleSearch();
+    }}
+    className="flex-1 px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white"
+  />
+
+  <button
+    onClick={handleSearch}
+    className="bg-[#769A7F] px-6 py-3 rounded-xl"
+  >
+    Search
+  </button>
+</div>
 
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">

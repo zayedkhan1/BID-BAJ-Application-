@@ -99,7 +99,7 @@ console.log("Sending body:", JSON.stringify({ phone }));
       } else {
         console.log("Login Failed:", data);
         // alert(data.message || "Login failed");
-         toast.error("Verification code sent Failed !")
+         toast.error("Verification code sent Failed ,please try again after 1 minutes ! ")
 
       }
     } catch (error) {
