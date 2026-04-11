@@ -2887,6 +2887,10 @@ const Chat = () => {
   //===========  ACCEPT  DEAAL MODAL======
   const [bidAccepted, setBidAccepted] = useState(false);
 const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
+
+
+// ============ Image popup state =======
+const [previewImage, setPreviewImage] = useState(null);
   
 
   //============Refs==============
@@ -2949,6 +2953,9 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
 
   };
 
+  
+  console.log("appraisalsUserData for finding bid accept status", appraisalsUserData);
+ 
   // =================== Fetch Messages =============
 
   const fetchMessages = async () => {
@@ -3214,15 +3221,20 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
   // }
 
   };
-    
 
 
 
+  
+
+ console.log("messages i found", messages);
   //fid last bid is mine or not
   const bids = appraisalsUserData?.bid_details?.bids || [];
   const lastBid = bids[bids.length - 1];
-  const currentBidUserId = appraisalsUserData?.bid_details?.bidder_id;
+  const currentBidUserId = appraisalsUserData?.bid_details?.seller_id;
   const isLastBidMine = lastBid && Number(lastBid.bidder) === Number(currentBidUserId);
+
+  console.log("current bidder id", currentBidUserId);
+  console.log(" last bidder id", lastBid.bidder);
 
 
   //MODAL HANDLERS
@@ -3356,9 +3368,14 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
                 <div className="mt-4 pt-3 border-t border-gray-700">
                   {/* BIDDER  BID AND NAME */}
                   <p className="text-xl font-bold text-white">
-                    <span className="text-green-400 text-sm font-medium">
+                    {
+                      isLastBidMine  ? <span className="text-green-400 text-sm font-medium">
+                      {appraisalsUserData?.bid_details?.bid_name} :{" "}
+                    </span>:
+                    <span className="text-blue-400 text-sm font-medium">
                       {appraisalsUserData?.bid_details?.bid_name} :{" "}
                     </span>
+                    }
                     ${appraisalsUserData?.bid_details?.running_bid}
                   </p>
                 </div>
@@ -3380,7 +3397,7 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
                         : "bg-green-600 hover:bg-green-700 text-white shadow-md"
                     }`}
                   >
-                    Accept
+                    ACCEPT
                   </button>
 
                   {/* COUNTER OFFER MODAL */}
@@ -3388,7 +3405,9 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
                     onClick={() => setShowOfferModal(true)}
                     className="flex-1 py-2 rounded-full font-semibold bg-amber-600 hover:bg-amber-700 text-white shadow-md transition-all"
                   >
-                    Counter
+                    {
+                      bids.length>0 ? "COUNTER" : "BID"
+                    }
                   </button>
                 </div>
 
@@ -3483,11 +3502,11 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
                 alt="Profile"
                 className="w-10 h-10 rounded-full object-cover"
               />
-              <div>
+              <div className="flex items-center gap-2">
                 <h2 className="text-white font-semibold">
                   {appraisalsUserData?.appraisal_details?.appraised_by?.name}
                 </h2>
-                {/* <p className="text-green-400 text-xs">Online</p> */}
+                <p className="text-gray-100">[...{appraisalsUserData?.appraisal_details?.vin_no?.slice(-6)}]</p>
               </div>
             </div>
             <div className="flex gap-5 text-gray-300">
@@ -3510,12 +3529,15 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
   <div className="fixed inset-0 md:ml-100 bg-[url('/assets/logo/navbar_logo.jpg')] bg-no-repeat bg-center bg-[length:100px] md:bg-[length:200px] opacity-30"></div>
 </div>
 
+
+
+
             {messages.map((msg, index) => {
               const isMyMessage = Number(msg.from_id) === Number(currentUserId);
               return (
                 <div
                   key={msg.id || index}
-                  className={`flex ${isMyMessage ? "justify-end" : "justify-start"}`}
+                  className={`flex ${isMyMessage ? "justify-start" : "justify-end"}`}
                 >
                   
                   <div
@@ -3523,28 +3545,22 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
                       isMyMessage ? "bg-gray-600" : "bg-gray-700"
                     } rounded-2xl px-3 py-2 shadow-md`}
                   >
+
                      {/* ✅ NAME */}
         <p className="text-xs text-green-300 mb-1 font-medium">
           {isMyMessage
             ? msg.from_username || "You"
             : msg.from_username}
          </p>
-         {/* name */}
-
-                 {/* name (only one  was showing) */}
-
-                    {/* {!isMyMessage && (
-                      <p className="text-xs text-green-300 mb-1 font-medium">
-                        {  msg.from_username }
-                      </p>
-                    )} */}
-
-
+        
+                   {/* fetch messages  and show it in frontend */}
+                   
                     {msg.message && (
                       <p className="text-white text-sm break-words whitespace-pre-wrap">
                         {msg.message}
                       </p>
                     )}
+
                     {msg.file && msg.file.length > 0 && (
                       <div className="mt-2 flex flex-wrap gap-1">
                         {msg.file.map((img, i) => (
@@ -3552,11 +3568,15 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
                             key={i}
                             src={img.image_url}
                             alt="chat-img"
+                            //for image preview on click
+                              onClick={() => setPreviewImage(img.image_url)}
+
                             className="w-28 rounded-lg border border-gray-600"
                           />
                         ))}
                       </div>
                     )}
+
                     <div className="flex items-center justify-end gap-1 mt-1">
                       <span className="text-[10px] text-gray-300">
                         {formatChatTime(msg.timestamp || msg.created_at)}
@@ -3568,6 +3588,7 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
               );
             })}
             <div ref={messagesEndRef} />
+            
           </div>
 
           {/* Input Area */}
@@ -3633,8 +3654,34 @@ const [acceptedBidInfo, setAcceptedBidInfo] = useState(null);
 
 
         </div>
-      </div>
 
+      </div>
+     
+ {/* image preview modal */}
+
+      {previewImage && (
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+    onClick={() => setPreviewImage(null)}
+  >
+    <div className="relative max-w-3xl w-full">
+      {/* Close Button */}
+      <button
+        onClick={() => setPreviewImage(null)}
+        className="absolute -top-10 right-0 text-white text-2xl"
+      >
+        ✕
+      </button>
+
+      {/* Big Image */}
+      <img
+        src={previewImage}
+        alt="preview"
+        className="w-full max-h-[80vh] object-contain rounded-lg"
+      />
+    </div>
+  </div>
+)}
       {/* Modals */}
       {showModal && (
         <ProfileModal userId={selectedUserId} onClose={closeProfileModal} />

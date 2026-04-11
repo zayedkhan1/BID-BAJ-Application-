@@ -2,6 +2,7 @@ import React from 'react';
 // Importing specific high-end icons from Font Awesome 6 and Material Design
 import { FaUserPlus, FaGavel, FaCarSide } from 'react-icons/fa6';
 import { MdSecurity } from 'react-icons/md';
+import { Link } from 'react-router-dom';
 
 const HowItWorks = ({data}) => {
   const steps = [
@@ -84,14 +85,14 @@ const HowItWorks = ({data}) => {
 
         {/* Call to Action Section */}
         <div className="mt-20 text-center">
-          <button className="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-bold text-white transition duration-300 ease-out border-2 border-[#769A7F] rounded-full shadow-md group">
+          <Link to={`/addvehicle`} className="relative inline-flex items-center justify-center px-10 py-4 overflow-hidden font-bold text-white transition duration-300 ease-out border-2 border-[#769A7F] rounded-full shadow-md group">
             <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#769A7F] group-hover:translate-x-0 ease">
               <FaCarSide size={20} className="mr-2" />
               Let's Go
             </span>
             <span className="absolute flex items-center justify-center w-full h-full text-[#769A7F] transition-all duration-300 transform group-hover:translate-x-full ease">Start Deal</span>
                 <span className="relative invisible">Start Deal</span>
-          </button>
+          </Link>
           <p className="text-slate-500 mt-6 text-sm italic">No credit card required for initial browsing</p>
         </div>
       </div>

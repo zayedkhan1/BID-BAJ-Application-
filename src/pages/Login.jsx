@@ -22,9 +22,10 @@ const Login = () => {
 
   const handleGetCode = async () => {
 
-    if (!phone) {
+    //length check for phone number (basic validation)
+    if (!phone || phone.length < 10) {
       // alert("Please enter your mobile number");
-      toast(" Please Enter your mobile number !", {
+      toast(" Invalid phone number !", {
         icon: "⚠️",
         style: {
           background: "#f59e0b",

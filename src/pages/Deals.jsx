@@ -44,6 +44,8 @@ const Deals = () => {
     }
   };
 
+  console.log("Fetched Appraisals:", appraisals); // Debug log to check fetched data
+
   useEffect(() => {
     fetchAppraisals();
   }, []);

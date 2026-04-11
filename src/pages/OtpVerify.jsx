@@ -8,27 +8,17 @@ import { useAuth } from '../context/AuthContext';
 import Loading from '../components/Loading';
 
 const VerifyOTP = () => {
-         const { login} = useAuth();
-  
+  const { login } = useAuth();
+
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const [loading,setLoading]=useState(false);
+  const [loading, setLoading] = useState(false);
   //const [timer, setTimer] = useState(150);
   const navigate = useNavigate();
   const location = useLocation();
   const phone = location.state?.phone;
 
 
-    // 👇 where user came from
-  
-  // const inputRefs = useRef([]);
 
-  // Timer logic
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setTimer((prev) => (prev > 0 ? prev - 1 : 0));
-  //   }, 1000);
-  //   return () => clearInterval(interval);
-  // }, []);
 
   const handleChange = (element, index) => {
     if (isNaN(element.value)) return false;
@@ -41,83 +31,94 @@ const VerifyOTP = () => {
     }
   };
 
-  const handleVerify = async() => {
+  const handleVerify = async () => {
     const finalOtp = otp.join("");
     if (finalOtp.length < 6) {
       // alert("Please enter full 6-digit code");
-       toast(" Please enter full 6-digit code !", {
+      toast(" Please enter full 6-digit code !", {
         icon: "⚠️",
         style: {
           background: "#f59e0b",
           color: "#000",
         },
-      }); 
+      });
       return;
     }
     //add api call here to verify otp with backend. if success then navigate to home page or dashboard
-     
-      console.log("Verifying OTP:",phone, finalOtp);
 
-      //actual api: http://bidbaj.com/user/api/v1/login
+    console.log("Verifying OTP:", phone, finalOtp);
 
-      //proxy server api: /api/user/api/v1/login
-    
- 
-      try{
-        setLoading(true);
-        const res=await fetch("/api/user/api/v1/login",{
-          method:"POST",
-          headers:{
-            "Content-Type":"application/json"
-          },
-          body:JSON.stringify({phone:phone,otp:finalOtp })//my data is saved using name "otp" so i also need to send otp with same name in body, otherwise backend will not recognize it. and also sending phone number to identify which user is trying to login
-        })
-        if(!res.ok){
-          console.log("Network response was not ok");
-                    toast.error("OTP verification Denide");
+    //actual api: http://bidbaj.com/user/api/v1/login
 
-        }
-        const data=await res.json();
-        
-            login(data.access); // save token in context
-            localStorage.setItem("token", data.access);
-           // localStorage.setItem("userID", JSON.stringify(data.user?.id));
+    //proxy server api: /api/user/api/v1/login
+
+    console.log("sending otp", JSON.stringify({ phone: phone, otp: finalOtp }))
+    try {
+      setLoading(true);
+      const res = await fetch("/api/user/api/v1/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ phone: phone, otp: finalOtp })//my data is saved using name "otp" so i also need to send otp with same name in body, otherwise backend will not recognize it. and also sending phone number to identify which user is trying to login
+      })
+
+      const data = await res.json();
+
+      console.log("OTP Verification Response:", data);
+
+      console.log("OTP Verification Response Status:", !res.ok);
 
 
-
+      if (!res.ok) {
+        console.log("OTP failed");
+        toast.error(data.message || "Invalid OTP ❌");
+        return;
+      }
+      else {
         console.log("OTP Verification Success:", data);
         // alert("OTP Verified Successfully!");
         toast.success("OTP verification successfull !")
 
-         // 🔹 check if user is old or new
-    if (data.old === true) {
-      navigate("/",{
-          state: { phone }
-         }); // go to home page
-   
 
-    } else {
-      navigate("/registration", {
-        state: { phone },
-      });
-    }
+        login(data.access); // save token in context
+        localStorage.setItem("token", data.access);//save token in local storage
 
 
-       
-      }catch(error){
-        console.error("OTP Verification Failed:", error);
-        alert("OTP Verification Failed. Please try again.");
 
-        return;
-      }finally{
-        setLoading(false);
+
+
+        // 🔹 check if user is old or new
+        if (data.old === true) {
+          navigate("/", {
+            state: { phone }
+          }); // go to home page
+
+
+        } else {
+          navigate("/registration", {
+            state: { phone },
+          });
+        }
+
       }
 
+
+
+    } catch (error) {
+      console.error("OTP Verification Failed:", error);
+      alert("OTP Verification Failed. Please try again.");
+
+       return;
+    } finally {
+      setLoading(false);
+    }
+
     //alert(`Verifying: ${finalOtp}`);
-   
+
   };
 
-  if(loading){
+  if (loading) {
     return <Loading></Loading>;
   }
 
@@ -131,7 +132,7 @@ const VerifyOTP = () => {
 
       <div className="w-full max-w-lg z-10 px-6">
         {/* Back Button */}
-        <button 
+        <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors mb-10 group"
         >
@@ -197,7 +198,7 @@ const VerifyOTP = () => {
 
         </div>
 
-   
+
       </div>
     </div>
   );

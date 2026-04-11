@@ -51,7 +51,17 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/addvehicle" element={<AddVehicle />} />
+
+        <Route path="/addvehicle" element={
+          
+            <ProtectedRoute>
+          
+          <AddVehicle />
+          
+          </ProtectedRoute>
+          
+          
+          } />
         
         
         <Route path="/deals" element={
