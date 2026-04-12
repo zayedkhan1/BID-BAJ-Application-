@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
-import { FaCheck, FaCheckDouble, FaEye } from "react-icons/fa";
+import { FaCheck, FaCheckDouble, FaEye, FaTrash } from "react-icons/fa";
 import ProfileModal from "../components/ProfileModal";
 import { formatMessageDate, formatMessageTime } from "../utility/utility";
 
@@ -191,7 +191,7 @@ const Messages = () => {
                             <div className="flex items-center gap-3 ">
 
                                 <p className="text-sm">
-                                    {item.is_read ? (
+                                    {item.is_appraised ? (
                                         <FaCheckDouble className="text-blue-500 inline" />
                                     ) : (
                                         <FaCheck className="text-white inline" />
@@ -218,6 +218,8 @@ const Messages = () => {
 >
   i
 </button>
+
+<button><FaTrash className="text-red-500"></FaTrash></button>
 
                             </div>
 

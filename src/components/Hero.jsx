@@ -5,6 +5,9 @@ import { BiTimer } from 'react-icons/bi';
 import { motion } from 'framer-motion';
     import { FaDownload } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import car_one from '../../public/assets/image/car_one.jpg'
+import car_four from '../../public/assets/image/car_four.jpg'
+import car_three from '../../public/assets/image/car_three.jpg'
 
 
 const Hero = () => {
@@ -20,26 +23,26 @@ const Hero = () => {
   const featuredCars = [
     {
       id: 1,
-      name: "2023 Porsche 911 GT3",
+      name:  "Ford F-150 Raptor R ",
       price: "$145,000",
       currentBid: "$132,500",
-      image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      image: car_three,
       specs: ["3.8L Flat-6", "502 HP", "0-60: 3.2s"]
     },
     {
       id: 2,
-      name: "2022 Tesla Model S Plaid",
+      name: "Ford F-150 Raptor",
       price: "$129,999",
       currentBid: "$118,750",
-      image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      image: car_four,
       specs: ["Tri-Motor", "1,020 HP", "0-60: 1.99s"]
     },
     {
       id: 3,
-      name: "2024 Mercedes-AMG GT",
+      name: "Ford F-150 Truck ",
       price: "$165,000",
       currentBid: "$152,300",
-      image: "https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80",
+      image: car_one,
       specs: ["4.0L V8", "523 HP", "Top Speed: 194 mph"]
     }
   ];

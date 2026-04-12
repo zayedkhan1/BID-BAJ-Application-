@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
-// import dummyProfile from "../../public/assets/image/dummy_profile.jpg"
+import dummyProfile from "../../public/assets/image/dummy_profile.jpg"
 
   
   const UsersList = ({ setSelectedUsers }) => {
@@ -152,7 +152,7 @@ console.log("Profile ID in UsersList:", profileId);
                   className="w-20 h-20 rounded-full object-cover ring-4 ring-white/20"
                   // src={`http://bidbaj.com${user?.profile_picture} `}
                   //  src={user?.profile_picture? `http://bidbaj.com${user.profile_picture}`: {dummyProfile}}
-                   src={user?.profile_picture? `http://bidbaj.com${user.profile_picture}`: "../../public/assets/image/dummy_profile.jpg"}
+                   src={user?.profile_picture? `http://bidbaj.com${user.profile_picture}`: dummyProfile}
                   alt={user.name}
                 />
                 {isSelected && (

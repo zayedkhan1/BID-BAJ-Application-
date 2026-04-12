@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import ProfileModal from "../components/ProfileModal";
 import { FaPlus, FaEye, FaIdBadge } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import dummyProfile from '../../public/assets/image/dummy_profile.jpg'
 
 const DoneDeals = () => {
 
@@ -44,9 +45,13 @@ const DoneDeals = () => {
     }
   };
 
+
   useEffect(() => {
     fetchAppraisals();
   }, []);
+
+
+  console.log("appriasal data for profile", appraisals)
 
   const openProfileModal = (userId) => {
     setSelectedUserId(userId);
@@ -122,7 +127,7 @@ const DoneDeals = () => {
                   >
                     <img
                       className="w-full h-full object-cover"
-                      src={`http://bidbaj.com${item.profile_picture}`}
+                      src={ item.profile_picture ? item.profile_picture: dummyProfile }
                       alt={item.user_name}
                     />
                   </div>

@@ -190,7 +190,8 @@ navigate(`/search/${vin}`);
                   >
                     <img
                       className="w-full h-full object-cover"
-                      src={`http://bidbaj.com${item.profile_picture}`}
+
+                      src={item.profile_picture ? `http://bidbaj.com${item.profile_picture}`: "/assets/image/dummy_profile.jpg"}
                       alt={item.user_name}
                     />
                   </div>
