@@ -3,15 +3,18 @@ import { FaCar, FaGavel, FaSearch, FaShieldAlt, FaTachometerAlt, FaGasPump } fro
 import { GiCarWheel } from 'react-icons/gi';
 import { BiTimer } from 'react-icons/bi';
 import { motion } from 'framer-motion';
+    import { FaDownload } from "react-icons/fa";
+import { Link } from 'react-router-dom';
+
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [bidTime, setBidTime] = useState({
-    days: 2,
-    hours: 14,
-    minutes: 30,
-    seconds: 45
-  });
+  // const [bidTime, setBidTime] = useState({
+  //   days: 2,
+  //   hours: 14,
+  //   minutes: 30,
+  //   seconds: 45
+  // });
 
   // Featured cars for the slideshow
   const featuredCars = [
@@ -42,34 +45,34 @@ const Hero = () => {
   ];
 
   // Timer countdown effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBidTime(prev => {
-        const newTime = { ...prev };
-        if (newTime.seconds > 0) {
-          newTime.seconds -= 1;
-        } else {
-          newTime.seconds = 59;
-          if (newTime.minutes > 0) {
-            newTime.minutes -= 1;
-          } else {
-            newTime.minutes = 59;
-            if (newTime.hours > 0) {
-              newTime.hours -= 1;
-            } else {
-              newTime.hours = 23;
-              if (newTime.days > 0) {
-                newTime.days -= 1;
-              }
-            }
-          }
-        }
-        return newTime;
-      });
-    }, 1000);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setBidTime(prev => {
+  //       const newTime = { ...prev };
+  //       if (newTime.seconds > 0) {
+  //         newTime.seconds -= 1;
+  //       } else {
+  //         newTime.seconds = 59;
+  //         if (newTime.minutes > 0) {
+  //           newTime.minutes -= 1;
+  //         } else {
+  //           newTime.minutes = 59;
+  //           if (newTime.hours > 0) {
+  //             newTime.hours -= 1;
+  //           } else {
+  //             newTime.hours = 23;
+  //             if (newTime.days > 0) {
+  //               newTime.days -= 1;
+  //             }
+  //           }
+  //         }
+  //       }
+  //       return newTime;
+  //     });
+  //   }, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
   // Auto slide effect
   useEffect(() => {
@@ -79,9 +82,7 @@ const Hero = () => {
     return () => clearInterval(slideInterval);
   }, [featuredCars.length]);
 
-  const handleBidNow = () => {
-    alert(`Placing bid on ${featuredCars[currentSlide].name}`);
-  };
+
 
   return (
     <section className="relative min-h-screen mt-15 bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white overflow-hidden">
@@ -142,7 +143,7 @@ const Hero = () => {
             </div>
 
             {/* Search Bar */}
-            <div className="relative mb-8">
+            {/* <div className="relative mb-8">
               <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-xl p-2 border border-white/20">
                 <FaSearch className="ml-4 text-gray-400" />
                 <input 
@@ -154,7 +155,7 @@ const Hero = () => {
                   Search
                 </button>
               </div>
-            </div>
+            </div> */}
 
             {/* Features */}
             <div className="flex flex-wrap gap-4">
@@ -221,7 +222,7 @@ const Hero = () => {
                 ))}
                 
                 {/* Timer Overlay */}
-                <div className="absolute top-6 left-6 z-20 bg-black/80 backdrop-blur-sm rounded-xl p-4">
+                {/* <div className="absolute top-6 left-6 z-20 bg-black/80 backdrop-blur-sm rounded-xl p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <BiTimer className="text-yellow-500 text-xl" />
                     <span className="text-sm font-semibold">Auction Ends In</span>
@@ -237,6 +238,7 @@ const Hero = () => {
                     ))}
                   </div>
                 </div>
+                 */}
               </div>
 
               {/* Car Details */}
@@ -259,7 +261,8 @@ const Hero = () => {
                       ))}
                     </div>
                   </div>
-                  <div className="text-right">
+
+                  {/* <div className="text-right">
                     <div className="text-gray-400 text-sm">Current Bid</div>
                     <div className="text-3xl md:text-4xl font-bold text-green-400">
                       {featuredCars[currentSlide].currentBid}
@@ -267,22 +270,32 @@ const Hero = () => {
                     <div className="text-gray-400 line-through">
                       Buy Now: {featuredCars[currentSlide].price}
                     </div>
-                  </div>
+                  </div> */}
+
                 </div>
 
                 {/* Bid Actions */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <button 
-                    onClick={handleBidNow}
+                  <Link to={`/deals`}
+                
                     className=" bg-gradient-to-r from-[#769A7F] to-[#5a7c63] text-white py-4 rounded-xl font-bold text-lg transition-all transform hover:scale-[1.02] flex items-center justify-center gap-2"
                   >
                     <FaGavel />
-                    Place Bid Now
-                  </button>
-                  <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2">
+                    Start Deals Now
+                  </Link>
+
+                  {/* <button className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 py-4 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2">
                     <FaCar />
-                    View Details
-                  </button>
+                    GET our Mobile app
+                  </button> */}
+
+<Link to={`https://apps.apple.com/us/app/bidbaj/id6738529760`} target='_blank' className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 py-4 px-6 rounded-xl font-bold text-lg transition-all flex items-center justify-center gap-2">
+    
+
+  <FaDownload />
+   Get BIDBAJ Mobile App
+</Link>
+
                 </div>
 
                 {/* Bid Stats */}
@@ -290,19 +303,19 @@ const Hero = () => {
                   <div className="flex justify-between text-sm">
                     <div>
                       <div className="text-gray-400">Total Bids</div>
-                      <div className="font-bold">42</div>
+                      {/* <div className="font-bold">42</div> */}
                     </div>
                     <div>
                       <div className="text-gray-400">Bidders</div>
-                      <div className="font-bold">18</div>
+                      {/* <div className="font-bold">18</div> */}
                     </div>
                     <div>
                       <div className="text-gray-400">Time Left</div>
-                      <div className="font-bold text-yellow-500">02:14:30</div>
+                      {/* <div className="font-bold text-yellow-500">02:14:30</div> */}
                     </div>
                     <div>
                       <div className="text-gray-400">Reserve</div>
-                      <div className="font-bold text-green-500">Met</div>
+                      {/* <div className="font-bold text-green-500">Met</div> */}
                     </div>
                   </div>
                 </div>
