@@ -5,7 +5,7 @@ import UsersList from "../components/UsersList";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-const AddVehicle = () => {
+const CreateAppraisal = () => {
   const [selectedUsers, setSelectedUsers] = useState([]);
   
   const navigate=useNavigate();
@@ -273,4 +273,4 @@ const AddVehicle = () => {
   );
 };
 
-export default AddVehicle;
+export default CreateAppraisal;

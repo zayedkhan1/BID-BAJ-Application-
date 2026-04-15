@@ -12,9 +12,7 @@ import AdminLogin from './AdminPanel/AdminLogin'
 
 import Test from './pages/Test'
 import Registration from './pages/Registration'
-import AddVehicle from './pages/AddVehicle'
 import Deals from './pages/Deals'
-import Messages from './pages/Messages'
 import AppraisalsUserInfo from './pages/AppraisalsUserInfo'
 import ContactUs from './pages/ContactUs'
 import Chat from './pages/Chat'
@@ -25,6 +23,8 @@ import { Toaster } from "react-hot-toast";
 import DoneDeals from './pages/DoneDeals'
 import ProtectedRoute from './components/ProtectedRoute'
 import SearchDeals from './pages/SearchDeals'
+import Appraisls from './pages/Appraisals'
+import CreateAppraisal from './pages/CreateAppraisal'
 
 
 function App() {
@@ -54,11 +54,11 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/search/:vin" element={<SearchDeals />} />
 
-        <Route path="/addvehicle" element={
+        <Route path="/create-appraisal" element={
           
             <ProtectedRoute>
           
-          <AddVehicle />
+          <CreateAppraisal />
           
           </ProtectedRoute>
           
@@ -84,8 +84,9 @@ function App() {
 
 
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/messages/:userId" element={<Messages/>} />
-        <Route path="/appraisals/:appraisal_id" element={<AppraisalsUserInfo/>} />
+        {/* <Route path="/messages/:userId" element={<Messages/>} /> */}
+        <Route path="/appraisals/:userId" element={<Appraisls/>} />
+        <Route path="/appraisalUserInfo/:appraisal_id" element={<AppraisalsUserInfo/>} />
         <Route path="/chat/:chatId" element={<Chat/>} />
             
         

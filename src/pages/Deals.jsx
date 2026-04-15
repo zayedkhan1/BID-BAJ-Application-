@@ -107,7 +107,7 @@ navigate(`/search/${vin}`);
     setSelectedUserId(null);
   };
   const openMessages = (userId, userName, profile_picture, TotalChat) => {
-    navigate(`/messages/${userId}`, {
+    navigate(`/appraisals/${userId}`, {
       state: {
         userName,
         profile_picture,
@@ -158,7 +158,7 @@ navigate(`/search/${vin}`);
             Deals
           </h1>
 
-          <Link to="/addvehicle">
+          <Link to="/create-appraisal">
             <button className="mt-4 md:mt-0 flex items-center gap-2 bg-[#769A7F] hover:bg-[#5e7c66] text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition hover:scale-105">
               <FaPlus /> Start New Deal
             </button>
