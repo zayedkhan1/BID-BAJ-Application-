@@ -207,6 +207,8 @@ const SearchDeals = () => {
     fetchSearchResults(vin);
   };
 
+  console.log( "my resuls", results)
+
   if (loading){
     return <Loading/>
   }
@@ -308,14 +310,15 @@ const SearchDeals = () => {
                 <div className="relative p-6">
                   {/* VIN badge */}
                   <div className="flex items-center gap-2 mb-4">
-                    <div className="px-3 py-1 bg-[#769A7F]/20 rounded-full border border-[#769A7F]/30">
-                      <span className="text-xs font-mono text-[#769A7F] tracking-wider">
-                        {item.vin_no?.slice(0, 8)}...
-                      </span>
-                    </div>
-                    <div className="px-2 py-1 bg-gray-700/50 rounded-full">
+                      <div className="px-2 py-1 bg-gray-700/50 rounded-full">
                       <span className="text-xs text-gray-400">VIN</span>
                     </div>
+                    <div className="px-3 py-1 bg-[#769A7F]/20 rounded-full border border-[#769A7F]/30">
+                      <span className="text-xs font-mono text-[#769A7F] tracking-wider">
+                        {item.vin_no}
+                      </span>
+                    </div>
+                  
                   </div>
 
                   {/* Mileage - prominent */}
@@ -327,10 +330,10 @@ const SearchDeals = () => {
                       <span className="text-gray-400 text-sm">miles</span>
                     </div>
                     <div className="flex items-center gap-1 mt-1">
-                      <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {/* <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <span className="text-xs text-gray-500">Odometer reading</span>
+                      </svg> */}
+                      {/* <span className="text-xs text-gray-500">Odometer reading</span> */}
                     </div>
                   </div>
 

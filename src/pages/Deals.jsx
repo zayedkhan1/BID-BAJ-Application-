@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import ProfileModal from "../components/ProfileModal";
 import { FaPlus, FaEye, FaIdBadge } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import dummyProfile from '../../public/assets/image/dummy_profile.jpg'
 
 const Deals = () => {
 
@@ -192,6 +193,8 @@ navigate(`/search/${vin}`);
                       className="w-full h-full object-cover"
 
                       src={item.profile_picture ? `http://bidbaj.com${item.profile_picture}`: "/assets/image/dummy_profile.jpg"}
+                      // src={item.profile_picture ? `http://bidbaj.com${item.profile_picture}`: dummyProfile}
+
                       alt={item.user_name}
                     />
                   </div>

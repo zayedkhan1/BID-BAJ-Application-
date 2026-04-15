@@ -25,6 +25,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import SearchDeals from './pages/SearchDeals'
 import Appraisls from './pages/Appraisals'
 import CreateAppraisal from './pages/CreateAppraisal'
+import NotFound from './pages/NotFound'
 
 
 function App() {
@@ -96,6 +97,12 @@ function App() {
 
         {/* Test Route */}
         <Route path="/test" element={<Test />} />
+
+
+
+
+            {/* 404 Route (IMPORTANT) */}
+        <Route path="*" element={<NotFound />} />
 
       </Routes>
 
