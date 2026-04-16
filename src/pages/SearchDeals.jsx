@@ -157,7 +157,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import { formatMessageDate } from "../utility/utility";
 
@@ -169,6 +169,7 @@ const SearchDeals = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
+  const navigate=useNavigate();
 
   const fetchSearchResults = async (vinValue) => {
     if (!vinValue.trim()) return;
@@ -208,6 +209,18 @@ const SearchDeals = () => {
   };
 
   console.log( "my resuls", results)
+console.log( "appraisal id", results.map(item => item.message?.chat));
+
+      const goToChat = (chatId, appraisal_id) => {
+        navigate(`/chat/${chatId}`,
+            {
+                state: {
+                    appraisal_id: appraisal_id,
+
+                }
+            }
+        )
+    }
 
   if (loading){
     return <Loading/>
@@ -295,8 +308,10 @@ const SearchDeals = () => {
         {!loading && results.length > 0 && (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {results.map((item, index) => (
-              <Link
-                to={`/chat/${item?.message?.chat}`}
+              <button
+                // to={`/chat/${item?.message?.chat}`}
+                onClick={() => { goToChat( item?.id, item?.message?.chat) }}
+
                 key={item.id}
                 className="group relative bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:border-[#769A7F]/50 hover:shadow-2xl"
                 style={{ animationDelay: `${index * 50}ms` }}
@@ -355,7 +370,7 @@ const SearchDeals = () => {
                     </div>
                   </div>
                 </div>
-              </Link>
+              </button>
             ))}
           </div>
         )}

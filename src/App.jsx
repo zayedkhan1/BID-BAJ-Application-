@@ -31,18 +31,18 @@ import NotFound from './pages/NotFound'
 function App() {
   const location = useLocation();
 
-  
 
-  
+
+
 
   // check if admin page
   const isAdminPage = location.pathname.startsWith('/admin') || location.pathname.startsWith('/chat');
-;
+  ;
 
   return (
     <>
-        {/* react toast */}
-    <Toaster position="top-right" />
+      {/* react toast */}
+      <Toaster position="top-right" />
 
       {/* Show Navbar only if NOT admin */}
       {!isAdminPage && <Navbar />}
@@ -53,46 +53,43 @@ function App() {
         <Route path="/registration" element={<Registration />} />
         <Route path="/otp-verify" element={<OtpVerify />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/search/:vin" element={<SearchDeals />} />
+       
+        <Route path="/search/:vin" element={
+          <ProtectedRoute>
+            <SearchDeals />
+          </ProtectedRoute>
+        } />
 
         <Route path="/create-appraisal" element={
-          
-            <ProtectedRoute>
-          
-          <CreateAppraisal />
-          
+          <ProtectedRoute>
+            <CreateAppraisal />
           </ProtectedRoute>
-          
-          
-          } />
-        
-        
+        } />
+
         <Route path="/deals" element={
           <ProtectedRoute>
-          <Deals />
+            <Deals />
           </ProtectedRoute>
-
-          } />
+        } />
 
         <Route path="/done-deals" element={
-          
           <ProtectedRoute>
-          <DoneDeals />
+            <DoneDeals />
           </ProtectedRoute>
-          
-          } />
+
+        } />
 
 
 
         <Route path="/contact" element={<ContactUs />} />
         {/* <Route path="/messages/:userId" element={<Messages/>} /> */}
-        <Route path="/appraisals/:userId" element={<Appraisls/>} />
-        <Route path="/appraisalUserInfo/:appraisal_id" element={<AppraisalsUserInfo/>} />
-        <Route path="/chat/:chatId" element={<Chat/>} />
-            
-        
-           {/*Admin Routes */}
-         <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/appraisals/:userId" element={<Appraisls />} />
+        <Route path="/appraisalUserInfo/:appraisal_id" element={<AppraisalsUserInfo />} />
+        <Route path="/chat/:chatId" element={<Chat />} />
+
+
+        {/*Admin Routes */}
+        <Route path="/admin" element={<AdminPanel />} />
         <Route path="/adminlogin" element={<AdminLogin />} />
 
         {/* Test Route */}
@@ -101,7 +98,7 @@ function App() {
 
 
 
-            {/* 404 Route (IMPORTANT) */}
+        {/* 404 Route (IMPORTANT) */}
         <Route path="*" element={<NotFound />} />
 
       </Routes>

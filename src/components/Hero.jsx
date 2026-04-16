@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import car_one from '../../public/assets/image/car_one.jpg'
 import car_four from '../../public/assets/image/car_four.jpg'
 import car_three from '../../public/assets/image/car_three.jpg'
+import car_five from '../../public/assets/image/car_five.jpg'
+import car_six from '../../public/assets/image/car_six.jpg'
 
 
 const Hero = () => {
@@ -29,8 +31,16 @@ const Hero = () => {
       image: car_three,
       specs: ["3.8L Flat-6", "502 HP", "0-60: 3.2s"]
     },
-    {
+     {
       id: 2,
+      name: "Ford F-250  ",
+      price: "$165,000",
+      currentBid: "$152,300",
+      image: car_five,
+      specs: ["4.0L V8", "523 HP", "Top Speed: 194 mph"]
+    },
+    {
+      id: 3,
       name: "Ford F-150 Raptor",
       price: "$129,999",
       currentBid: "$118,750",
@@ -38,13 +48,22 @@ const Hero = () => {
       specs: ["Tri-Motor", "1,020 HP", "0-60: 1.99s"]
     },
     {
-      id: 3,
+      id: 4,
+      name: "Ford F-350 Lariat",
+      price: "$129,999",
+      currentBid: "$118,750",
+      image: car_six,
+      specs: ["Tri-Motor", "1,020 HP", "0-60: 1.99s"]
+    },
+    {
+      id: 5,
       name: "Ford F-150 Truck ",
       price: "$165,000",
       currentBid: "$152,300",
       image: car_one,
       specs: ["4.0L V8", "523 HP", "Top Speed: 194 mph"]
-    }
+    },
+   
   ];
 
   // Timer countdown effect
