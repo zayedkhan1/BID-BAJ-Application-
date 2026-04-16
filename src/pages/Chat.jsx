@@ -2856,6 +2856,8 @@ import {
 } from "../services/websocket";
 import { formatChatTime, formatMessageDate } from "../utility/utility";
 import chat_logo from "../../public/assets/logo/chat_page_logo.png";
+import { playSound } from "../utility/soundManager";
+import { fireConfetti } from "../utility/celebration";
 
 const Chat = () => {
   const { chatId } = useParams();
@@ -2969,7 +2971,9 @@ const [previewImage, setPreviewImage] = useState(null);
         }
       );
       const data = await response.json();
+       
       setMessages(data.messages || []);
+       
     } catch (error) {
       console.error("❌ Error fetching messages:", error);
     }
@@ -2989,6 +2993,7 @@ const [previewImage, setPreviewImage] = useState(null);
   console.log("messages", messages);
 
   // ========  WEBSOCKET CONNECTION =====
+  const myUserId = Number(localStorage.getItem("profileId"));
 
   useEffect(() => {
     if (!chatId) return;
@@ -3006,6 +3011,11 @@ const [previewImage, setPreviewImage] = useState(null);
           from_username: data.from_username,
          
         };
+          // ✅ PLAY SOUND ONLY IF MESSAGE IS NOT FROM ME
+  if (Number(data.from_id) !== Number(myUserId)) {
+    playSound('receive_message_sound');
+  }
+        
         setMessages((prev) => {
           const exists = prev.some((m) => m.id === newMessage.id);
           if (exists) return prev;
@@ -3014,6 +3024,7 @@ const [previewImage, setPreviewImage] = useState(null);
       }
        // if data type is bid update then fetch the details to get the updated bid info and show it in the ui
       if (data.data_type === "bid") {
+       
          fetchDetails();
       }
     });
@@ -3061,7 +3072,9 @@ const [previewImage, setPreviewImage] = useState(null);
         body: formData,
       });
       setSelectedFiles([]);
+      playSound('send_message_sound')
       fetchMessages();
+      
     } catch (error) {
       console.error("❌ Upload error:", error);
     }
@@ -3079,6 +3092,7 @@ const [previewImage, setPreviewImage] = useState(null);
       file: null,
     };
     sendSocketMessage(payload);
+    playSound('send_message_sound');
     setMessageInput("");
   };
 
@@ -3106,6 +3120,10 @@ const [previewImage, setPreviewImage] = useState(null);
         // ✅ 1. CLOSE MODAL FIRST
     setShowConfirmModal(false);
     setShowOfferModal(false);
+    
+    //play sound
+    playSound('new_bid_sound');
+
 
     // ✅ 2. WAIT FOR UI TO UPDATE THEN FETCH
     setTimeout(async () => {
@@ -3160,6 +3178,11 @@ const [previewImage, setPreviewImage] = useState(null);
     console.log("✅ ACCEPT API RESPONSE:", data);
 
     setShowConfirmAcceptModal(false);
+     // ✅ 🎉 FIRE CELEBRATION
+    fireConfetti();
+
+    //closed sound
+    playSound('bid_closed_sound');
 
     // ✅ 1. Mark bid accepted
     setBidAccepted(true);
@@ -3236,6 +3259,12 @@ const [previewImage, setPreviewImage] = useState(null);
 
   console.log("current bidder id", currentBidUserId);
   console.log(" last bidder id", lastBid?.bidder);
+
+
+// playing sound
+
+
+
 
 
   //MODAL HANDLERS
@@ -3741,7 +3770,7 @@ const [previewImage, setPreviewImage] = useState(null);
       </button>
 
       <button
-         onClick={handleConfirmBid}
+         onClick={handleConfirmBid }
         className="flex-1 py-2 rounded-full bg-green-600 text-white"
       >
         Confirm Bid

@@ -156,7 +156,7 @@ navigate(`/search/${vin}`);
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
 
           <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[#769A7F] to-teal-300 bg-clip-text text-transparent">
-            Deals
+            Deals [123456789ABDH12DH]
           </h1>
 
           <Link to="/create-appraisal">
@@ -191,12 +191,12 @@ navigate(`/search/${vin}`);
                   >
                     <img
                       className="w-full h-full object-cover"
-
                       src={item.profile_picture ? `http://bidbaj.com${item.profile_picture}`: "/assets/image/dummy_profile.jpg"}
                       // src={item.profile_picture ? `http://bidbaj.com${item.profile_picture}`: dummyProfile}
-
+                      // src={ item?.profile_picture  || "/assets/image/dummy_profile.jpg"}
                       alt={item.user_name}
                     />
+             
                   </div>
 
                   <div className="absolute -bottom-1 -right-1 bg-[#769A7F] rounded-full p-1.5">

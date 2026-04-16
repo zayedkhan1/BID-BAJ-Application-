@@ -86,6 +86,7 @@ const Appraisls = () => {
 
 
     console.log("apprisal id from message.jsx", messages[0]?.id)
+ 
 
     const goToChat = (chatId, appraisal_id) => {
         navigate(`/chat/${chatId}`,

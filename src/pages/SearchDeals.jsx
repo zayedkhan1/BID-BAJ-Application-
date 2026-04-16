@@ -310,7 +310,7 @@ console.log( "appraisal id", results.map(item => item.message?.chat));
             {results.map((item, index) => (
               <button
                 // to={`/chat/${item?.message?.chat}`}
-                onClick={() => { goToChat( item?.id, item?.message?.chat) }}
+                onClick={() => { goToChat(  item?.message?.chat,item?.id ) }}
 
                 key={item.id}
                 className="group relative bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-700 overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:border-[#769A7F]/50 hover:shadow-2xl"
