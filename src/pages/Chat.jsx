@@ -2568,42 +2568,7 @@ const Chat = () => {
 
           {showOfferModal && !bidAccepted && (
 
-            // <div className="p-4 mt-auto border-t border-gray-700 bg-gray-800/50">
-            //   <div className="bg-gray-800 rounded-xl p-3">
-            //     <h3 className="text-white font-medium mb-2">Enter Your Offer</h3>
-            //     <div className="flex gap-2">
-            //       <div className="relative flex-1">
-            //         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
-            //           $
-            //         </span>
-            //         <input
-            //           type="number"
-            //           placeholder="0.00"
-            //           value={offer}
-            //           onChange={(e) => setOffer(e.target.value)}
-            //           className="w-full bg-gray-700 text-white rounded-full pl-8 pr-3 py-2 outline-none focus:ring-2 focus:ring-green-500"
-            //         />
-            //       </div>
-            //       <button
-            //         onClick={() => {
-            //           if (!offer) return;
-            //           setShowConfirmModal(true);
-            //         }}
-            //         className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition"
-            //       >
-            //         Send
-            //       </button>
-            //     </div>
-            //     <button
-            //       disabled={bidAccepted}
-
-            //       onClick={() => setShowOfferModal(false)}
-            //       className="mt-2 text-gray-400 text-sm flex items-center gap-1 mx-auto"
-            //     >
-            //       <FaChevronUp /> collapse
-            //     </button>
-            //   </div>
-            // </div>
+           
             <OfferBidModal
               show={showOfferModal}
               offer={offer}
@@ -2658,6 +2623,7 @@ const Chat = () => {
 
           {/*========================== Desktop Header======================= */}
           <div className="hidden md:flex items-center justify-between p-4 bg-gray-900/70 backdrop-blur-sm border-b border-gray-700">
+          
             <div className="flex items-center gap-3">
               <img
                 src={
@@ -2675,11 +2641,14 @@ const Chat = () => {
                 <p className="text-gray-100">[{appraisalsUserData?.appraisal_details?.vin_no?.slice(-6)}]</p>
               </div>
             </div>
+
             <div className="flex gap-5 text-gray-300">
               <FaPhoneAlt className="cursor-pointer hover:text-green-400" size={20} />
               <IoMdInformation className="cursor-pointer hover:text-green-400" size={22} />
               <BsThreeDotsVertical className="cursor-pointer hover:text-green-400" size={20} />
             </div>
+
+            
           </div>
 
           {/* Messages */}
@@ -2821,6 +2790,9 @@ const Chat = () => {
 };
 
 export default Chat;
+
+
+
 
 
 

@@ -1,6 +1,4 @@
 
-
-
 import React, { useEffect, useState } from "react";
 import Loading from "../components/Loading";
 import ProfileModal from "../components/ProfileModal";
@@ -69,7 +67,7 @@ const DoneDeals = () => {
         userName,
         profile_picture,
         TotalChat,
-      
+
 
       }
     });
@@ -81,7 +79,6 @@ const DoneDeals = () => {
 
   return (
 
-    // i want if i clicl in this div it will fectch data form this api:http://bidbaj.com/vehicle/api/v1/appraisals/{userID} and show the Vin number  and message into a card under this specific user which one i clicked
 
 
 
@@ -92,15 +89,11 @@ const DoneDeals = () => {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
 
-          <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[#769A7F] to-teal-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-extrabold bg-linear-to-r from-[#769A7F] to-teal-300 bg-clip-text text-transparent">
             Done Deals
           </h1>
 
-          {/* <Link to="/addvehicle">
-            <button className="mt-4 md:mt-0 flex items-center gap-2 bg-[#769A7F] hover:bg-[#5e7c66] text-white font-semibold px-6 py-3 rounded-xl shadow-lg transition hover:scale-105">
-              <FaPlus /> Start New Deal
-            </button>
-          </Link> */}
+
 
         </div>
 
@@ -114,9 +107,9 @@ const DoneDeals = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            {appraisals.map((item) => (
+            {appraisals.map((item,idx) => (
 
-              <div className="bg-gray-800 border border-gray-700 rounded-2xl p-6 flex items-center gap-5 hover:border-[#769A7F] hover:shadow-lg transition" >
+              <div key={idx} className="bg-gray-800 border border-gray-700 rounded-2xl p-6 flex items-center gap-5 hover:border-[#769A7F] hover:shadow-lg transition" >
 
                 {/* image div */}
 
@@ -128,7 +121,7 @@ const DoneDeals = () => {
                   >
                     <img
                       className="w-full h-full object-cover"
-                      src={ item.profile_picture ? item.profile_picture: dummyProfile }
+                      src={item.profile_picture ? item.profile_picture : dummyProfile}
                       alt={item.user_name}
                     />
                   </div>
@@ -139,37 +132,16 @@ const DoneDeals = () => {
 
                 </div>
 
-           {/* content div */}
+                {/* content div */}
 
                 <div
                   key={item.user_id}
                   onClick={() =>
                     openMessages(item.user_id, item.user_name, item.profile_picture, item.total_chats)
-                  }
-                  // className="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-[#769A7F] hover:shadow-lg transition"
-                >
+                  } >
 
                   <div className="flex items-center gap-5">
 
-                    {/* Profile Image */}
-                    {/* <div className="relative">
-
-                    <div
-                      onClick={() => openProfileModal(item.user_id)}
-                      className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-[#769A7F] ring-offset-2 ring-offset-gray-900 cursor-pointer hover:scale-105 transition"
-                    >
-                      <img
-                        className="w-full h-full object-cover"
-                        src={`http://bidbaj.com${item.profile_picture}`}
-                        alt={item.user_name}
-                      />
-                    </div>
-
-                    <div className="absolute -bottom-1 -right-1 bg-[#769A7F] rounded-full p-1.5">
-                      <FaEye className="text-gray-900 text-xs" />
-                    </div>
-
-                  </div> */}
 
                     {/* User Info */}
                     <div className="flex-1">
@@ -190,7 +162,7 @@ const DoneDeals = () => {
                   {/* Footer */}
                   <div className="mt-4 flex justify-start">
                     <button
-                     // onClick={() => openProfileModal(item.user_id)}
+                      // onClick={() => openProfileModal(item.user_id)}
                       className="ml-5 text-sm text-[#769A7F] hover:text-white font-medium"
                     >
                       Done deals →
@@ -212,7 +184,7 @@ const DoneDeals = () => {
 
       </div>
 
-      {/* Modal */}
+      {/* ============ Profile Modal =======*/}
       {showModal && (
         <ProfileModal
           userId={selectedUserId}

@@ -6,7 +6,7 @@ import { FaCar, FaMoneyBillWave } from 'react-icons/fa';
 
 
 const AvailableCars = ({data}) => {
-  // const cars = [
+
   //   {
   //     id: 1,
   //     name: "Porsche 911 GT3 RS",
@@ -93,12 +93,10 @@ const AvailableCars = ({data}) => {
               Previous Auctions
             </h2>
             <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white">
-              SOLD ON<span className="text-transparent bg-clip-text bg-gradient-to-r bg-gradient-to-r from-[#769A7F] to-[#5a7c63]"> BIDBAJ</span>
+              SOLD ON<span className="text-transparent bg-clip-text bg-linear-to-r  from-[#769A7F] to-[#5a7c63]"> BIDBAJ</span>
             </h3>
           </div>
-          {/* <button className="text-slate-300 font-semibold border-b border-blue-500/50 pb-1 hover:text-blue-400 hover:border-blue-400 transition-all">
-            View All 450+ Listings
-          </button> */}
+        
         </div>
 
         {/* Car Grid */}
@@ -107,10 +105,10 @@ const AvailableCars = ({data}) => {
   {data?.vehicles?.map((vehicle) => (
     <div
       key={vehicle.id}
-      className="group relative bg-gradient-to-br from-slate-900/90 via-slate-800/90 to-slate-900/95 backdrop-blur-md rounded-3xl overflow-hidden border border-white/5 transition-all duration-500 ease-out hover:border-[#769A7F]/80 hover:shadow-2xl hover:-translate-y-2 hover:shadow-black/40"
+      className="group relative bg-linear-to-br from-slate-900/90 via-slate-800/90 to-slate-900/95 backdrop-blur-md rounded-3xl overflow-hidden border border-white/5 transition-all duration-500 ease-out hover:border-[#769A7F]/80 hover:shadow-2xl hover:-translate-y-2 hover:shadow-black/40"
     >
       {/* Shine effect overlay */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+      <div className="absolute inset-0 bg-linear-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       
       {/* Image Container */}
       <div className="relative h-64 overflow-hidden">
@@ -120,7 +118,7 @@ const AvailableCars = ({data}) => {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 group-hover:brightness-105"
         />
         {/* Premium gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
       </div>
 
       {/* Content Container */}
@@ -141,7 +139,7 @@ const AvailableCars = ({data}) => {
         </div>
 
         {/* Elegant Divider */}
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+        <div className="h-px w-full bg-linear-to-r from-transparent via-white/15 to-transparent" />
 
         {/* Mileage with refined icon pill */}
         <div className="flex items-center gap-3">

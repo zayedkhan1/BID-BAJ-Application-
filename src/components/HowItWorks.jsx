@@ -41,7 +41,7 @@ const HowItWorks = ({data}) => {
             BIDBAJ
           </h2>
           <h3 className="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#769A7F] to-[#5a7c63]">{data?.tab_line_secondary}</span>
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-[#769A7F] to-[#5a7c63]">{data?.tab_line_secondary}</span>
           </h3>
           <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
             We've streamlined the luxury car auction process to be as smooth as the vehicles we sell. 
@@ -52,7 +52,7 @@ const HowItWorks = ({data}) => {
         {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 relative">
           {/* Subtle connecting line for desktop (Visual flair) */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-slate-800 to-transparent -translate-y-1/2 z-0" />
+          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1px bg-linear-to-r from-transparent via-slate-800 to-transparent -translate-y-1/2 z-0" />
 
           {steps.map((step, index) => (
             <div 
@@ -78,7 +78,7 @@ const HowItWorks = ({data}) => {
               </p>
               
               {/* Bottom Interactive Glow */}
-              <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-gradient-to-r from-blue-500/40 to-blue-600/50 transition-all duration-700 group-hover:w-full rounded-b-3xl shadow-[0_5px_15px_rgba(37,99,235,0.4)]" />
+              <div className="absolute bottom-0 left-0 h-1.5 w-0 bg-linear-to-r from-blue-500/40 to-blue-600/50 transition-all duration-700 group-hover:w-full rounded-b-3xl shadow-[0_5px_15px_rgba(37,99,235,0.4)]" />
             </div>
           ))}
         </div>

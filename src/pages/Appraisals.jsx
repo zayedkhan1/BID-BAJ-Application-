@@ -1,5 +1,4 @@
 
-
 import React, { useEffect, useState } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import Loading from "../components/Loading";
@@ -86,7 +85,7 @@ const Appraisls = () => {
 
 
     console.log("apprisal id from message.jsx", messages[0]?.id)
- 
+
 
     const goToChat = (chatId, appraisal_id) => {
         navigate(`/chat/${chatId}`,
@@ -175,15 +174,7 @@ const Appraisls = () => {
                     </div>
 
                     {/* User Card */}
-                    <div
-                    // className="bg-gray-800 rounded-xl p-6 flex items-center gap-4 mb-8"
-                    >
-
-                        {/* <img 
-                        src={`http://bidbaj.com${profile_picture}`}
-                        className="w-16 h-16 rounded-full object-cover"
-                    /> */}
-
+                    <div>
                         <div>
                             <h2 className="text-2xl font-bold">{userName}</h2>
                             <p className="text-gray-400">{TotalChat} Open Vehicles</p>
@@ -201,15 +192,11 @@ const Appraisls = () => {
                         //i want if i click in this div it will take id and take me into chat.jsx page
 
                         <div
+                            key={item.id}
                             onClick={() => { goToChat(item?.message?.chat, item?.id) }}
-
-
-
                             className="max-w-3xl mx-auto bg-gray-800 border border-gray-700 p-6 rounded-xl mb-4 flex justify-between ">
-                            <div
-                                key={item.id}
 
-                            >
+                            <div key={item.id}>
 
                                 <p className="text-sm text-gray-400 mb-2">
                                     VIN Number
@@ -249,10 +236,7 @@ const Appraisls = () => {
                                         )}
                                     </p>
 
-                                    {/* i want if  click on this i  button it will take me into messageUserInfo page ,where form this api: http://bidbaj.com/vehicle/api/v1/appraisal/{appraisal_id} fetch data and first it will show user info then show created_at and vehicle information like tires_rating*/}
-                                    {/* <button className="w-8 h-8 flex items-center justify-center font-extrabold bg-gray-600 text-white rounded-full">
-                                    i
-                                    </button> */}
+
 
                                     <button
                                         onClick={(e) => {
@@ -270,18 +254,6 @@ const Appraisls = () => {
                                         i
                                     </button>
 
-
-                                    {/* DELETE BUTTON  */}
-
-                                    {/* <button><FaTrash className="text-red-500"></FaTrash></button> */}
-                                    {/* <button
-  onClick={(e) => {
-    e.stopPropagation(); // prevent parent click (important)
-    handleDelete(item.id);
-  }}
->
-  <FaTrash className="text-red-500 hover:text-red-700" />
-</button> */}
 
                                     <button
                                         onClick={(e) => {
@@ -310,7 +282,7 @@ const Appraisls = () => {
             {/* Delete modal */}
             {showDeleteModal && (
                 <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-                    <div className="bg-gray-800 p-6 rounded-xl w-[350px] text-center shadow-lg">
+                    <div className="bg-gray-800 p-6 rounded-xl w-87.5 text-center shadow-lg">
 
                         <h2 className="text-xl font-bold mb-4 text-white">
                             Delete Appraisal

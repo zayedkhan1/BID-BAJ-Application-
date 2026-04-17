@@ -14,10 +14,10 @@ const AppDownload = ({data}) => {
   return (
     <section className="py-24 bg-slate-950 overflow-hidden relative">
       {/* Background Radial Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 blur-[120px] rounded-full z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-blue-600/10 blur-[120px] rounded-full z-0" />
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="bg-gradient-to-br from-slate-900/80 to-slate-950 border border-slate-800 rounded-[3rem] overflow-hidden backdrop-blur-md shadow-2xl">
+        <div className="bg-linear-to-br from-slate-900/80 to-slate-950 border border-slate-800 rounded-[3rem] overflow-hidden backdrop-blur-md shadow-2xl">
           <div className="flex flex-col lg:flex-row items-center">
             
             {/* Left Content: Text & Badges */}
@@ -31,7 +31,7 @@ const AppDownload = ({data}) => {
 
               <h2 className="text-4xl md:text-5xl font-black text-white mb-6 leading-tight">
                 {/* Take the Auction House <br />  */}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#769A7F] to-[#5a7c63]">{data?.tag_line}</span>
+                <span className="text-transparent bg-clip-text bg-linear-to-r from-[#769A7F] to-[#5a7c63]">{data?.tag_line}</span>
               </h2>
 
               <p className="text-slate-400 text-lg mb-8 max-w-lg leading-relaxed">
@@ -41,7 +41,7 @@ const AppDownload = ({data}) => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-center gap-3 text-slate-300">
-                    <FaCheckCircle className="text-[#769A7F] flex-shrink-0" />
+                    <FaCheckCircle className="text-[#769A7F] shrink-0" />
                     <span className="text-sm font-medium">{feature}</span>
                   </div>
                 ))}
@@ -80,11 +80,11 @@ const AppDownload = ({data}) => {
                 <img 
                   src="https://images.unsplash.com/photo-1556656793-062ff987825d?auto=format&fit=crop&q=80&w=600" 
                   alt="Bid Baj App" 
-                  className="w-[280px] md:w-[320px] rounded-[3rem] border-[8px] border-slate-800 shadow-2xl transform rotate-[-5deg] hover:rotate-0 transition-transform duration-700"
+                  className="w-70 md:w-[320px] rounded-[3rem] border-8 border-slate-800 shadow-2xl transform rotate-[-5deg] hover:rotate-0 transition-transform duration-700"
                 />
                 
                 {/* Floating QR Code Card */}
-                <div className="absolute -bottom-6 -left-12 md:-left-20 bg-slate-900 border border-slate-800 p-6 rounded-[2rem] shadow-2xl backdrop-blur-xl hidden md:block group hover:border-[#769A7F] transition-colors">
+                <div className="absolute -bottom-6 -left-12 md:-left-20 bg-slate-900 border border-slate-800 p-6 rounded-4xl shadow-2xl backdrop-blur-xl hidden md:block group hover:border-[#769A7F] transition-colors">
                   <div className="flex items-center gap-4">
                     <div className="p-3 bg-white rounded-xl">
                       {/* Using a placeholder QR icon for visual representation */}
@@ -111,4 +111,3 @@ const AppDownload = ({data}) => {
 
 export default AppDownload;
 
-//bg-gradient-to-r from-[#769A7F] to-[#5a7c63]

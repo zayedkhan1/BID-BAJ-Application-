@@ -6,7 +6,6 @@ import Loading from "../components/Loading";
 import ProfileModal from "../components/ProfileModal";
 import { FaPlus, FaEye, FaIdBadge } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import dummyProfile from '../../public/assets/image/dummy_profile.jpg'
 
 const Deals = () => {
 
@@ -19,7 +18,7 @@ const Deals = () => {
   const navigate = useNavigate();
   const [vin, setVin] = useState("");
 
-   
+
 
   const fetchAppraisals = async () => {
     try {
@@ -58,44 +57,44 @@ const Deals = () => {
 
 
   const searchByVin = async (vinValue) => {
-  try {
-    const response = await fetch(
-      `/api/vehicle/api/v1/appraisals/search/${vinValue}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      }
-    );
+    try {
+      const response = await fetch(
+        `/api/vehicle/api/v1/appraisals/search/${vinValue}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
 
-    const result = await response.json();
+      const result = await response.json();
 
-    setAppraisals(result.appraisals || []);
+      setAppraisals(result.appraisals || []);
 
-  } catch (error) {
-    console.error("Search error:", error); 
-  }
-};
+    } catch (error) {
+      console.error("Search error:", error);
+    }
+  };
 
 
   const handleSearchChange = (e) => {
-  const value = e.target.value;
-  setVin(value);
+    const value = e.target.value;
+    setVin(value);
 
-  if (value.trim() === "") {
-    // 👉 If empty → show all deals again
-    fetchAppraisals();
-  }
-};
-console.log("Current VIN Search Value:", vin); // Debug log to check VIN input value
-const handleSearch = () => {
-  if (!vin.trim()) return;
+    if (value.trim() === "") {
+      // 👉 If empty → show all deals again
+      fetchAppraisals();
+    }
+  };
+  console.log("Current VIN Search Value:", vin); // Debug log to check VIN input value
+  const handleSearch = () => {
+    if (!vin.trim()) return;
 
-   searchByVin(vin);
+    searchByVin(vin);
 
-navigate(`/search/${vin}`);
-};
+    navigate(`/search/${vin}`);
+  };
 
   const openProfileModal = (userId) => {
     setSelectedUserId(userId);
@@ -124,7 +123,6 @@ navigate(`/search/${vin}`);
 
   return (
 
-    // i want if i clicl in this div it will fectch data form this api:http://bidbaj.com/vehicle/api/v1/appraisals/{userID} and show the Vin number  and message into a card under this specific user which one i clicked
 
 
 
@@ -132,30 +130,30 @@ navigate(`/search/${vin}`);
 
       <div className="max-w-7xl mx-auto">
 
-      <div className="flex max-w-xl gap-3 mb-8 mx-auto">
-  <input
-    type="text"
-    placeholder="Search by VIN..."
-    value={vin}
-    onChange={handleSearchChange}
-    onKeyDown={(e) => {
-      if (e.key === "Enter") handleSearch();
-    }}
-    className="flex-1 px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white"
-  />
+        <div className="flex max-w-xl gap-3 mb-8 mx-auto">
+          <input
+            type="text"
+            placeholder="Search by VIN..."
+            value={vin}
+            onChange={handleSearchChange}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleSearch();
+            }}
+            className="flex-1 px-4 py-3 rounded-xl bg-gray-800 border border-gray-700 text-white"
+          />
 
-  <button
-    onClick={handleSearch}
-    className="bg-[#769A7F] px-6 py-3 rounded-xl"
-  >
-    Search
-  </button>
-</div>
+          <button
+            onClick={handleSearch}
+            className="bg-[#769A7F] px-6 py-3 rounded-xl"
+          >
+            Search
+          </button>
+        </div>
 
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
 
-          <h1 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-[#769A7F] to-teal-300 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl font-extrabold bg-linear-to-r from-[#769A7F] to-teal-300 bg-clip-text text-transparent">
             Deals [123456789ABDH12DH]
           </h1>
 
@@ -177,26 +175,25 @@ navigate(`/search/${vin}`);
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            {appraisals.map((item) => (
+            {appraisals.map((item, idx) => (
 
-              <div className="bg-gray-800 border border-gray-700 rounded-2xl p-6 flex items-center gap-5 hover:border-[#769A7F] hover:shadow-lg transition" >
+              <div key={idx} className="bg-gray-800 border border-gray-700 rounded-2xl p-6 flex items-center gap-5 hover:border-[#769A7F] hover:shadow-lg transition" >
 
                 {/* image div */}
 
                 <div className="relative">
 
                   <div
+
                     onClick={() => openProfileModal(item.user_id)}
                     className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-[#769A7F] ring-offset-2 ring-offset-gray-900 cursor-pointer hover:scale-105 transition"
                   >
                     <img
                       className="w-full h-full object-cover"
-                      src={item.profile_picture ? `http://bidbaj.com${item.profile_picture}`: "/assets/image/dummy_profile.jpg"}
-                      // src={item.profile_picture ? `http://bidbaj.com${item.profile_picture}`: dummyProfile}
-                      // src={ item?.profile_picture  || "/assets/image/dummy_profile.jpg"}
+                      src={item.profile_picture ? `http://bidbaj.com${item.profile_picture}` : "/assets/image/dummy_profile.jpg"}
                       alt={item.user_name}
                     />
-             
+
                   </div>
 
                   <div className="absolute -bottom-1 -right-1 bg-[#769A7F] rounded-full p-1.5">
@@ -205,37 +202,16 @@ navigate(`/search/${vin}`);
 
                 </div>
 
-           {/* content div */}
+                {/* content div */}
 
                 <div
                   key={item.user_id}
                   onClick={() =>
                     openMessages(item.user_id, item.user_name, item.profile_picture, item.total_chats)
-                  }
-                  // className="bg-gray-800 border border-gray-700 rounded-2xl p-6 hover:border-[#769A7F] hover:shadow-lg transition"
-                >
+                  } >
 
                   <div className="flex items-center gap-5">
 
-                    {/* Profile Image */}
-                    {/* <div className="relative">
-
-                    <div
-                      onClick={() => openProfileModal(item.user_id)}
-                      className="w-20 h-20 rounded-full overflow-hidden ring-2 ring-[#769A7F] ring-offset-2 ring-offset-gray-900 cursor-pointer hover:scale-105 transition"
-                    >
-                      <img
-                        className="w-full h-full object-cover"
-                        src={`http://bidbaj.com${item.profile_picture}`}
-                        alt={item.user_name}
-                      />
-                    </div>
-
-                    <div className="absolute -bottom-1 -right-1 bg-[#769A7F] rounded-full p-1.5">
-                      <FaEye className="text-gray-900 text-xs" />
-                    </div>
-
-                  </div> */}
 
                     {/* User Info */}
                     <div className="flex-1">
@@ -256,19 +232,13 @@ navigate(`/search/${vin}`);
                   {/* Footer */}
                   <div className="mt-4 flex justify-start">
                     <button
-                     // onClick={() => openProfileModal(item.user_id)}
                       className="ml-5 text-sm text-[#769A7F] hover:text-white font-medium"
                     >
                       Start deal →
                     </button>
                   </div>
-
                 </div>
-
-
               </div>
-
-
 
             ))}
 
@@ -278,7 +248,7 @@ navigate(`/search/${vin}`);
 
       </div>
 
-      {/* Modal */}
+      {/* ======= Profile Modal ============= */}
       {showModal && (
         <ProfileModal
           userId={selectedUserId}
