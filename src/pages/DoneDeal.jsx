@@ -15,7 +15,7 @@ const DoneDeal = () => {
       const [selectedUserId, setSelectedUserId] = useState(null);
       const navigate = useNavigate();
 
-      console.log("user id for next page",userId)
+      console.log("user id for  this page api",userId)
     
 
     const { userName, profile_picture, TotalChat } = location.state || {};
@@ -39,13 +39,13 @@ const DoneDeal = () => {
             );
 
 
-            if (!response.ok) {
-                throw new Error("Failed to fetch appraisals");
-            }
+            // if (!response.ok) {
+            //     throw new Error("Failed to fetch appraisals");
+            // }
 
             const result = await response.json();
 
-            setMessages(result.appraisals);
+            setMessages(result?.appraisals || []);
 
         } catch (error) {
             console.error("Error:", error);
@@ -53,6 +53,8 @@ const DoneDeal = () => {
             setLoading(false);
         }
     };
+
+    console.log("my data is here",messages)
 
     useEffect(() => {
          // First fetch immediately
@@ -68,6 +70,9 @@ const DoneDeal = () => {
     
     }, [userId]);
 
+
+// Profile modal
+
      const openProfileModal = (userId) => {
     setSelectedUserId(userId);
     setShowModal(true);
@@ -80,7 +85,7 @@ const DoneDeal = () => {
   };
 
 
-  console.log("apprisal id from message.jsx",messages[0]?.id)
+//   console.log("apprisal id from message.jsx",messages[0]?.id)
 
    const goToChat=(chatId,appraisal_id)=>{
     navigate(`/chat/${chatId}`,
@@ -92,10 +97,11 @@ const DoneDeal = () => {
       }
     )
    }
+   console.log("my data",messages)
 
     console.log("Fetched Messages:", messages);
    
-    console.log("sending appraisal id:", messages[0]?.id);
+    // console.log("sending appraisal id:", messages[0]?.id);
     
     if (loading) return <Loading />;
 
@@ -191,7 +197,7 @@ const DoneDeal = () => {
                             <div className="flex items-center gap-3 ">
 
                                 <p className="text-sm">
-                                    {item.is_read ? (
+                                    {item.is_chat_open ? (
                                         <FaCheckDouble className="text-blue-500 inline" />
                                     ) : (
                                         <FaCheck className="text-white inline" />
@@ -203,7 +209,7 @@ const DoneDeal = () => {
                                     i
                                     </button> */}
 
-<button
+{/* <button
   onClick={(e) =>{
      e.stopPropagation();
 
@@ -217,7 +223,7 @@ const DoneDeal = () => {
   className="w-8 h-8 flex items-center justify-center font-extrabold bg-gray-600 text-white rounded-full hover:bg-[#769A7F]"
 >
   i
-</button>
+</button> */}
 
                             </div>
 

@@ -1987,7 +1987,7 @@
 
 
 import { useEffect, useState, useRef } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import {
   FaChevronDown,
@@ -1998,6 +1998,7 @@ import {
   FaImage,
   FaCheck,
 } from "react-icons/fa";
+import { GoArrowLeft } from "react-icons/go";
 import { BsThreeDotsVertical, BsArrowLeft, BsMenuApp } from "react-icons/bs";
 import { IoMdInformation } from "react-icons/io";
 import ProfileModal from "../components/ProfileModal";
@@ -2418,9 +2419,14 @@ const Chat = () => {
             </button>
           </div>
           {/*  BIDBAJ LOGO */}
-          <div className="p-3 border-b border-gray-700 hidden md:flex justify-center">
+          <div className="flex items-center justify-between border-b  border-gray-700 ">
+           <Link to={`/`} className="ml-25 p-3">
             <img src={chat_logo} alt="BIDBAJ" className="w-40 h-auto" />
+          </Link>
+           <button className="text-white mr-5 cursor-pointer text-xl font-bold hover:translate-1 transform" onClick={() => navigate(-1)}><GoArrowLeft /> </button>
+
           </div>
+        
 
           {/* PROFILE DIV */}
 

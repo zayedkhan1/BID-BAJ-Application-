@@ -26,6 +26,7 @@ import SearchDeals from './pages/SearchDeals'
 import Appraisls from './pages/Appraisals'
 import CreateAppraisal from './pages/CreateAppraisal'
 import NotFound from './pages/NotFound'
+import DoneDeal from './pages/DoneDeal'
 
 
 function App() {
@@ -72,13 +73,20 @@ function App() {
           </ProtectedRoute>
         } />
 
-        <Route path="/done-deals" element={
+        <Route path="/donedeals" element={
           <ProtectedRoute>
             <DoneDeals />
           </ProtectedRoute>
 
         } />
+        <Route path="/done-deal/:userId" element={
+          <ProtectedRoute>
+            <DoneDeal />
+          </ProtectedRoute>
 
+        } />
+
+     
 
 
         <Route path="/contact" element={<ContactUs />} />

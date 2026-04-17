@@ -64,11 +64,12 @@ const DoneDeals = () => {
     setSelectedUserId(null);
   };
   const openMessages = (userId, userName, profile_picture, TotalChat) => {
-    navigate(`/appraisals/${userId}`, {
+    navigate(`/done-deal/${userId}`, {
       state: {
         userName,
         profile_picture,
-        TotalChat
+        TotalChat,
+      
 
       }
     });

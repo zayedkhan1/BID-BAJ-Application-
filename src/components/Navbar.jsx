@@ -28,7 +28,7 @@ const Navbar = () => {
     { name: 'Home', href: '/', icon: <HiOutlineHome /> },
     { name: 'Deals', href: '/deals', icon: <HiOutlineLightningBolt /> },
 
-    { name: ' Done Deals', href: '/done-deals', icon: <HiOutlineCube /> },
+    { name: ' Done Deals', href: '/donedeals', icon: <HiOutlineCube /> },
   
     { name: 'Contact Us', href: '/contact', icon: <HiOutlineSupport /> },
     // { name: 'Admin Panel', href: '/admin', icon: <HiOutlineSupport /> },
@@ -36,7 +36,7 @@ const Navbar = () => {
     // { name: 'Test Page', href: '/test', icon: <HiOutlineSupport /> },
   ];
   const filteredNavLinks = navLinks.filter((link) => {
-  if (link.href === "/done-deals") {
+  if (link.href === "/donedeals") {
     return !!user; // only show if logged in
   }
   return true;

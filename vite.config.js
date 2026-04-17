@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [react(), tailwindcss(),],
 
 
-  //post server
+  //proxy server
 
    server: {
     proxy: {
@@ -20,17 +20,6 @@ export default defineConfig({
     },
   },
 
-  //get server
-
-// server: {
-//    proxy: {
-//   '/api': {
-//     target: 'http://bidbaj.com',
-//     changeOrigin: true,
-//     secure: false,
-//   },
-// }
-//   },
 
 
 
