@@ -1,4 +1,4 @@
-const AcceptBidModal = ({
+const ConfirmAcceptModal = ({
   show,
   onConfirm,
   onCancel,
@@ -37,4 +37,4 @@ const AcceptBidModal = ({
   );
 };
 
-export default AcceptBidModal;
+export default ConfirmAcceptModal;
